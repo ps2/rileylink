@@ -4447,7 +4447,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </symbols>
 <devicesets>
 <deviceset name="C-EU" prefix="C" uservalue="yes">
-<description>&lt;B&gt;CAPACITOR&lt;/B&gt;, European symbol</description>
+<description>&lt;B&gt;CAPACITOR&lt;/B&gt;</description>
 <gates>
 <gate name="G$1" symbol="C-EU" x="0" y="0"/>
 </gates>
@@ -5166,7 +5166,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="R-US_" prefix="R" uservalue="yes">
-<description>&lt;B&gt;RESISTOR&lt;/B&gt;, American symbol</description>
+<description>&lt;B&gt;RESISTOR&lt;/B&gt;</description>
 <gates>
 <gate name="G$1" symbol="R-US" x="0" y="0"/>
 </gates>
