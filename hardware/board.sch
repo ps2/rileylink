@@ -8665,7 +8665,7 @@ at 30/07/2012 17:45:58</description>
 </package>
 </packages>
 <symbols>
-<symbol name="TPS63030DSKT">
+<symbol name="TPS63031">
 <pin name="VINA" x="-17.78" y="17.78" length="middle" direction="in"/>
 <pin name="VIN" x="-17.78" y="12.7" length="middle" direction="in"/>
 <pin name="L1" x="-17.78" y="7.62" length="middle" direction="in"/>
@@ -8686,10 +8686,10 @@ at 30/07/2012 17:45:58</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="TPS63030DSKT" prefix="U">
+<deviceset name="TPS63031" prefix="U">
 <description>HIGH EFFICIENCY SINGLE INDUCTOR BUCK-BOOST CONVERTER WITH 1-A SWITCHES</description>
 <gates>
-<gate name="A" symbol="TPS63030DSKT" x="0" y="0"/>
+<gate name="A" symbol="TPS63031" x="0" y="0"/>
 </gates>
 <devices>
 <device name="" package="SON50P260X260X80-11N">
@@ -8708,7 +8708,7 @@ at 30/07/2012 17:45:58</description>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="MPN" value="TPS63030DSKT" constant="no"/>
+<attribute name="MPN" value="TPS63031" constant="no"/>
 <attribute name="OC_FARNELL" value="1686303" constant="no"/>
 <attribute name="OC_NEWARK" value="19P7478" constant="no"/>
 <attribute name="PACKAGE" value="SON-10" constant="no"/>
@@ -9584,7 +9584,9 @@ at 30/07/2012 17:04:24</description>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0603K" value="4.7uF"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="U2" library="Texas Instruments_By_element14_Batch_1" deviceset="TPS63030DSKT" device=""/>
+<part name="U2" library="Texas Instruments_By_element14_Batch_1" deviceset="TPS63031" device="">
+<attribute name="MPN" value="TPS63031"/>
+</part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="L1" library="Bourns_By_element14_Batch_1" deviceset="PM0603-R12J-RC" device="" value="1.5 uH"/>

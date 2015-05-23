@@ -2128,10 +2128,10 @@ Please make sure your boards conform to these design rules.</description>
 <element name="U$1" library="parts" package="915_ANT" value="915_ANT" x="5.985" y="2.54" rot="R180"/>
 <element name="U$2" library="parts" package="PTS540" value="TACTILE_SWITCH" x="30.655" y="16.735" rot="R270"/>
 <element name="U1" library="parts" package="5PIN_SOT23" value="" x="6.86" y="16.33"/>
-<element name="U2" library="Texas Instruments_By_element14_Batch_1" package="SON50P260X260X80-11N" value="TPS63030DSKT" x="31.5" y="23" rot="R90">
+<element name="U2" library="Texas Instruments_By_element14_Batch_1" package="SON50P260X260X80-11N" value="TPS63031" x="31.5" y="23" rot="R90">
 <attribute name="PACKAGE" value="SON-10" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_NEWARK" value="19P7478" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="TPS63030DSKT" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="TPS63031" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="SUPPLIER" value="Texas Instruments" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_FARNELL" value="1686303" x="31.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
