@@ -22,3 +22,8 @@ The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware
 
 To send data to the cloud, the GlucoseLink app runs on your iOS devices and talks to the RileyLink over bluetooth.
 
+### License
+
+[[[https://i.creativecommons.org/l/by-sa/3.0/88x31.png|width=88px]]](http://creativecommons.org/licenses/by-sa/3.0/)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/).
