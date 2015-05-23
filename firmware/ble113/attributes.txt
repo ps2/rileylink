@@ -1,0 +1,6 @@
+xgatt_battery 8
+xgatt_rx_packet_count 11
+xgatt_channel 15
+xgatt_rx_packet 18
+xgatt_tx_packet 21
+xgatt_tx_packet_trigger 25
