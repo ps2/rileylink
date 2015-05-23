@@ -2,9 +2,9 @@
 
 A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on reading blood glucose and related data from Medtronic insulin pumps and sensors.  Please understand that this project:
 
- * Has no affiliation with Medtronic
- * Is highly experimental
- * Is not intended for therapy
+ * *Has no affiliation with Medtronic*
+ * *Is highly experimental*
+ * *Is not intended for therapy*
 
 ### Hardware
 
