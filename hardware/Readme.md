@@ -23,3 +23,9 @@ You will have to look at the schematic and the board design in [Eagle](http://ww
 I use a hot-air rework station to flow the solder paste, but you could use a toaster oven setup as well.
 
 ![Assembled Board](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/board.jpg)
+
+### Case
+
+I created a case using [Tinkercad](https://www.tinkercad.com), a great tool.
+
+![3D Printed Case](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case.png)
