@@ -3,6 +3,8 @@
  * board.sch - circuit schematic
  * board.brd - pcb design file
  * bom.csv - materials list
+ * case_bottom.stl - 3d printer model for case bottom
+ * case_top.stl - 3d printer model for case top
 
 ### Order the PCB from OSH Park:
 
