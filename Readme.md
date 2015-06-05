@@ -22,7 +22,9 @@ The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware
 
 ### App
 
-To send data to the cloud, the GlucoseLink app runs on your iOS devices and talks to the RileyLink over bluetooth.
+To send data to the cloud, the GlucoseLink app (not released yet; working on NightScout integration) runs on your iOS devices and talks to the RileyLink over bluetooth.
+
+If you are interested in taking a look at using the RileyLink with your own app, check out [gatt.xml](firmware/ble113/gatt.xml)
 
 ### License
 
