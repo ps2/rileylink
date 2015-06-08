@@ -29,3 +29,8 @@ I use a hot-air rework station to flow the solder paste, but you could use a toa
 I created a case using [Tinkercad](https://www.tinkercad.com), a great tool.
 
 ![3D Printed Case](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case.png)
+
+### License
+
+The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).
+
