@@ -77,6 +77,7 @@
 <layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="113" name="IDFDebug" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
+<layer number="118" name="Rect_Pads" color="7" fill="1" visible="no" active="no"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="123" name="tTestmark" color="7" fill="1" visible="yes" active="yes"/>
@@ -9015,25 +9016,6 @@ at 30/07/2012 17:04:24</description>
 <smd name="6" x="-0.65" y="0.875" dx="0.35" dy="1" layer="1" rot="R180"/>
 <rectangle x1="-0.775" y1="-0.175" x2="-0.5" y2="0.175" layer="21"/>
 </package>
-<package name="915_ANT">
-<description>915 MHz Antenna P/N 0915AT43A0026</description>
-<smd name="P$1" x="-2.375" y="0" dx="1.25" dy="2" layer="1"/>
-<rectangle x1="-1.2" y1="-0.3" x2="0.5" y2="0.3" layer="21"/>
-<text x="-2.54" y="-2.54" size="1.27" layer="25">&gt;NAME</text>
-<smd name="P$2" x="4.375" y="0" dx="1.25" dy="2" layer="1"/>
-<rectangle x1="-4" y1="-7" x2="6" y2="2" layer="39"/>
-<polygon width="0.01" layer="1">
-<vertex x="5" y="-1"/>
-<vertex x="5" y="-6"/>
-<vertex x="-2" y="-6"/>
-<vertex x="-2" y="-3.5"/>
-<vertex x="-1.5" y="-3.5"/>
-<vertex x="-1.5" y="-5.5"/>
-<vertex x="4.5" y="-5.5"/>
-<vertex x="4.5" y="-1"/>
-</polygon>
-<rectangle x1="-4" y1="-7" x2="6" y2="2" layer="42"/>
-</package>
 <package name="CC-P05">
 <description>&lt;p&gt;CC debugger connection using 0.05-inch pitch header.&lt;/p&gt;
 &lt;p&gt;Package design from "pretty-eagle-libs" at &lt;a href="https://github.com/esden/pretty-eagle-libs/blob/master/pel_misc.lbr"&gt;https://github.com/esden/pretty-eagle-libs/blob/master/pel_misc.lbr&lt;/a&gt; by @esden at Github. (CC-BY-SA-3.0)&lt;/p&gt;
@@ -9259,15 +9241,6 @@ at 30/07/2012 17:04:24</description>
 <pin name="GND@2" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
 <pin name="GND@3" x="2.54" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
 </symbol>
-<symbol name="915_ANT">
-<wire x1="0" y1="0" x2="-2.54" y2="3.81" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="3.81" x2="0" y2="3.81" width="0.254" layer="94"/>
-<wire x1="0" y1="3.81" x2="2.54" y2="3.81" width="0.254" layer="94"/>
-<wire x1="2.54" y1="3.81" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="0" y2="3.81" width="0.254" layer="94"/>
-<text x="3.81" y="1.27" size="1.778" layer="95">&gt;NAME</text>
-<pin name="P$1" x="0" y="-5.08" visible="pad" length="middle" rot="R90"/>
-</symbol>
 <symbol name="CC-DEBUG-PWR">
 <wire x1="-5.08" y1="17.78" x2="12.7" y2="17.78" width="0.254" layer="94"/>
 <wire x1="12.7" y1="17.78" x2="12.7" y2="-10.16" width="0.254" layer="94"/>
@@ -9390,21 +9363,6 @@ at 30/07/2012 17:04:24</description>
 <connect gate="G$1" pin="GND@2" pad="5"/>
 <connect gate="G$1" pin="GND@3" pad="6"/>
 <connect gate="G$1" pin="UNBAL" pad="1"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="915_ANT">
-<gates>
-<gate name="G$1" symbol="915_ANT" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="915_ANT">
-<connects>
-<connect gate="G$1" pin="P$1" pad="P$1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -9555,6 +9513,46 @@ at 30/07/2012 17:04:24</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="adafruit">
+<packages>
+<package name="FIDUCIAL_1MM">
+<smd name="1" x="0" y="0" dx="1" dy="1" layer="1" roundness="100" stop="no" cream="no"/>
+<polygon width="0.127" layer="29">
+<vertex x="-1" y="0" curve="90"/>
+<vertex x="0" y="-1" curve="90"/>
+<vertex x="1" y="0" curve="90"/>
+<vertex x="0" y="1" curve="90"/>
+</polygon>
+<polygon width="0.127" layer="41">
+<vertex x="-1" y="0" curve="90"/>
+<vertex x="0" y="-1" curve="90"/>
+<vertex x="1" y="0" curve="90"/>
+<vertex x="0" y="1" curve="90"/>
+</polygon>
+</package>
+</packages>
+<symbols>
+<symbol name="DOT">
+<circle x="0" y="0" radius="2.54" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="FIDUCIAL">
+<description>For use by pick and place machines to calibrate the vision/machine, 1mm
+&lt;p&gt;By microbuilder.eu&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="DOT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="FIDUCIAL_1MM">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9609,15 +9607,8 @@ at 30/07/2012 17:04:24</description>
 <part name="IC1" library="parts" deviceset="0915BM15A0001" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="R4" library="rcl" deviceset="R-US_" device="R0402"/>
-<part name="R5" library="rcl" deviceset="R-US_" device="R0402"/>
-<part name="R6" library="rcl" deviceset="R-US_" device="R0402"/>
-<part name="R8" library="rcl" deviceset="R-US_" device="R0402"/>
 <part name="ANT1" library="discrete" deviceset="ANTENNA" device=""/>
 <part name="R9" library="rcl" deviceset="R-US_" device="R0402"/>
-<part name="R10" library="rcl" deviceset="R-US_" device="R0402"/>
-<part name="GND11" library="supply1" deviceset="GND" device=""/>
-<part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="U$1" library="parts" deviceset="915_ANT" device=""/>
 <part name="CC1110-DEBUG" library="parts" deviceset="CC-DEBUG-PWR" device=""/>
 <part name="BLE113-DEBUG" library="parts" deviceset="CC-DEBUG-PWR" device=""/>
 <part name="PWR" library="parts" deviceset="SW_SLIDE" device=""/>
@@ -9655,6 +9646,8 @@ at 30/07/2012 17:04:24</description>
 <part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY18" library="supply2" deviceset="VDD" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
+<part name="U$1" library="adafruit" deviceset="FIDUCIAL" device=""/>
+<part name="U$3" library="adafruit" deviceset="FIDUCIAL" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9707,15 +9700,8 @@ at 30/07/2012 17:04:24</description>
 <instance part="IC1" gate="G$1" x="132.08" y="53.34"/>
 <instance part="GND10" gate="1" x="132.08" y="43.18"/>
 <instance part="R4" gate="G$1" x="152.4" y="48.26" rot="R90"/>
-<instance part="R5" gate="G$1" x="157.48" y="63.5" rot="R90"/>
-<instance part="R6" gate="G$1" x="190.5" y="63.5" rot="R90"/>
-<instance part="R8" gate="G$1" x="170.18" y="63.5" rot="R90"/>
 <instance part="ANT1" gate="A" x="152.4" y="83.82"/>
 <instance part="R9" gate="G$1" x="152.4" y="73.66" rot="R90"/>
-<instance part="R10" gate="G$1" x="180.34" y="68.58"/>
-<instance part="GND11" gate="1" x="170.18" y="55.88"/>
-<instance part="GND12" gate="1" x="190.5" y="55.88"/>
-<instance part="U$1" gate="G$1" x="198.12" y="78.74"/>
 <instance part="CC1110-DEBUG" gate="G$1" x="-17.78" y="55.88" rot="R180"/>
 <instance part="BLE113-DEBUG" gate="G$1" x="-15.24" y="-15.24" rot="R180"/>
 <instance part="PWR" gate="G$1" x="93.98" y="134.62"/>
@@ -9753,6 +9739,8 @@ at 30/07/2012 17:04:24</description>
 <instance part="SUPPLY15" gate="GND" x="66.04" y="93.98"/>
 <instance part="SUPPLY18" gate="G$1" x="22.86" y="-68.58" rot="R180"/>
 <instance part="GND20" gate="1" x="157.48" y="27.94"/>
+<instance part="U$1" gate="G$1" x="111.76" y="-50.8"/>
+<instance part="U$3" gate="G$1" x="132.08" y="-50.8"/>
 </instances>
 <busses>
 </busses>
@@ -9850,14 +9838,6 @@ at 30/07/2012 17:04:24</description>
 <wire x1="132.08" y1="45.72" x2="134.62" y2="45.72" width="0.1524" layer="91"/>
 <junction x="132.08" y="45.72"/>
 <pinref part="IC1" gate="G$1" pin="GND@2"/>
-</segment>
-<segment>
-<pinref part="R8" gate="G$1" pin="1"/>
-<pinref part="GND11" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="R6" gate="G$1" pin="1"/>
-<pinref part="GND12" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="P$4"/>
@@ -10158,41 +10138,15 @@ at 30/07/2012 17:04:24</description>
 <wire x1="152.4" y1="53.34" x2="152.4" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="UNBAL"/>
 <wire x1="142.24" y1="55.88" x2="152.4" y2="55.88" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="1"/>
-<wire x1="152.4" y1="55.88" x2="157.48" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="55.88" x2="157.48" y2="58.42" width="0.1524" layer="91"/>
 <junction x="152.4" y="55.88"/>
 <pinref part="R9" gate="G$1" pin="1"/>
 <wire x1="152.4" y1="55.88" x2="152.4" y2="68.58" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$11" class="0">
-<segment>
-<pinref part="R10" gate="G$1" pin="1"/>
-<junction x="175.26" y="68.58"/>
-<pinref part="R10" gate="G$1" pin="1"/>
-<wire x1="175.26" y1="68.58" x2="170.18" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="R8" gate="G$1" pin="2"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="157.48" y1="68.58" x2="170.18" y2="68.58" width="0.1524" layer="91"/>
-<junction x="170.18" y="68.58"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="ANT1" gate="A" pin="1"/>
 <pinref part="R9" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$13" class="0">
-<segment>
-<pinref part="R10" gate="G$1" pin="2"/>
-<pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="190.5" y1="68.58" x2="185.42" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="P$1"/>
-<wire x1="190.5" y1="68.58" x2="198.12" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="68.58" x2="198.12" y2="73.66" width="0.1524" layer="91"/>
-<junction x="190.5" y="68.58"/>
 </segment>
 </net>
 <net name="N$14" class="0">
@@ -10443,9 +10397,7 @@ at 30/07/2012 17:04:24</description>
 <approved hash="202,1,180.34,180.34,X3,2,,,,"/>
 <approved hash="202,1,180.34,177.8,X3,3,,,,"/>
 <approved hash="202,1,180.34,175.26,X3,4,,,,"/>
-<approved hash="204,1,-10.16,55.88,CC1110-DEBUG,3V3_PWR,,,,"/>
 <approved hash="104,1,-7.62,-17.78,BLE113-DEBUG,3V3_SENS,VDD,,,"/>
-<approved hash="204,1,-7.62,-15.24,BLE113-DEBUG,3V3_PWR,,,,"/>
 <approved hash="206,1,-7.62,-7.62,RESET,,,,,"/>
 <approved hash="206,1,-10.16,63.5,RESET,,,,,"/>
 </errors>
