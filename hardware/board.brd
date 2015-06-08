@@ -141,7 +141,7 @@
 <wire x1="53" y1="28.476" x2="51.476" y2="30" width="0" layer="20" curve="90"/>
 <wire x1="51.476" y1="30" x2="1.524" y2="30" width="0" layer="20"/>
 <wire x1="1.524" y1="30" x2="0" y2="28.476" width="0" layer="20" curve="90"/>
-<text x="12.125" y="27.875" size="1.27" layer="25">RileyLink0.3</text>
+<text x="12.125" y="27.875" size="1.27" layer="25">RileyLink0.6</text>
 <text x="11.75" y="3.125" size="1.4224" layer="25">Ant</text>
 </plain>
 <libraries>
