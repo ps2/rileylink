@@ -9568,7 +9568,7 @@ at 30/07/2012 17:04:24</description>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="VDD" device=""/>
-<part name="U1" library="parts" deviceset="MCP73831" device=""/>
+<part name="CHARGER" library="parts" deviceset="MCP73831" device=""/>
 <part name="X3" library="con-hirose" deviceset="MINI-USB-" device="UX60-MB-5ST"/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="-JST-2MM-SMT"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
@@ -9582,7 +9582,7 @@ at 30/07/2012 17:04:24</description>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0603K" value="4.7uF"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="U2" library="Texas Instruments_By_element14_Batch_1" deviceset="TPS63031" device="">
+<part name="REGULATOR" library="Texas Instruments_By_element14_Batch_1" deviceset="TPS63031" device="">
 <attribute name="MPN" value="TPS63031"/>
 </part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
@@ -9646,8 +9646,9 @@ at 30/07/2012 17:04:24</description>
 <part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY18" library="supply2" deviceset="VDD" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
-<part name="U$1" library="adafruit" deviceset="FIDUCIAL" device=""/>
-<part name="U$3" library="adafruit" deviceset="FIDUCIAL" device=""/>
+<part name="FID1" library="adafruit" deviceset="FIDUCIAL" device=""/>
+<part name="FID2" library="adafruit" deviceset="FIDUCIAL" device=""/>
+<part name="FID3" library="adafruit" deviceset="FIDUCIAL" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9660,7 +9661,7 @@ at 30/07/2012 17:04:24</description>
 <instance part="C1" gate="G$1" x="43.18" y="96.52"/>
 <instance part="SUPPLY4" gate="GND" x="43.18" y="88.9"/>
 <instance part="SUPPLY1" gate="G$1" x="73.66" y="111.76"/>
-<instance part="U1" gate="G$1" x="137.16" y="149.86"/>
+<instance part="CHARGER" gate="G$1" x="137.16" y="149.86"/>
 <instance part="X3" gate="G$1" x="185.42" y="177.8"/>
 <instance part="JP1" gate="G$1" x="165.1" y="137.16" rot="R180"/>
 <instance part="GND1" gate="1" x="180.34" y="167.64"/>
@@ -9674,7 +9675,7 @@ at 30/07/2012 17:04:24</description>
 <instance part="C3" gate="G$1" x="132.08" y="134.62"/>
 <instance part="GND5" gate="1" x="132.08" y="127"/>
 <instance part="GND6" gate="1" x="157.48" y="132.08"/>
-<instance part="U2" gate="A" x="33.02" y="154.94"/>
+<instance part="REGULATOR" gate="A" x="33.02" y="154.94"/>
 <instance part="GND7" gate="1" x="2.54" y="132.08"/>
 <instance part="GND8" gate="1" x="12.7" y="127"/>
 <instance part="L1" gate="A" x="-5.08" y="157.48" smashed="yes">
@@ -9739,8 +9740,9 @@ at 30/07/2012 17:04:24</description>
 <instance part="SUPPLY15" gate="GND" x="66.04" y="93.98"/>
 <instance part="SUPPLY18" gate="G$1" x="22.86" y="-68.58" rot="R180"/>
 <instance part="GND20" gate="1" x="157.48" y="27.94"/>
-<instance part="U$1" gate="G$1" x="111.76" y="-50.8"/>
-<instance part="U$3" gate="G$1" x="132.08" y="-50.8"/>
+<instance part="FID1" gate="G$1" x="111.76" y="-50.8"/>
+<instance part="FID2" gate="G$1" x="132.08" y="-50.8"/>
+<instance part="FID3" gate="G$1" x="147.32" y="-50.8"/>
 </instances>
 <busses>
 </busses>
@@ -9780,7 +9782,7 @@ at 30/07/2012 17:04:24</description>
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="VSS"/>
+<pinref part="CHARGER" gate="G$1" pin="VSS"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="124.46" y1="149.86" x2="119.38" y2="149.86" width="0.1524" layer="91"/>
 </segment>
@@ -9793,10 +9795,10 @@ at 30/07/2012 17:04:24</description>
 <pinref part="GND6" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U2" gate="A" pin="PGND"/>
+<pinref part="REGULATOR" gate="A" pin="PGND"/>
 <wire x1="15.24" y1="139.7" x2="10.16" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="139.7" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="U2" gate="A" pin="GND"/>
+<pinref part="REGULATOR" gate="A" pin="GND"/>
 <wire x1="15.24" y1="137.16" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="139.7" x2="2.54" y2="139.7" width="0.1524" layer="91"/>
 <junction x="10.16" y="139.7"/>
@@ -9804,7 +9806,7 @@ at 30/07/2012 17:04:24</description>
 <pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U2" gate="A" pin="THERMALPAD"/>
+<pinref part="REGULATOR" gate="A" pin="THERMALPAD"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="15.24" y1="132.08" x2="12.7" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="132.08" x2="12.7" y2="129.54" width="0.1524" layer="91"/>
@@ -9914,7 +9916,7 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="VDD" class="0">
 <segment>
-<pinref part="U2" gate="A" pin="VOUT"/>
+<pinref part="REGULATOR" gate="A" pin="VOUT"/>
 <pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="50.8" y1="172.72" x2="55.88" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="172.72" x2="55.88" y2="170.18" width="0.1524" layer="91"/>
@@ -9922,7 +9924,7 @@ at 30/07/2012 17:04:24</description>
 <junction x="55.88" y="172.72"/>
 </segment>
 <segment>
-<pinref part="U2" gate="A" pin="FB"/>
+<pinref part="REGULATOR" gate="A" pin="FB"/>
 <pinref part="SUPPLY3" gate="G$1" pin="VDD"/>
 <wire x1="15.24" y1="149.86" x2="-15.24" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="149.86" x2="-15.24" y2="154.94" width="0.1524" layer="91"/>
@@ -10016,14 +10018,14 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="PROG"/>
+<pinref part="CHARGER" gate="G$1" pin="PROG"/>
 <wire x1="152.4" y1="154.94" x2="167.64" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="STAT"/>
+<pinref part="CHARGER" gate="G$1" pin="STAT"/>
 <pinref part="LED1" gate="G$1" pin="C"/>
 <wire x1="124.46" y1="154.94" x2="114.3" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="154.94" x2="114.3" y2="157.48" width="0.1524" layer="91"/>
@@ -10037,7 +10039,7 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="VIN_USB" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="VDD"/>
+<pinref part="CHARGER" gate="G$1" pin="VDD"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="175.26" y1="152.4" x2="152.4" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="X3" gate="G$1" pin="1"/>
@@ -10053,7 +10055,7 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="U2" gate="A" pin="L2"/>
+<pinref part="REGULATOR" gate="A" pin="L2"/>
 <pinref part="L1" gate="A" pin="1"/>
 <wire x1="10.16" y1="157.48" x2="15.24" y2="160.02" width="0.1524" layer="91"/>
 <junction x="10.16" y="157.48"/>
@@ -10061,7 +10063,7 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="N$6" class="0">
 <segment>
-<pinref part="U2" gate="A" pin="L1"/>
+<pinref part="REGULATOR" gate="A" pin="L1"/>
 <wire x1="15.24" y1="162.56" x2="10.16" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="162.56" x2="10.16" y2="165.1" width="0.1524" layer="91"/>
 <pinref part="L1" gate="A" pin="2"/>
@@ -10071,16 +10073,16 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="V+" class="0">
 <segment>
-<pinref part="U2" gate="A" pin="VIN"/>
-<pinref part="U2" gate="A" pin="VINA"/>
+<pinref part="REGULATOR" gate="A" pin="VIN"/>
+<pinref part="REGULATOR" gate="A" pin="VINA"/>
 <wire x1="15.24" y1="167.64" x2="15.24" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="15.24" y1="167.64" x2="-5.08" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="167.64" x2="-20.32" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="-20.32" y1="167.64" x2="-20.32" y2="144.78" width="0.1524" layer="91"/>
 <junction x="15.24" y="167.64"/>
-<pinref part="U2" gate="A" pin="PS/SYNC"/>
+<pinref part="REGULATOR" gate="A" pin="PS/SYNC"/>
 <wire x1="-20.32" y1="144.78" x2="10.16" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="U2" gate="A" pin="EN"/>
+<pinref part="REGULATOR" gate="A" pin="EN"/>
 <wire x1="10.16" y1="144.78" x2="15.24" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="15.24" y1="154.94" x2="10.16" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="154.94" x2="10.16" y2="144.78" width="0.1524" layer="91"/>
@@ -10159,7 +10161,7 @@ at 30/07/2012 17:04:24</description>
 </net>
 <net name="VBAT" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="VBAT"/>
+<pinref part="CHARGER" gate="G$1" pin="VBAT"/>
 <wire x1="124.46" y1="144.78" x2="119.38" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
 <wire x1="119.38" y1="137.16" x2="132.08" y2="137.16" width="0.1524" layer="91"/>
