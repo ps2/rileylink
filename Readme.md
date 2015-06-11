@@ -2,7 +2,9 @@
 
 [![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on reading blood glucose and related data from Medtronic insulin pumps and sensors.  Please understand that this project:
+A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display display pump and sensor data in [Nightscout](http://nightscout.github.io/), though the iOS app I use do so isn't publicly released yet.
+
+Please understand that this project:
 
  * *Has no affiliation with Medtronic*
  * *Is highly experimental*
@@ -10,7 +12,7 @@ A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to brid
 
 ### Hardware
 
-See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) directory for design files to build a RileyLink. The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).
+See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) directory for design files to build a RileyLink. The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).  This board has small parts and will need to be reflow soldered; using a solder-paste stencil is recommended. 
 
 ![RileyLink Hardware](https://raw.githubusercontent.com/ps2/rileylink/master/rileylink.jpg)
 
