@@ -22,7 +22,7 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
@@ -2171,7 +2171,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="R2" library="rcl" package="R0402" value="330" x="2.54" y="19.3" smashed="yes" rot="R180">
 <attribute name="VALUE" x="3.175" y="21.205" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R3" library="rcl" package="R0402" value="58kOhm" x="21.3" y="3.5" smashed="yes" rot="R90">
+<element name="R3" library="rcl" package="R0402" value="56kOhm ± 1%" x="21.3" y="3.5" smashed="yes" rot="R90">
 <attribute name="VALUE" x="23.205" y="2.865" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="R4" library="rcl" package="R0402" value="" x="13.625" y="10.375" smashed="yes">

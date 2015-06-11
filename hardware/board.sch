@@ -9600,7 +9600,7 @@ at 30/07/2012 17:04:24</description>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="27pF"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="R3" library="rcl" deviceset="R-US_" device="R0402" value="58kOhm"/>
+<part name="R3" library="rcl" deviceset="R-US_" device="R0402" value="56kOhm ± 1%"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="C9" library="rcl" deviceset="C-EU" device="C0402K" value="1uF"/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
