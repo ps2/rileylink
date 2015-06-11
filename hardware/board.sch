@@ -9564,7 +9564,7 @@ at 30/07/2012 17:04:24</description>
 </classes>
 <parts>
 <part name="CC1110" library="parts" deviceset="CC1110" device=""/>
-<part name="X1" library="cts_crystal" deviceset="CTS_32X25_SMD" device=""/>
+<part name="X1" library="cts_crystal" deviceset="CTS_32X25_SMD" device="" value="26MHz 10pF 10ppm -20C +70C"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="VDD" device=""/>

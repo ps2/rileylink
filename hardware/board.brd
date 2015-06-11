@@ -2199,7 +2199,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="ANTENNA" value="On-module ceramic chip antenna" x="43.12" y="22.025" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="38.57" y="12.825" size="1.016" layer="27" rot="SR0"/>
 </element>
-<element name="X1" library="cts_crystal" package="CTS_32X25" value="CTS_32X25_SMD" x="17.985" y="14.645" smashed="yes">
+<element name="X1" library="cts_crystal" package="CTS_32X25" value="26MHz 10pF 10ppm -20C +70C" x="17.985" y="14.645" smashed="yes">
 <attribute name="VALUE" x="16.285" y="12.545" size="0.75" layer="27"/>
 </element>
 <element name="X3" library="con-hirose" package="UX60-MB-5ST" value="MINI-USB-UX60-MB-5ST" x="6.05" y="23.83" smashed="yes" rot="R270">
