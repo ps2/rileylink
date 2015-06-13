@@ -2096,7 +2096,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="C13" library="rcl" package="C0402" value="100nF" x="17.62" y="11.21" smashed="yes" rot="R180">
 <attribute name="VALUE" x="18.255" y="13.115" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="C2" library="rcl" package="C0402K" value="4.7uF" x="11.04" y="18.585" smashed="yes" rot="R270">
+<element name="C2" library="rcl" package="C0603K" value="4.7uF" x="11.04" y="18.585" smashed="yes" rot="R270">
 <attribute name="VALUE" x="9.59" y="19.085" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="C3" library="rcl" package="C0603K" value="4.7uF" x="8.1" y="14.005" smashed="yes" rot="R180">
@@ -2140,19 +2140,19 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="OC_FARNELL" value="-" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="26.9524" y="16.8466" size="2.0828" layer="27" ratio="10" rot="SR0"/>
 </element>
-<element name="LED1" library="led" package="SML0603" value="" x="2.55" y="17.19" smashed="yes" rot="R180">
+<element name="LED1" library="led" package="SML0603" value="red" x="2.55" y="17.19" smashed="yes" rot="R180">
 <attribute name="VALUE" x="3.55" y="19.19" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="LED2" library="led" package="SML0603" value="" x="51.65" y="19.05" smashed="yes" rot="R90">
+<element name="LED2" library="led" package="SML0603" value="blue" x="51.65" y="19.05" smashed="yes" rot="R90">
 <attribute name="VALUE" x="53.65" y="18.05" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="LED3" library="led" package="SML0603" value="" x="51.65" y="22.51" smashed="yes" rot="R90">
+<element name="LED3" library="led" package="SML0603" value="green" x="51.65" y="22.51" smashed="yes" rot="R90">
 <attribute name="VALUE" x="53.65" y="21.51" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="LED4" library="led" package="SML0603" value="" x="35.25" y="13.25" smashed="yes" rot="R270">
+<element name="LED4" library="led" package="SML0603" value="green" x="35.25" y="13.25" smashed="yes" rot="R270">
 <attribute name="VALUE" x="33.25" y="14.25" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="LED5" library="led" package="SML0603" value="" x="33.75" y="13.25" smashed="yes" rot="R270">
+<element name="LED5" library="led" package="SML0603" value="blue" x="33.75" y="13.25" smashed="yes" rot="R270">
 <attribute name="VALUE" x="31.75" y="14.25" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="PWR" library="parts" package="SLIDE_SWITCH_SMD" value="SW_SLIDE" x="33" y="28" smashed="yes" rot="R180"/>
@@ -2533,7 +2533,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="7.65" y1="20.15" x2="7.125" y2="19.625" width="0.45" layer="1"/>
 <wire x1="7.125" y1="19.625" x2="3.515" y2="19.625" width="0.45" layer="1"/>
 <wire x1="3.515" y1="19.625" x2="3.19" y2="19.3" width="0.45" layer="1"/>
-<wire x1="11.04" y1="19.185" x2="9.668" y2="19.185" width="0.4064" layer="1"/>
+<wire x1="11.04" y1="19.46" x2="9.668" y2="19.185" width="0.4064" layer="1"/>
 <wire x1="9.668" y1="19.185" x2="9.16" y2="18.677" width="0.4064" layer="1" curve="90"/>
 <wire x1="9.16" y1="18.677" x2="9.16" y2="18.2" width="0.4064" layer="1"/>
 </signal>
