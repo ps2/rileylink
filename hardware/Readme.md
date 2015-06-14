@@ -8,7 +8,7 @@
 
 ### Order the PCB from OSH Park:
 
-[RileyLink v0.2](https://oshpark.com/shared_projects/5HqFOnZu)
+[RileyLink v0.6](https://oshpark.com/shared_projects/qpOScHlY)
 
 ### Components
 
