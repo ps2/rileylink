@@ -2924,11 +2924,8 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="P0_0">
 <contactref element="CC1110" pad="5"/>
 <contactref element="R7" pad="2"/>
-<wire x1="30.3276" y1="11.5824" x2="30.6324" y2="11.5824" width="0.1524" layer="1"/>
-<wire x1="27.7368" y1="8.9916" x2="30.3276" y2="11.5824" width="0.1524" layer="1"/>
-<wire x1="27.1272" y1="8.9916" x2="27.7368" y2="8.9916" width="0.1524" layer="1"/>
-<wire x1="30.6324" y1="11.5824" x2="30.69" y2="11.63" width="0.1524" layer="1"/>
-<wire x1="27.1272" y1="8.9916" x2="27.11" y2="8.89" width="0.1524" layer="1"/>
+<wire x1="27.11" y1="8.89" x2="27.95" y2="8.89" width="0.1524" layer="1"/>
+<wire x1="27.95" y1="8.89" x2="30.69" y2="11.63" width="0.1524" layer="1"/>
 </signal>
 <signal name="P0_1">
 <contactref element="R11" pad="2"/>
