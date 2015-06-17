@@ -8,13 +8,13 @@
 
 ### Order the PCB from OSH Park:
 
-[RileyLink v0.2](https://oshpark.com/shared_projects/5HqFOnZu)
+[RileyLink v0.6](https://oshpark.com/shared_projects/qpOScHlY)
 
 ### Components
 
 Most of the parts are available at [Mouser](http://mouser.com).  A few parts (battery and connector) I ordered from [SparkFun](http://sparkfun.com). In the bottom left corner of the board, there are two alternative antennas: a post antenna, and a chip antenna. The post antenna has much better reception, so that is what is listed in the parts list (bom.csv).  The parts for the chip antenna are not included, so some of the pads in the lower left will be empty, as shown in the photo.
 
-### Assembly
+### PCB Assembly
 
 A stencil for the PCB can be obtained at a reasonable price from [OSH Stencils](https://www.oshstencils.com).  Just upload the .brd file and accept the default mappings.
 
@@ -29,6 +29,8 @@ I use a hot-air rework station to flow the solder paste, but you could use a toa
 I created a case using [Tinkercad](https://www.tinkercad.com), a great tool.
 
 ![3D Printed Case](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case.png)
+
+The case is designed to hold the [850mAh Lipo](https://www.sparkfun.com/products/341) available from sparkfun. That battery lasts a day or so when the RileyLink is constant listen mode. It should last longer if the firmware uses a duty cycle that's less than 100%.
 
 ### License
 
