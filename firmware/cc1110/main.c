@@ -71,10 +71,13 @@ void configureRadio()
   /* RF settings SoC: CC1110 */
   SYNC1     = 0xFF; // sync word, high byte
   SYNC0     = 0x00; // sync word, low byte
-  PKTLEN    = 0xFE; // packet length
+  PKTLEN    = 0x0E; // packet length
+  PKTCTRL1  = 0x00; // packet automation control
   PKTCTRL0  = 0x00; // packet automation control
+  ADDR      = 0x00;
   CHANNR    = 0x02; // channel number
   FSCTRL1   = 0x06; // frequency synthesizer control
+  FSCTRL0   = 0x00; 
   FREQ2     = 0x23; // frequency control word, high byte
   FREQ1     = 0x40; // frequency control word, middle byte
   FREQ0     = 0x00; // frequency control word, low byte
@@ -84,8 +87,12 @@ void configureRadio()
   MDMCFG1   = 0x11; // modem configuration
   MDMCFG0   = 0xC5; // modem configuration
   DEVIATN   = 0x15; // modem deviation setting
+  MCSM2     = 0x07; 
+  MCSM1     = 0x30; 
   MCSM0     = 0x18; // main radio control state machine configuration
   FOCCFG    = 0x17; // frequency offset compensation configuration
+  BSCFG     = 0x6C;
+  FREND1    = 0x56; // front end tx configuration
   FREND0    = 0x11; // front end tx configuration
   FSCAL3    = 0xE9; // frequency synthesizer calibration
   FSCAL2    = 0x2A; // frequency synthesizer calibration
@@ -93,7 +100,8 @@ void configureRadio()
   FSCAL0    = 0x1F; // frequency synthesizer calibration
   TEST1     = 0x31; // various test settings
   TEST0     = 0x09; // various test settings
-  //PA_TABLE1 = 0x8E; // pa power setting 1
+  //PA_TABLE1 = 0xC7; // pa power setting 7 dBm
+  PA_TABLE1 = 0xC0; // pa power setting 10 dBm
 }
 
 void urx1_isr(void) __interrupt URX1_VECTOR
@@ -103,7 +111,6 @@ void urx1_isr(void) __interrupt URX1_VECTOR
 
 void rftxrx_isr(void) __interrupt RFTXRX_VECTOR
 {
-  P0_1 = 1;
   handleRFTXRX();
 }
 
@@ -116,8 +123,6 @@ int main(void)
 {
   // init LEDS
   P0DIR |= 0x03;
-  P0_0 = 1; // Red
-  P0_1 = 0; // Blue
 
   // Set the system clock source to HS XOSC and max CPU speed,
   // ref. [clk]=>[clk_xosc.c]
@@ -132,33 +137,48 @@ int main(void)
 
   initMinimedRF();
 
-  TCON &= ~BIT3; // Clear URX1IFj
+  GREEN_LED = 0;
+  BLUE_LED = 0;
+
+
+  TCON &= ~BIT3; // Clear URX1IF
   URX1IE = 1;    // Enable URX1IE interrupt
 
   // Global interrupt enable
   EA = 1;
+ 
+  // Enable General RF IE
+  IEN2 |= IEN2_RFIE;
+
+  RFIM |= // RFIF_IRQ_DONE |  // packet completion
+          RFIF_IRQ_TXUNF |	// utx underflow
+          RFIF_IRQ_RXOVF |	// rx overflow
+          //  RFIF_IRQ_SFD |        // start frame delimiter
+          RFIF_IRQ_TIMEOUT;	// rx timeout
+
 
   while (1) {
     // Reset radio
     RFST = RFST_SIDLE;
     while((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_IDLE);
 
+    /* Enable rx/tx interrupt */
+    RFTXRXIF = 0;
+    RFTXRXIE = 1;
+
     if (radioMode == RADIO_MODE_TX) {
       /* Put radio into TX. */
+      RFTXRXIF = 0;
       RFST = RFST_STX;
       while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_TX);
     } else if (radioMode == RADIO_MODE_RX) {
       /* Put radio into RX. */
-      //P0_0 = !P0_0;
       RFST = RFST_SRX;
       while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
     }
 
     /* Radio is now in RX or TX */
-    /* Enable rx/tx interrupt */
-    TCON &= ~(0x02);  // Clear RFTXRXIE
-    RFTXRXIE = 1;
-    while (RFTXRXIE && MARCSTATE == MARC_STATE_RX);
-    RFTXRXIE = 0;
+    /* Wait for signal to re-evaluate mode */
+    while (RFTXRXIE);
   }
 }
