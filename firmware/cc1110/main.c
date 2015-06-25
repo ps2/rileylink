@@ -71,7 +71,7 @@ void configureRadio()
   /* RF settings SoC: CC1110 */
   SYNC1     = 0xFF; // sync word, high byte
   SYNC0     = 0x00; // sync word, low byte
-  PKTLEN    = 0x0E; // packet length
+  PKTLEN    = 0xFF; // packet length
   PKTCTRL1  = 0x00; // packet automation control
   PKTCTRL0  = 0x00; // packet automation control
   ADDR      = 0x00;
@@ -100,7 +100,7 @@ void configureRadio()
   FSCAL0    = 0x1F; // frequency synthesizer calibration
   TEST1     = 0x31; // various test settings
   TEST0     = 0x09; // various test settings
-  //PA_TABLE1 = 0xC7; // pa power setting 7 dBm
+  PA_TABLE0 = 0x00; // needs to be explicitly set!
   PA_TABLE1 = 0xC0; // pa power setting 10 dBm
 }
 
@@ -170,15 +170,18 @@ int main(void)
       /* Put radio into TX. */
       RFTXRXIF = 0;
       RFST = RFST_STX;
+      // Wait for radio to enter TX
       while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_TX);
+      // Wait for radio to leave TX (usually after packet is sent)
+      while ((MARCSTATE & MARCSTATE_MARC_STATE) == MARC_STATE_TX);
     } else if (radioMode == RADIO_MODE_RX) {
       /* Put radio into RX. */
       RFST = RFST_SRX;
       while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
-    }
 
-    /* Radio is now in RX or TX */
-    /* Wait for signal to re-evaluate mode */
-    while (RFTXRXIE);
+      // minimed code will clear this when wanting to exit RX
+      while (RFTXRXIE);
+    }
   }
 }
+
