@@ -141,7 +141,7 @@
 <wire x1="53" y1="28.476" x2="51.476" y2="30" width="0" layer="20" curve="90"/>
 <wire x1="51.476" y1="30" x2="1.524" y2="30" width="0" layer="20"/>
 <wire x1="1.524" y1="30" x2="0" y2="28.476" width="0" layer="20" curve="90"/>
-<text x="12.125" y="27.875" size="1.27" layer="25">RileyLink0.6</text>
+<text x="12.125" y="27.875" size="1.27" layer="25">RileyLink0.7</text>
 <text x="11.75" y="3.125" size="1.4224" layer="25">Ant</text>
 <wire x1="12.375" y1="5.75" x2="10.375" y2="5.75" width="0.8636" layer="112"/>
 <rectangle x1="0.375" y1="3.75" x2="10.375" y2="7.75" layer="112"/>
@@ -2135,11 +2135,11 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="VALUE" x="20.31" y="24.42" size="0.4064" layer="27" rot="R270"/>
 </element>
 <element name="L1" library="Bourns_By_element14_Batch_1" package="INDC1610X12N" value="1.5 uH" x="32.515" y="19.92" smashed="yes">
-<attribute name="OC_NEWARK" value="86K1771" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
+<attribute name="OC_NEWARK" value="" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
 <attribute name="TOLERANCE" value="±5 %" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="PM0603-R12J-RC" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
-<attribute name="SUPPLIER" value="BOURNS" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
-<attribute name="OC_FARNELL" value="-" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MLF1608A1R5KTD25" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
+<attribute name="SUPPLIER" value="Mouser" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
+<attribute name="OC_FARNELL" value="" x="32.515" y="19.92" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="26.9524" y="16.8466" size="2.0828" layer="27" ratio="10" rot="SR0"/>
 </element>
 <element name="LED1" library="led" package="SML0603" value="red" x="2.55" y="17.19" smashed="yes" rot="R180">
