@@ -8,3 +8,4 @@
 * windows machine (or VM) with BLE Bluegiga SW Update Tool
 
 ## Connecting cc-debugger
+![cc-debugger connection illustration](ccdbg.png)
