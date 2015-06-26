@@ -1,3 +1,4 @@
 output/*
 test
 *.dSYM
+install.log
