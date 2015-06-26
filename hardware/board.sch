@@ -10307,7 +10307,12 @@ at 30/07/2012 17:04:24</description>
 </part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="L1" library="Bourns_By_element14_Batch_1" deviceset="PM0603-R12J-RC" device="" value="1.5 uH"/>
+<part name="L1" library="Bourns_By_element14_Batch_1" deviceset="PM0603-R12J-RC" device="" value="1.5 uH">
+<attribute name="MPN" value="MLF1608A1R5KTD25"/>
+<attribute name="OC_FARNELL" value=""/>
+<attribute name="OC_NEWARK" value=""/>
+<attribute name="SUPPLIER" value="Mouser"/>
+</part>
 <part name="C4" library="rcl" deviceset="C-EU" device="C0805K" value="10 uF"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" deviceset="VDD" device=""/>
