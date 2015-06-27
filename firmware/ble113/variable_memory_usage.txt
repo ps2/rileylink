@@ -1,4 +1,4 @@
-313
+309
 0:0	GAP_AD_FLAG_BREDR_NOT_SUPPORTED
 0:0	GAP_AD_FLAG_GENERAL_DISCOVERABLE
 0:0	GAP_AD_FLAG_LIMITED_DISCOVERABLE
@@ -103,8 +103,7 @@
 281:4	result
 285:4	channel
 289:4	tlen
-293:4	led_on
-297:4	bytes_to_send
-301:4	packet_count
-305:4	batconn_handle
-309:4	batresult
+293:4	bytes_to_send
+297:4	packet_count
+301:4	batconn_handle
+305:4	batresult

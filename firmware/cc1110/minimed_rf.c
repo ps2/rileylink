@@ -195,9 +195,6 @@ void doCommand(unsigned char cmd) {
     spiMode = SPI_MODE_ARG;
     break;
   case CMD_GET_LENGTH:
-    //P1_1 = packetHeadIdx == packetTailIdx ? 0 : 1;
-    //P0_0 = packets[packetTailIdx].length > 0 ? 1 : 0; // low
-    //P0_1 = packetCount > 0 ? 1 : 0;                   // high
     if (packetCount > 0) {
       U1DBUF = packets[packetTailIdx].length;
     } else {
@@ -242,7 +239,7 @@ void doCommand(unsigned char cmd) {
     break;
 
   default:
-    U1DBUF = 0x22;
+    U1DBUF = 0x22; // A marker for bad data
     break;
   }
 }
@@ -265,13 +262,16 @@ void handleRX1() {
     switch (lastCmd) {
     case CMD_SET_CHANNEL:
       setChannel(value);
+      spiMode = SPI_MODE_CMD;
       break;
     case CMD_SEND_PACKET:
       radioOutputDataLength = value;
       spiMode = SPI_MODE_READ;
       break;
+    default:
+      spiMode = SPI_MODE_CMD;
+      break;
     }
-    spiMode = SPI_MODE_CMD;
   } else if (spiMode == SPI_MODE_READ) {
     radioOutputBuffer[radioOutputBufferWritePos++] = U1DBUF;
     if (radioOutputBufferWritePos == radioOutputDataLength) {
@@ -279,6 +279,7 @@ void handleRX1() {
       // Set radio mode to tx;
       radioMode = RADIO_MODE_TX;
       RFTXRXIE = 0;
+      spiMode = SPI_MODE_CMD;
     }
   }
 }
@@ -347,7 +348,7 @@ void finishIncomingPacket() {
 //    // Drop this packet
 //    dropCurrentPacket();
   } else {
-    P0_1 = !P0_1;
+    //P0_1 = !P0_1;
     //printf("valid crc\n");
     if (packets[packetHeadIdx].length == 0) {
     }
@@ -372,7 +373,6 @@ void finishIncomingPacket() {
 }
 
 void receiveRadioSymbol(unsigned char value) {
-
   unsigned char symbol;
   unsigned char outputSymbol;
   //printf("receiveRadioSymbol %d\n", value);
@@ -412,17 +412,20 @@ void receiveRadioSymbol(unsigned char value) {
 }
 
 void handleRFTXRX() {
-  switch (MARCSTATE) {
+  switch (MARCSTATE & MARCSTATE_MARC_STATE) {
   case MARC_STATE_RX:
     receiveRadioSymbol(RFD);
     break;
   case MARC_STATE_TX:
     RFD = radioOutputBuffer[radioOutputBufferReadPos++];
     if (radioOutputBufferReadPos == radioOutputDataLength) {
+      if (radioOutputDataLength == 10) {
+        BLUE_LED = !BLUE_LED;
+      }
       radioOutputBufferWritePos = 0;
       radioOutputBufferReadPos = 0;
       radioOutputDataLength = 0;
-      radioMode = RADIO_MODE_IDLE;
+      radioMode = RADIO_MODE_RX;
       RFTXRXIE = 0;
     }
     break;

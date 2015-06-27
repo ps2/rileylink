@@ -1,5 +1,8 @@
 
-default: minimed_rf
+default: output minimed_rf
+
+output:
+	mkdir output
 
 output/main.rel: main.c 
 	sdcc -I. -c main.c -o output/

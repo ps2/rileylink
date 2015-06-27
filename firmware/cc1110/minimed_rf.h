@@ -32,7 +32,9 @@ void setChannel(unsigned char newChannel);
 #define RADIO_MODE_TX   2
 extern unsigned char radioMode;
 
-
+// RileyLink HW
+#define GREEN_LED P0_0
+#define BLUE_LED P0_1
 
 #ifdef MOCK_RADIO
 
