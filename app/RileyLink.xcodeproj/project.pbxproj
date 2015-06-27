@@ -1,0 +1,558 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
+		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
+		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
+		C12EA23F198B436800309FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23E198B436800309FA4 /* UIKit.framework */; };
+		C12EA245198B436800309FA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C12EA243198B436800309FA4 /* InfoPlist.strings */; };
+		C12EA247198B436800309FA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA246198B436800309FA4 /* main.m */; };
+		C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA24A198B436800309FA4 /* AppDelegate.m */; };
+		C12EA24D198B436800309FA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C12EA24C198B436800309FA4 /* Images.xcassets */; };
+		C12EA254198B436800309FA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA253198B436800309FA4 /* XCTest.framework */; };
+		C12EA255198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
+		C12EA256198B436900309FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23E198B436800309FA4 /* UIKit.framework */; };
+		C12EA25E198B436900309FA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C12EA25C198B436900309FA4 /* InfoPlist.strings */; };
+		C12EA260198B436900309FA4 /* GlucoseLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA25F198B436900309FA4 /* GlucoseLinkTests.m */; };
+		C12EA26A198B442100309FA4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12EA269198B442100309FA4 /* Storyboard.storyboard */; };
+		C12EA26D198B456D00309FA4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA26C198B456D00309FA4 /* MainViewController.m */; };
+		C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C13DB3A41B1583E900121E02 /* MessageBase.m */; };
+		C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C14AA33A1B1A2FB100299A55 /* MeterMessage.m */; };
+		C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C1743CDE199D374500ED623E /* PumpStatusMessage.m */; };
+		C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C174F26A19EB824D00398C72 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C1A47EBF1B117DE900756B99 /* NightScoutUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A47EBE1B117DE900756B99 /* NightScoutUploader.m */; };
+		C1A47EC21B1190D800756B99 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A47EC11B1190D800756B99 /* NSString+Hashes.m */; };
+		C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */; };
+		C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535E91991E36700C2AC49 /* NSData+Conversion.m */; };
+		C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EC1991E49600C2AC49 /* RileyLink.m */; };
+		C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C12EA257198B436900309FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C12EA22F198B436800309FA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C12EA236198B436800309FA4;
+			remoteInfo = GlucoseLink;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C12EA23A198B436800309FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C12EA23C198B436800309FA4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C12EA23E198B436800309FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C12EA242198B436800309FA4 /* RileyLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RileyLink-Info.plist"; sourceTree = "<group>"; };
+		C12EA244198B436800309FA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C12EA246198B436800309FA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C12EA248198B436800309FA4 /* RileyLink-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RileyLink-Prefix.pch"; sourceTree = "<group>"; };
+		C12EA249198B436800309FA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C12EA24A198B436800309FA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C12EA24C198B436800309FA4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C12EA252198B436800309FA4 /* RileyLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RileyLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C12EA253198B436800309FA4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C12EA25B198B436900309FA4 /* RileyLinkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RileyLinkTests-Info.plist"; sourceTree = "<group>"; };
+		C12EA25D198B436900309FA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C12EA25F198B436900309FA4 /* GlucoseLinkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlucoseLinkTests.m; sourceTree = "<group>"; };
+		C12EA269198B442100309FA4 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		C12EA26B198B456D00309FA4 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C12EA26C198B456D00309FA4 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C13DB3A31B1583E900121E02 /* MessageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBase.h; sourceTree = "<group>"; };
+		C13DB3A41B1583E900121E02 /* MessageBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBase.m; sourceTree = "<group>"; };
+		C14AA3391B1A2FB100299A55 /* MeterMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterMessage.h; sourceTree = "<group>"; };
+		C14AA33A1B1A2FB100299A55 /* MeterMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterMessage.m; sourceTree = "<group>"; };
+		C1743CDD199D374500ED623E /* PumpStatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PumpStatusMessage.h; sourceTree = "<group>"; };
+		C1743CDE199D374500ED623E /* PumpStatusMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PumpStatusMessage.m; sourceTree = "<group>"; };
+		C174F26919EB824D00398C72 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		C174F26A19EB824D00398C72 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		C1A47EBD1B117DE900756B99 /* NightScoutUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightScoutUploader.h; sourceTree = "<group>"; };
+		C1A47EBE1B117DE900756B99 /* NightScoutUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightScoutUploader.m; sourceTree = "<group>"; };
+		C1A47EC01B1190D800756B99 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
+		C1A47EC11B1190D800756B99 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
+		C1AA39921AB6804000BC9E33 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		C1E535E81991E36700C2AC49 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
+		C1E535E91991E36700C2AC49 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
+		C1E535EB1991E49600C2AC49 /* RileyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLink.h; sourceTree = "<group>"; };
+		C1E535EC1991E49600C2AC49 /* RileyLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLink.m; sourceTree = "<group>"; };
+		C1E535EE1991E6A200C2AC49 /* MinimedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinimedPacket.h; sourceTree = "<group>"; };
+		C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinimedPacket.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C12EA234198B436800309FA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */,
+				C12EA23F198B436800309FA4 /* UIKit.framework in Frameworks */,
+				C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C12EA24F198B436800309FA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA254198B436800309FA4 /* XCTest.framework in Frameworks */,
+				C12EA256198B436900309FA4 /* UIKit.framework in Frameworks */,
+				C12EA255198B436800309FA4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C12964E91B1581D200516761 /* MinimedRF */ = {
+			isa = PBXGroup;
+			children = (
+				C1E535EE1991E6A200C2AC49 /* MinimedPacket.h */,
+				C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */,
+				C1743CDD199D374500ED623E /* PumpStatusMessage.h */,
+				C1743CDE199D374500ED623E /* PumpStatusMessage.m */,
+				C13DB3A31B1583E900121E02 /* MessageBase.h */,
+				C13DB3A41B1583E900121E02 /* MessageBase.m */,
+				C14AA3391B1A2FB100299A55 /* MeterMessage.h */,
+				C14AA33A1B1A2FB100299A55 /* MeterMessage.m */,
+			);
+			name = MinimedRF;
+			sourceTree = "<group>";
+		};
+		C12EA22E198B436800309FA4 = {
+			isa = PBXGroup;
+			children = (
+				C12EA240198B436800309FA4 /* RileyLink */,
+				C12EA239198B436800309FA4 /* Frameworks */,
+				C12EA238198B436800309FA4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C12EA238198B436800309FA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C12EA237198B436800309FA4 /* RileyLink.app */,
+				C12EA252198B436800309FA4 /* RileyLinkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C12EA239198B436800309FA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C12EA23A198B436800309FA4 /* Foundation.framework */,
+				C12EA23C198B436800309FA4 /* CoreGraphics.framework */,
+				C12EA23E198B436800309FA4 /* UIKit.framework */,
+				C12EA253198B436800309FA4 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C12EA240198B436800309FA4 /* RileyLink */ = {
+			isa = PBXGroup;
+			children = (
+				C12964E91B1581D200516761 /* MinimedRF */,
+				C1AA398B1AB67F6A00BC9E33 /* Categories */,
+				C174F26919EB824D00398C72 /* ISO8601DateFormatter.h */,
+				C174F26A19EB824D00398C72 /* ISO8601DateFormatter.m */,
+				C12EA249198B436800309FA4 /* AppDelegate.h */,
+				C12EA24A198B436800309FA4 /* AppDelegate.m */,
+				C12EA269198B442100309FA4 /* Storyboard.storyboard */,
+				C12EA26B198B456D00309FA4 /* MainViewController.h */,
+				C12EA26C198B456D00309FA4 /* MainViewController.m */,
+				C12EA24C198B436800309FA4 /* Images.xcassets */,
+				C12EA241198B436800309FA4 /* Supporting Files */,
+				C1E535E81991E36700C2AC49 /* NSData+Conversion.h */,
+				C1E535E91991E36700C2AC49 /* NSData+Conversion.m */,
+				C1E535EB1991E49600C2AC49 /* RileyLink.h */,
+				C1E535EC1991E49600C2AC49 /* RileyLink.m */,
+				C1271B061A9A34E900B7C949 /* Log.m */,
+				C1271B081A9A350400B7C949 /* Log.h */,
+				C1A47EBD1B117DE900756B99 /* NightScoutUploader.h */,
+				C1A47EBE1B117DE900756B99 /* NightScoutUploader.m */,
+			);
+			name = RileyLink;
+			path = GlucoseLink;
+			sourceTree = "<group>";
+		};
+		C12EA241198B436800309FA4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C12EA242198B436800309FA4 /* RileyLink-Info.plist */,
+				C12EA243198B436800309FA4 /* InfoPlist.strings */,
+				C12EA246198B436800309FA4 /* main.m */,
+				C12EA248198B436800309FA4 /* RileyLink-Prefix.pch */,
+				C12EA259198B436900309FA4 /* GlucoseLinkTests */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C12EA259198B436900309FA4 /* GlucoseLinkTests */ = {
+			isa = PBXGroup;
+			children = (
+				C12EA25F198B436900309FA4 /* GlucoseLinkTests.m */,
+				C12EA25A198B436900309FA4 /* Supporting Files */,
+			);
+			path = GlucoseLinkTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		C12EA25A198B436900309FA4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C12EA25B198B436900309FA4 /* RileyLinkTests-Info.plist */,
+				C12EA25C198B436900309FA4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C1AA398B1AB67F6A00BC9E33 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C1A47EC01B1190D800756B99 /* NSString+Hashes.h */,
+				C1A47EC11B1190D800756B99 /* NSString+Hashes.m */,
+				C1AA39921AB6804000BC9E33 /* UIAlertView+Blocks.h */,
+				C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C12EA236198B436800309FA4 /* RileyLink */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C12EA263198B436900309FA4 /* Build configuration list for PBXNativeTarget "RileyLink" */;
+			buildPhases = (
+				C12EA233198B436800309FA4 /* Sources */,
+				C12EA234198B436800309FA4 /* Frameworks */,
+				C12EA235198B436800309FA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RileyLink;
+			productName = GlucoseLink;
+			productReference = C12EA237198B436800309FA4 /* RileyLink.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C12EA251198B436800309FA4 /* RileyLinkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C12EA266198B436900309FA4 /* Build configuration list for PBXNativeTarget "RileyLinkTests" */;
+			buildPhases = (
+				C12EA24E198B436800309FA4 /* Sources */,
+				C12EA24F198B436800309FA4 /* Frameworks */,
+				C12EA250198B436800309FA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C12EA258198B436900309FA4 /* PBXTargetDependency */,
+			);
+			name = RileyLinkTests;
+			productName = GlucoseLinkTests;
+			productReference = C12EA252198B436800309FA4 /* RileyLinkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C12EA22F198B436800309FA4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Pete Schwamb";
+				TargetAttributes = {
+					C12EA236198B436800309FA4 = {
+						DevelopmentTeam = UY678SP37Q;
+					};
+					C12EA251198B436800309FA4 = {
+						TestTargetID = C12EA236198B436800309FA4;
+					};
+				};
+			};
+			buildConfigurationList = C12EA232198B436800309FA4 /* Build configuration list for PBXProject "RileyLink" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C12EA22E198B436800309FA4;
+			productRefGroup = C12EA238198B436800309FA4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C12EA236198B436800309FA4 /* RileyLink */,
+				C12EA251198B436800309FA4 /* RileyLinkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C12EA235198B436800309FA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA245198B436800309FA4 /* InfoPlist.strings in Resources */,
+				C12EA24D198B436800309FA4 /* Images.xcassets in Resources */,
+				C12EA26A198B442100309FA4 /* Storyboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C12EA250198B436800309FA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA25E198B436900309FA4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C12EA233198B436800309FA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */,
+				C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */,
+				C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */,
+				C12EA26D198B456D00309FA4 /* MainViewController.m in Sources */,
+				C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */,
+				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
+				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
+				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
+				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
+				C1271B071A9A34E900B7C949 /* Log.m in Sources */,
+				C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */,
+				C12EA247198B436800309FA4 /* main.m in Sources */,
+				C1A47EBF1B117DE900756B99 /* NightScoutUploader.m in Sources */,
+				C1A47EC21B1190D800756B99 /* NSString+Hashes.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C12EA24E198B436800309FA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12EA260198B436900309FA4 /* GlucoseLinkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C12EA258198B436900309FA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C12EA236198B436800309FA4 /* RileyLink */;
+			targetProxy = C12EA257198B436900309FA4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C12EA243198B436800309FA4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C12EA244198B436800309FA4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C12EA25C198B436900309FA4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C12EA25D198B436900309FA4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C12EA261198B436900309FA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C12EA262198B436900309FA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C12EA264198B436900309FA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GlucoseLink/RileyLink-Prefix.pch";
+				INFOPLIST_FILE = "GlucoseLink/RileyLink-Info.plist";
+				PRODUCT_NAME = RileyLink;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C12EA265198B436900309FA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GlucoseLink/RileyLink-Prefix.pch";
+				INFOPLIST_FILE = "GlucoseLink/RileyLink-Info.plist";
+				PRODUCT_NAME = RileyLink;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C12EA267198B436900309FA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GlucoseLink.app/GlucoseLink";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GlucoseLink/GlucoseLink-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GlucoseLinkTests/RileyLinkTests-Info.plist";
+				PRODUCT_NAME = RileyLinkTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C12EA268198B436900309FA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GlucoseLink.app/GlucoseLink";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GlucoseLink/GlucoseLink-Prefix.pch";
+				INFOPLIST_FILE = "GlucoseLinkTests/RileyLinkTests-Info.plist";
+				PRODUCT_NAME = RileyLinkTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C12EA232198B436800309FA4 /* Build configuration list for PBXProject "RileyLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C12EA261198B436900309FA4 /* Debug */,
+				C12EA262198B436900309FA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C12EA263198B436900309FA4 /* Build configuration list for PBXNativeTarget "RileyLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C12EA264198B436900309FA4 /* Debug */,
+				C12EA265198B436900309FA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C12EA266198B436900309FA4 /* Build configuration list for PBXNativeTarget "RileyLinkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C12EA267198B436900309FA4 /* Debug */,
+				C12EA268198B436900309FA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C12EA22F198B436800309FA4 /* Project object */;
+}

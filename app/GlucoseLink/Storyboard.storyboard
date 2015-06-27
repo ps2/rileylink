@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Iix-ol-u6d">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="peT-ib-xUG">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Bay-gl-NRV" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nz5-UN-uy5"/>
+                        <viewControllerLayoutGuide type="bottom" id="hhr-JM-LNa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oJe-l9-YdM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYm-tf-lVj" userLabel="Glucose Big">
+                                <rect key="frame" x="20" y="20" width="280" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="LJD-E7-uCl"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.92941182851791382" green="0.9490196704864502" blue="0.7882353663444519" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="62" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-X3-KxL" userLabel="Connection">
+                                <rect key="frame" x="0.0" y="163" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4901961088180542" green="0.90980398654937744" blue="0.32941177487373352" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.33725490196078434" green="0.28235294117647058" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHN-GE-LjA" userLabel="Time">
+                                <rect key="frame" x="20" y="134" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90980392156862744" green="0.94117647058823528" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzR-AO-9TO" customClass="BGGraphView">
+                                <rect key="frame" x="0.0" y="183" width="320" height="297"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ooM-X3-KxL" firstAttribute="top" secondItem="nHN-GE-LjA" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ph-5r-701"/>
+                            <constraint firstItem="dzR-AO-9TO" firstAttribute="leading" secondItem="ooM-X3-KxL" secondAttribute="leading" id="616-ZI-C3S"/>
+                            <constraint firstAttribute="trailing" secondItem="NYm-tf-lVj" secondAttribute="trailing" constant="20" symbolic="YES" id="CFw-9T-PZI"/>
+                            <constraint firstItem="dzR-AO-9TO" firstAttribute="top" secondItem="nHN-GE-LjA" secondAttribute="bottom" constant="28" id="D1H-vs-OqT"/>
+                            <constraint firstItem="nHN-GE-LjA" firstAttribute="leading" secondItem="NYm-tf-lVj" secondAttribute="leading" id="GCg-Gh-vOh"/>
+                            <constraint firstItem="dzR-AO-9TO" firstAttribute="leading" secondItem="oJe-l9-YdM" secondAttribute="leading" id="KEu-42-9so"/>
+                            <constraint firstItem="dzR-AO-9TO" firstAttribute="centerX" secondItem="nHN-GE-LjA" secondAttribute="centerX" id="SYV-D0-FFH"/>
+                            <constraint firstItem="nHN-GE-LjA" firstAttribute="trailing" secondItem="NYm-tf-lVj" secondAttribute="trailing" id="Sed-bg-gFE"/>
+                            <constraint firstItem="dzR-AO-9TO" firstAttribute="trailing" secondItem="ooM-X3-KxL" secondAttribute="trailing" id="cK0-yu-h8O"/>
+                            <constraint firstItem="nHN-GE-LjA" firstAttribute="top" secondItem="nz5-UN-uy5" secondAttribute="bottom" constant="114" id="dzq-lr-odL"/>
+                            <constraint firstItem="NYm-tf-lVj" firstAttribute="leading" secondItem="oJe-l9-YdM" secondAttribute="leading" constant="20" symbolic="YES" id="erV-Fn-MI9"/>
+                            <constraint firstAttribute="bottom" secondItem="dzR-AO-9TO" secondAttribute="bottom" id="ifb-C7-5er"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="bgMeasureTimeLabel" destination="nHN-GE-LjA" id="UTk-Gz-nce"/>
+                        <outlet property="bgValueLabel" destination="NYm-tf-lVj" id="VLX-Ln-cc6"/>
+                        <outlet property="connectionStatusLabel" destination="ooM-X3-KxL" id="gkd-N8-rPa"/>
+                        <outlet property="graphView" destination="dzR-AO-9TO" id="QGP-S1-c20"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bcX-XP-aiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="-63"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="ZZa-HY-70P">
+            <objects>
+                <viewController id="Iix-ol-u6d" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zOo-4q-TlB"/>
+                        <viewControllerLayoutGuide type="bottom" id="d80-Ty-E6t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xuh-Mj-pYQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbh-uD-weh">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Iix-ol-u6d" id="MVC-EY-JbB"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wbh-uD-weh" firstAttribute="leading" secondItem="Xuh-Mj-pYQ" secondAttribute="leading" id="1ZN-FS-ckg"/>
+                            <constraint firstAttribute="trailing" secondItem="wbh-uD-weh" secondAttribute="trailing" id="FdI-Zq-3r2"/>
+                            <constraint firstItem="wbh-uD-weh" firstAttribute="top" secondItem="Xuh-Mj-pYQ" secondAttribute="top" id="dQi-ko-ELU"/>
+                            <constraint firstAttribute="bottom" secondItem="wbh-uD-weh" secondAttribute="bottom" id="nkk-Gr-J6P"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="webView" destination="wbh-uD-weh" id="2Dh-Gl-Loy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5l-ph-TMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539" y="-79"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
