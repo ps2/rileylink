@@ -21,7 +21,7 @@
 		C12EA25E198B436900309FA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C12EA25C198B436900309FA4 /* InfoPlist.strings */; };
 		C12EA260198B436900309FA4 /* GlucoseLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA25F198B436900309FA4 /* GlucoseLinkTests.m */; };
 		C12EA26A198B442100309FA4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12EA269198B442100309FA4 /* Storyboard.storyboard */; };
-		C12EA26D198B456D00309FA4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA26C198B456D00309FA4 /* MainViewController.m */; };
+		C12EA26D198B456D00309FA4 /* NightscoutWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C12EA26C198B456D00309FA4 /* NightscoutWebView.m */; };
 		C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C13DB3A41B1583E900121E02 /* MessageBase.m */; };
 		C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C14AA33A1B1A2FB100299A55 /* MeterMessage.m */; };
 		C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C1743CDE199D374500ED623E /* PumpStatusMessage.m */; };
@@ -32,6 +32,10 @@
 		C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535E91991E36700C2AC49 /* NSData+Conversion.m */; };
 		C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EC1991E49600C2AC49 /* RileyLink.m */; };
 		C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */; };
+		C1EF58851B3E5DA4001C8C80 /* ConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58841B3E5DA4001C8C80 /* ConfigureViewController.m */; };
+		C1EF58881B3F93FE001C8C80 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58871B3F93FE001C8C80 /* Config.m */; };
+		C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF588A1B3F9748001C8C80 /* SWRevealViewController.m */; };
+		C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58961B3FA462001C8C80 /* MenuController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +68,8 @@
 		C12EA25D198B436900309FA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C12EA25F198B436900309FA4 /* GlucoseLinkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlucoseLinkTests.m; sourceTree = "<group>"; };
 		C12EA269198B442100309FA4 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		C12EA26B198B456D00309FA4 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		C12EA26C198B456D00309FA4 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C12EA26B198B456D00309FA4 /* NightscoutWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightscoutWebView.h; sourceTree = "<group>"; };
+		C12EA26C198B456D00309FA4 /* NightscoutWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightscoutWebView.m; sourceTree = "<group>"; };
 		C13DB3A31B1583E900121E02 /* MessageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBase.h; sourceTree = "<group>"; };
 		C13DB3A41B1583E900121E02 /* MessageBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBase.m; sourceTree = "<group>"; };
 		C14AA3391B1A2FB100299A55 /* MeterMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterMessage.h; sourceTree = "<group>"; };
@@ -86,6 +90,14 @@
 		C1E535EC1991E49600C2AC49 /* RileyLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLink.m; sourceTree = "<group>"; };
 		C1E535EE1991E6A200C2AC49 /* MinimedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinimedPacket.h; sourceTree = "<group>"; };
 		C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinimedPacket.m; sourceTree = "<group>"; };
+		C1EF58831B3E5DA4001C8C80 /* ConfigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureViewController.h; sourceTree = "<group>"; };
+		C1EF58841B3E5DA4001C8C80 /* ConfigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigureViewController.m; sourceTree = "<group>"; };
+		C1EF58861B3F93FE001C8C80 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		C1EF58871B3F93FE001C8C80 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		C1EF588A1B3F9748001C8C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		C1EF588B1B3F9748001C8C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		C1EF58951B3FA462001C8C80 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		C1EF58961B3FA462001C8C80 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +142,7 @@
 		C12EA22E198B436800309FA4 = {
 			isa = PBXGroup;
 			children = (
+				C1EF58991B3FB596001C8C80 /* UIAlertView+Blocks */,
 				C12EA240198B436800309FA4 /* RileyLink */,
 				C12EA239198B436800309FA4 /* Frameworks */,
 				C12EA238198B436800309FA4 /* Products */,
@@ -159,6 +172,10 @@
 		C12EA240198B436800309FA4 /* RileyLink */ = {
 			isa = PBXGroup;
 			children = (
+				C1EF589A1B3FBA32001C8C80 /* ViewControllers */,
+				C1EF589B1B3FBA5D001C8C80 /* Nightscout */,
+				C1EF58981B3FA7D1001C8C80 /* RileyLink */,
+				C1EF58891B3F9730001C8C80 /* SWRevealViewController */,
 				C12964E91B1581D200516761 /* MinimedRF */,
 				C1AA398B1AB67F6A00BC9E33 /* Categories */,
 				C174F26919EB824D00398C72 /* ISO8601DateFormatter.h */,
@@ -166,18 +183,14 @@
 				C12EA249198B436800309FA4 /* AppDelegate.h */,
 				C12EA24A198B436800309FA4 /* AppDelegate.m */,
 				C12EA269198B442100309FA4 /* Storyboard.storyboard */,
-				C12EA26B198B456D00309FA4 /* MainViewController.h */,
-				C12EA26C198B456D00309FA4 /* MainViewController.m */,
 				C12EA24C198B436800309FA4 /* Images.xcassets */,
 				C12EA241198B436800309FA4 /* Supporting Files */,
 				C1E535E81991E36700C2AC49 /* NSData+Conversion.h */,
 				C1E535E91991E36700C2AC49 /* NSData+Conversion.m */,
-				C1E535EB1991E49600C2AC49 /* RileyLink.h */,
-				C1E535EC1991E49600C2AC49 /* RileyLink.m */,
 				C1271B061A9A34E900B7C949 /* Log.m */,
 				C1271B081A9A350400B7C949 /* Log.h */,
-				C1A47EBD1B117DE900756B99 /* NightScoutUploader.h */,
-				C1A47EBE1B117DE900756B99 /* NightScoutUploader.m */,
+				C1EF58861B3F93FE001C8C80 /* Config.h */,
+				C1EF58871B3F93FE001C8C80 /* Config.m */,
 			);
 			name = RileyLink;
 			path = GlucoseLink;
@@ -222,6 +235,53 @@
 				C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		C1EF58891B3F9730001C8C80 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C1EF588A1B3F9748001C8C80 /* SWRevealViewController.m */,
+				C1EF588B1B3F9748001C8C80 /* SWRevealViewController.h */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		C1EF58981B3FA7D1001C8C80 /* RileyLink */ = {
+			isa = PBXGroup;
+			children = (
+				C1E535EB1991E49600C2AC49 /* RileyLink.h */,
+				C1E535EC1991E49600C2AC49 /* RileyLink.m */,
+			);
+			name = RileyLink;
+			sourceTree = "<group>";
+		};
+		C1EF58991B3FB596001C8C80 /* UIAlertView+Blocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "UIAlertView+Blocks";
+			sourceTree = "<group>";
+		};
+		C1EF589A1B3FBA32001C8C80 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C1EF58831B3E5DA4001C8C80 /* ConfigureViewController.h */,
+				C1EF58841B3E5DA4001C8C80 /* ConfigureViewController.m */,
+				C12EA26B198B456D00309FA4 /* NightscoutWebView.h */,
+				C12EA26C198B456D00309FA4 /* NightscoutWebView.m */,
+				C1EF58951B3FA462001C8C80 /* MenuController.h */,
+				C1EF58961B3FA462001C8C80 /* MenuController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C1EF589B1B3FBA5D001C8C80 /* Nightscout */ = {
+			isa = PBXGroup;
+			children = (
+				C1A47EBD1B117DE900756B99 /* NightScoutUploader.h */,
+				C1A47EBE1B117DE900756B99 /* NightScoutUploader.m */,
+			);
+			name = Nightscout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,13 +385,17 @@
 			files = (
 				C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */,
 				C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */,
+				C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */,
+				C1EF58851B3E5DA4001C8C80 /* ConfigureViewController.m in Sources */,
 				C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */,
-				C12EA26D198B456D00309FA4 /* MainViewController.m in Sources */,
+				C12EA26D198B456D00309FA4 /* NightscoutWebView.m in Sources */,
 				C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */,
 				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
 				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
+				C1EF58881B3F93FE001C8C80 /* Config.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
+				C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */,
 				C1271B071A9A34E900B7C949 /* Log.m in Sources */,
 				C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */,
 				C12EA247198B436800309FA4 /* main.m in Sources */,

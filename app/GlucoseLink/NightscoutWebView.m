@@ -1,26 +1,25 @@
 //
-//  MainViewController.m
-//  GlucoseLink
+//  NightscoutWebView.m
+//  RileyLink
 //
 //  Created by Pete Schwamb on 7/31/14.
 //  Copyright (c) 2014 Pete Schwamb. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "NightscoutWebView.h"
 #import "RileyLink.h"
 #import "NSData+Conversion.h"
 #import "PumpStatusMessage.h"
 #import "ISO8601DateFormatter.h"
 #import "UIAlertView+Blocks.h"
 #import "NightScoutUploader.h"
+#import "SWRevealViewController.h"
+#import "Config.h"
+#import "ConfigureViewController.h"
 
-// ********************************* Configuration ***************************
-static NSString *nightScoutURL = @"";
-static NSString *nightScoutAPISecret =  @"";
-static NSString *pumpSerial = @"";
-
-@interface MainViewController () <RileyLinkDelegate, UIWebViewDelegate> {
+@interface NightscoutWebView () <RileyLinkDelegate, UIWebViewDelegate> {
   NSDictionary *lastStatus;
+  IBOutlet UIBarButtonItem *menuButton;
 }
 
 @property (strong, nonatomic) RileyLink *rileyLink;
@@ -30,11 +29,26 @@ static NSString *pumpSerial = @"";
 
 @end
 
-@implementation MainViewController
+@implementation NightscoutWebView
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  if (self.revealViewController != nil) {
+    menuButton.target = self.revealViewController;
+    [menuButton setAction:@selector(revealToggle:)];
+    [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+    
+    self.revealViewController.rearViewRevealWidth = 162;
+    
+    if (![[Config sharedInstance]  hasValidConfiguration]) {
+      UINavigationController *configNav = [self.storyboard instantiateViewControllerWithIdentifier:@"configuration"];
+      ConfigureViewController *configViewController = [configNav viewControllers][0];
+      [configViewController doInitialConfiguration];
+      [self.revealViewController setFrontViewController:configNav];
+    }
+  }
   
   _rileyLink = [[RileyLink alloc] init];
   _rileyLink.channel = 2;
@@ -47,15 +61,16 @@ static NSString *pumpSerial = @"";
   _dateFormatter.defaultTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
   
   self.uploader = [[NightScoutUploader alloc] init];
-  self.uploader.endpoint = nightScoutURL;
-  self.uploader.APISecret = nightScoutAPISecret;
+  self.uploader.endpoint = [[Config sharedInstance] nightscoutURL];
+  self.uploader.APISecret = [[Config sharedInstance] nightscoutAPISecret];
   
   //[self.uploader test];
   [self performSelector:@selector(generateMockData) withObject:nil afterDelay:2];
 }
 
 - (void)loadMainAppPage {
-  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:nightScoutURL]];
+  NSURL *url = [NSURL URLWithString:[[Config sharedInstance] nightscoutURL]];
+  NSURLRequest *request = [NSURLRequest requestWithURL:url];
   [_webView loadRequest:request];
 }
 
@@ -96,11 +111,13 @@ static NSString *pumpSerial = @"";
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
   [UIAlertView showWithTitle:@"Network Error"
                      message:[error localizedDescription]
-           cancelButtonTitle:@"Retry"
-           otherButtonTitles:nil
+           cancelButtonTitle:@"OK"
+           otherButtonTitles:@[@"Retry"]
                     tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                      if (buttonIndex == 1) {
                         [self loadMainAppPage];
-                        NSLog(@"Retrying");
+                      }
+                      NSLog(@"Retrying");
                     }];
 }
 
