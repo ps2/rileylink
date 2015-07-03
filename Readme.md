@@ -20,8 +20,6 @@ See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) direct
 
 The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware) directory runs on the RileyLink hardware.  There are two main chips on the RileyLink, and thus two firmware images.
 
-*Note:* Be careful to write the appropriate firmware to the correct chip.  If you write the cc1110 firmware to the ble113, you will wipe out the ble113 license key and will need to request a new one from Bluegiga
-
 ### App
 
 The RileyLink iOS app connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
