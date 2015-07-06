@@ -36,6 +36,7 @@
 		C1EF58881B3F93FE001C8C80 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58871B3F93FE001C8C80 /* Config.m */; };
 		C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF588A1B3F9748001C8C80 /* SWRevealViewController.m */; };
 		C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58961B3FA462001C8C80 /* MenuController.m */; };
+		C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF589D1B3FBFE7001C8C80 /* MainAppViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		C1EF588B1B3F9748001C8C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		C1EF58951B3FA462001C8C80 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		C1EF58961B3FA462001C8C80 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		C1EF589C1B3FBFE7001C8C80 /* MainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppViewController.h; sourceTree = "<group>"; };
+		C1EF589D1B3FBFE7001C8C80 /* MainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAppViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				C12EA26C198B456D00309FA4 /* NightscoutWebView.m */,
 				C1EF58951B3FA462001C8C80 /* MenuController.h */,
 				C1EF58961B3FA462001C8C80 /* MenuController.m */,
+				C1EF589C1B3FBFE7001C8C80 /* MainAppViewController.h */,
+				C1EF589D1B3FBFE7001C8C80 /* MainAppViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
 				C1EF58881B3F93FE001C8C80 /* Config.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
+				C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */,
 				C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */,
 				C1271B071A9A34E900B7C949 /* Log.m in Sources */,
 				C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */,

@@ -7,25 +7,14 @@
 //
 
 #import "NightscoutWebView.h"
-#import "RileyLink.h"
-#import "NSData+Conversion.h"
-#import "PumpStatusMessage.h"
-#import "ISO8601DateFormatter.h"
 #import "UIAlertView+Blocks.h"
-#import "NightScoutUploader.h"
 #import "SWRevealViewController.h"
 #import "Config.h"
 #import "ConfigureViewController.h"
 
-@interface NightscoutWebView () <RileyLinkDelegate, UIWebViewDelegate> {
-  NSDictionary *lastStatus;
+@interface NightscoutWebView () <UIWebViewDelegate> {
   IBOutlet UIBarButtonItem *menuButton;
 }
-
-@property (strong, nonatomic) RileyLink *rileyLink;
-@property (strong, nonatomic) ISO8601DateFormatter *dateFormatter;
-@property (strong, nonatomic) NSTimeZone *utcTimeZone;
-@property (strong, nonatomic) NightScoutUploader *uploader;
 
 @end
 
@@ -50,60 +39,23 @@
     }
   }
   
-  _rileyLink = [[RileyLink alloc] init];
-  _rileyLink.channel = 2;
-  _rileyLink.delegate = self;
-  
-  [self loadMainAppPage];
-  
-  _dateFormatter = [[ISO8601DateFormatter alloc] init];
-  _dateFormatter.includeTime = YES;
-  _dateFormatter.defaultTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-  
-  self.uploader = [[NightScoutUploader alloc] init];
-  self.uploader.endpoint = [[Config sharedInstance] nightscoutURL];
-  self.uploader.APISecret = [[Config sharedInstance] nightscoutAPISecret];
-  
-  //[self.uploader test];
-  [self performSelector:@selector(generateMockData) withObject:nil afterDelay:2];
+  [self loadPage];
 }
 
-- (void)loadMainAppPage {
+- (void)loadPage {
   NSURL *url = [NSURL URLWithString:[[Config sharedInstance] nightscoutURL]];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   [_webView loadRequest:request];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-  [_rileyLink stop];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
 }
 
-- (void)generateMockData {
-  NSData *bgPacket = [NSData dataWithHexadecimalString:@"0000a5c527ad00f111"];
-  MinimedPacket *packet = [[MinimedPacket alloc] initWithData:bgPacket];
-  packet.capturedAt = [NSDate date];
-  [self glucoseLink:nil didReceivePacket:packet];
-}
-
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
-}
-
-#pragma mark GlucoseLinkDelegate methods
-
-- (void)glucoseLink:(RileyLink *)glucoseLink didReceivePacket:(MinimedPacket*)packet {
-  [self.uploader addPacket:packet];
-}
-
-- (void)glucoseLink:(RileyLink *)glucoseLink updatedStatus:(NSDictionary*)status {
-  lastStatus = status;
-  // TODO: find place to display, now that we're using nightscout
 }
 
 #pragma mark UIWebViewDelegate methods
@@ -115,7 +67,7 @@
            otherButtonTitles:@[@"Retry"]
                     tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                       if (buttonIndex == 1) {
-                        [self loadMainAppPage];
+                        [self loadPage];
                       }
                       NSLog(@"Retrying");
                     }];
