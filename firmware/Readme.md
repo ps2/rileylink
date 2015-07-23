@@ -5,7 +5,7 @@
 
 * [cc-debugger](http://www.ti.com/tool/cc-debugger)
 * linux machine (or VM) with sdcc and cc-tool (to program cc1110)
-* windows machine (or VM) with BLE Bluegiga SW Update Tool
+* windows machine (or VM) with [BLE Bluegiga SW Update Tool](https://www.bluegiga.com/en-US/products/software-bluegiga-bluetooth-smart/)
 
 ## Connecting cc-debugger
 
