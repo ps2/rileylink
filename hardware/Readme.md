@@ -36,6 +36,8 @@ The case is designed to hold the [850mAh Lipo](https://www.sparkfun.com/products
 
 ![Case Fitting](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case_fitting.jpg)
 
+Note: there’s an issue I have with the case that I haven’t fixed yet; the board in the case can rotate a bit so that the usb port doesn’t line up with the hole. If stick a small something (like those sticky pads that keep cabinet doors from slamming) to the top of the usb port, that fixes the issue.
+
 ### License
 
 The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).
