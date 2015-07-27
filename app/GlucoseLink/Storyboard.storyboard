@@ -66,6 +66,24 @@
                                     <segue destination="loL-6W-OKP" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="Puw-Eq-S9g"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rileylink" id="DJk-9H-4b3">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DJk-9H-4b3" id="Jdx-qg-rGx">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RileyLink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpy-zP-uxH">
+                                            <rect key="frame" x="35" y="14" width="264" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" red="0.37647058820000001" green="0.58823529409999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.94784000000000002" green="0.95999999999999996" blue="0.94079999999999997" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <segue destination="0gW-NC-JMI" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="zWW-nP-8uN"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="oBT-fp-dg7" id="QPn-bC-jxy"/>
@@ -92,7 +110,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iY7-l2-7ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-373" y="-7"/>
+            <point key="canvasLocation" x="-316" y="-57"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XrQ-SE-KBq">
@@ -109,7 +127,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZl-Js-n2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-373" y="609"/>
+            <point key="canvasLocation" x="-316" y="609"/>
         </scene>
         <!--Configuration-->
         <scene sceneID="U05-co-1Ob">
@@ -213,7 +231,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTG-Ou-gp7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="609"/>
+            <point key="canvasLocation" x="61" y="609"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="u5p-SX-rd2">
+            <objects>
+                <navigationController id="0gW-NC-JMI" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qDi-XH-6a2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VY2-UP-xNa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fgz-Td-7EZ" kind="relationship" relationship="rootViewController" id="csV-ke-OEU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dx2-1c-7Ps" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="1171"/>
+        </scene>
+        <!--RileyLink Status-->
+        <scene sceneID="pNE-2j-1Dq">
+            <objects>
+                <viewController id="fgz-Td-7EZ" customClass="RileyLinkViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2vw-RA-hkf"/>
+                        <viewControllerLayoutGuide type="bottom" id="hmo-9w-86l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ito-ZH-giW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In Progress..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohV-Sn-Z6e">
+                                <rect key="frame" x="16" y="72" width="288" height="39"/>
+                                <color key="backgroundColor" red="0.44811690129999998" green="1" blue="0.5549573485" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UUO-fc-3NC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61" y="1171"/>
         </scene>
         <!--Main App View Controller-->
         <scene sceneID="Ttg-fi-7VM">
@@ -277,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5l-ph-TMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="-7"/>
+            <point key="canvasLocation" x="92" y="-57"/>
         </scene>
     </scenes>
     <resources>
@@ -289,6 +352,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="feD-GC-K0e"/>
+        <segue reference="Puw-Eq-S9g"/>
     </inferredMetricsTieBreakers>
 </document>

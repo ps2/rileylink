@@ -25,10 +25,10 @@
 
 @protocol RileyLinkDelegate <NSObject>
 
-- (void)glucoseLink:(RileyLink*)glucoseLink
+- (void)rileyLink:(RileyLink*)rileyLink
              didReceivePacket:(MinimedPacket*)packet;
 
-- (void)glucoseLink:(RileyLink*)glucoseLink updatedStatus:(NSDictionary*)status;
+- (void)rileyLink:(RileyLink*)rileyLink updatedStatus:(NSDictionary*)status;
 
 
 @end

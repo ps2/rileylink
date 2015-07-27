@@ -91,7 +91,7 @@ static NSDateFormatter *iso8601Formatter;
   [status setObject:[NSNumber numberWithInt:rssi] forKey:@"rssi"];
   [status setObject:[NSNumber numberWithInt:batteryPct] forKey:@"batteryPct"];
   [status setObject:[iso8601Formatter stringFromDate:[NSDate date]] forKey:@"updatedAt"];
-  [self.delegate glucoseLink:self updatedStatus:status];
+  [self.delegate rileyLink:self updatedStatus:status];
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
@@ -238,7 +238,7 @@ static NSDateFormatter *iso8601Formatter;
     MinimedPacket *packet = [[MinimedPacket alloc] initWithData:characteristic.value];
     packet.capturedAt = [NSDate date];
     //if ([packet isValid]) {
-      [_delegate glucoseLink:self didReceivePacket:packet];
+      [_delegate rileyLink:self didReceivePacket:packet];
     //} else {
     //  NSLog(@"Invalid packet: %@", [packet hexadecimalString]);
     //}

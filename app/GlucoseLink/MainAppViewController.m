@@ -52,7 +52,7 @@
   NSData *bgPacket = [NSData dataWithHexadecimalString:@"0000a5c527ad00f111"];
   MinimedPacket *packet = [[MinimedPacket alloc] initWithData:bgPacket];
   packet.capturedAt = [NSDate date];
-  [self glucoseLink:nil didReceivePacket:packet];
+  [self rileyLink:nil didReceivePacket:packet];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -69,11 +69,11 @@
 
 #pragma mark GlucoseLinkDelegate methods
 
-- (void)glucoseLink:(RileyLink *)glucoseLink didReceivePacket:(MinimedPacket*)packet {
+- (void)rileyLink:(RileyLink *)rileyLink didReceivePacket:(MinimedPacket*)packet {
   [self.uploader addPacket:packet];
 }
 
-- (void)glucoseLink:(RileyLink *)glucoseLink updatedStatus:(NSDictionary*)status {
+- (void)rileyLink:(RileyLink *)rileyLink updatedStatus:(NSDictionary*)status {
   lastStatus = status;
   // TODO: find place to display, now that we're using nightscout
 }
