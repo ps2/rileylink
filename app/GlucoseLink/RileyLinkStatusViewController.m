@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Pete Schwamb. All rights reserved.
 //
 
-#import "RileyLinkViewController.h"
+#import "RileyLinkStatusViewController.h"
 
-@interface RileyLinkViewController ()
+@interface RileyLinkStatusViewController ()
 
 @end
 
-@implementation RileyLinkViewController
+@implementation RileyLinkStatusViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

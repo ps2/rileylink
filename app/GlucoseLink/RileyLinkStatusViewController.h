@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RileyLinkViewController : UIViewController
+@interface RileyLinkStatusViewController : UIViewController
 
 @end

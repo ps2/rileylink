@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C126162C1B65E9BF001FAD87 /* RileyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126162B1B65E9BF001FAD87 /* RileyLinkViewController.m */; };
+		C126162C1B65E9BF001FAD87 /* RileyLinkStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */; };
+		C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */; };
 		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
 		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
@@ -51,8 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C126162A1B65E9BF001FAD87 /* RileyLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkViewController.h; sourceTree = "<group>"; };
-		C126162B1B65E9BF001FAD87 /* RileyLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkViewController.m; sourceTree = "<group>"; };
+		C126162A1B65E9BF001FAD87 /* RileyLinkStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkStatusViewController.h; sourceTree = "<group>"; };
+		C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkStatusViewController.m; sourceTree = "<group>"; };
+		C12616301B65F4BC001FAD87 /* RileyLinkListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkListTableViewController.h; sourceTree = "<group>"; };
+		C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkListTableViewController.m; sourceTree = "<group>"; };
 		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,8 +282,10 @@
 				C1EF58961B3FA462001C8C80 /* MenuController.m */,
 				C1EF589C1B3FBFE7001C8C80 /* MainAppViewController.h */,
 				C1EF589D1B3FBFE7001C8C80 /* MainAppViewController.m */,
-				C126162A1B65E9BF001FAD87 /* RileyLinkViewController.h */,
-				C126162B1B65E9BF001FAD87 /* RileyLinkViewController.m */,
+				C126162A1B65E9BF001FAD87 /* RileyLinkStatusViewController.h */,
+				C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */,
+				C12616301B65F4BC001FAD87 /* RileyLinkListTableViewController.h */,
+				C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 			files = (
 				C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */,
 				C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */,
+				C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */,
 				C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */,
 				C1EF58851B3E5DA4001C8C80 /* ConfigureViewController.m in Sources */,
 				C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */,
@@ -403,7 +409,7 @@
 				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
 				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
-				C126162C1B65E9BF001FAD87 /* RileyLinkViewController.m in Sources */,
+				C126162C1B65E9BF001FAD87 /* RileyLinkStatusViewController.m in Sources */,
 				C1EF58881B3F93FE001C8C80 /* Config.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
 				C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */,
