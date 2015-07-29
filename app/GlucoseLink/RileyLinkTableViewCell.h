@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RileyLinkDevice.h"
+#import "RileyLinkRecord.h"
 
 @interface RileyLinkTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) RileyLinkDevice *rileyLink;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSNumber *RSSI;
+@property (nonatomic, assign) BOOL autoConnect;
+@property (nonatomic, assign) BOOL visible;
 
 @end

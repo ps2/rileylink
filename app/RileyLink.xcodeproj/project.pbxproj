@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		C126162C1B65E9BF001FAD87 /* RileyLinkStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */; };
 		C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */; };
-		C12616381B67C814001FAD87 /* RileyLinkDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616371B67C814001FAD87 /* RileyLinkDevice.m */; };
 		C126163C1B67CBC2001FAD87 /* RileyLinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C126163B1B67CBC2001FAD87 /* RileyLinkTableViewCell.m */; };
 		C12616421B685A78001FAD87 /* CBPeripheral+UUIDString.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616411B685A78001FAD87 /* CBPeripheral+UUIDString.m */; };
 		C12616441B685F0A001FAD87 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12616431B685F0A001FAD87 /* CoreData.framework */; };
 		C126164B1B685F93001FAD87 /* RileyLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C12616491B685F93001FAD87 /* RileyLink.xcdatamodeld */; };
+		C12616511B688D9C001FAD87 /* RileyLinkBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616501B688D9C001FAD87 /* RileyLinkBLEDevice.m */; };
+		C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616531B6892DB001FAD87 /* RileyLinkRecord.m */; };
 		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
 		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
@@ -37,7 +38,7 @@
 		C1A47EC21B1190D800756B99 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A47EC11B1190D800756B99 /* NSString+Hashes.m */; };
 		C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */; };
 		C1E535EA1991E36700C2AC49 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535E91991E36700C2AC49 /* NSData+Conversion.m */; };
-		C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EC1991E49600C2AC49 /* RileyLink.m */; };
+		C1E535ED1991E49600C2AC49 /* RileyLinkBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EC1991E49600C2AC49 /* RileyLinkBLEManager.m */; };
 		C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */; };
 		C1EF58851B3E5DA4001C8C80 /* ConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58841B3E5DA4001C8C80 /* ConfigureViewController.m */; };
 		C1EF58881B3F93FE001C8C80 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF58871B3F93FE001C8C80 /* Config.m */; };
@@ -61,14 +62,16 @@
 		C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkStatusViewController.m; sourceTree = "<group>"; };
 		C12616301B65F4BC001FAD87 /* RileyLinkListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkListTableViewController.h; sourceTree = "<group>"; };
 		C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkListTableViewController.m; sourceTree = "<group>"; };
-		C12616361B67C814001FAD87 /* RileyLinkDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkDevice.h; sourceTree = "<group>"; };
-		C12616371B67C814001FAD87 /* RileyLinkDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkDevice.m; sourceTree = "<group>"; };
 		C126163A1B67CBC2001FAD87 /* RileyLinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkTableViewCell.h; sourceTree = "<group>"; };
 		C126163B1B67CBC2001FAD87 /* RileyLinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkTableViewCell.m; sourceTree = "<group>"; };
 		C12616401B685A78001FAD87 /* CBPeripheral+UUIDString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+UUIDString.h"; sourceTree = "<group>"; };
 		C12616411B685A78001FAD87 /* CBPeripheral+UUIDString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+UUIDString.m"; sourceTree = "<group>"; };
 		C12616431B685F0A001FAD87 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C126164A1B685F93001FAD87 /* RileyLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RileyLink.xcdatamodel; sourceTree = "<group>"; };
+		C126164F1B688D9C001FAD87 /* RileyLinkBLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkBLEDevice.h; sourceTree = "<group>"; };
+		C12616501B688D9C001FAD87 /* RileyLinkBLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkBLEDevice.m; sourceTree = "<group>"; };
+		C12616521B6892DB001FAD87 /* RileyLinkRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkRecord.h; sourceTree = "<group>"; };
+		C12616531B6892DB001FAD87 /* RileyLinkRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkRecord.m; sourceTree = "<group>"; };
 		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,8 +109,8 @@
 		C1AA39931AB6804000BC9E33 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		C1E535E81991E36700C2AC49 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
 		C1E535E91991E36700C2AC49 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
-		C1E535EB1991E49600C2AC49 /* RileyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLink.h; sourceTree = "<group>"; };
-		C1E535EC1991E49600C2AC49 /* RileyLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLink.m; sourceTree = "<group>"; };
+		C1E535EB1991E49600C2AC49 /* RileyLinkBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkBLEManager.h; sourceTree = "<group>"; };
+		C1E535EC1991E49600C2AC49 /* RileyLinkBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkBLEManager.m; sourceTree = "<group>"; };
 		C1E535EE1991E6A200C2AC49 /* MinimedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinimedPacket.h; sourceTree = "<group>"; };
 		C1E535EF1991E6A200C2AC49 /* MinimedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinimedPacket.m; sourceTree = "<group>"; };
 		C1EF58831B3E5DA4001C8C80 /* ConfigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureViewController.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 		C12616451B685F35001FAD87 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				C12616521B6892DB001FAD87 /* RileyLinkRecord.h */,
+				C12616531B6892DB001FAD87 /* RileyLinkRecord.m */,
 				C12616491B685F93001FAD87 /* RileyLink.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -294,10 +299,10 @@
 		C1EF58981B3FA7D1001C8C80 /* RileyLink */ = {
 			isa = PBXGroup;
 			children = (
-				C1E535EB1991E49600C2AC49 /* RileyLink.h */,
-				C1E535EC1991E49600C2AC49 /* RileyLink.m */,
-				C12616361B67C814001FAD87 /* RileyLinkDevice.h */,
-				C12616371B67C814001FAD87 /* RileyLinkDevice.m */,
+				C1E535EB1991E49600C2AC49 /* RileyLinkBLEManager.h */,
+				C1E535EC1991E49600C2AC49 /* RileyLinkBLEManager.m */,
+				C126164F1B688D9C001FAD87 /* RileyLinkBLEDevice.h */,
+				C12616501B688D9C001FAD87 /* RileyLinkBLEDevice.m */,
 			);
 			name = RileyLink;
 			sourceTree = "<group>";
@@ -439,13 +444,14 @@
 				C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */,
 				C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */,
 				C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */,
-				C12616381B67C814001FAD87 /* RileyLinkDevice.m in Sources */,
 				C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */,
 				C1EF58851B3E5DA4001C8C80 /* ConfigureViewController.m in Sources */,
 				C12616421B685A78001FAD87 /* CBPeripheral+UUIDString.m in Sources */,
-				C1E535ED1991E49600C2AC49 /* RileyLink.m in Sources */,
+				C1E535ED1991E49600C2AC49 /* RileyLinkBLEManager.m in Sources */,
 				C12EA26D198B456D00309FA4 /* NightscoutWebView.m in Sources */,
+				C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */,
 				C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */,
+				C12616511B688D9C001FAD87 /* RileyLinkBLEDevice.m in Sources */,
 				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
 				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,

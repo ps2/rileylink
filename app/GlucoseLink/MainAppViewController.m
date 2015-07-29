@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Pete Schwamb. All rights reserved.
 //
 
-#import "RileyLink.h"
+#import "RileyLinkBLEManager.h"
 #import "NSData+Conversion.h"
 #import "PumpStatusMessage.h"
 #import "ISO8601DateFormatter.h"
@@ -31,8 +31,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [[RileyLink sharedRileyLink] setChannel:2];
-  [[RileyLink sharedRileyLink] setDelegate:self];
+  [[RileyLinkBLEManager sharedManager] setChannel:2];
+  [[RileyLinkBLEManager sharedManager] setDelegate:self];
   
   _dateFormatter = [[ISO8601DateFormatter alloc] init];
   _dateFormatter.includeTime = YES;
@@ -56,7 +56,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   
-  [[RileyLink sharedRileyLink] stop];
+  [[RileyLinkBLEManager sharedManager] stop];
 }
 
 
@@ -67,11 +67,11 @@
 
 #pragma mark GlucoseLinkDelegate methods
 
-- (void)rileyLink:(RileyLink *)rileyLink didReceivePacket:(MinimedPacket*)packet {
+- (void)rileyLink:(RileyLinkBLEManager *)rileyLink didReceivePacket:(MinimedPacket*)packet {
   [self.uploader addPacket:packet];
 }
 
-- (void)rileyLink:(RileyLink *)rileyLink updatedStatus:(NSDictionary*)status {
+- (void)rileyLink:(RileyLinkBLEManager *)rileyLink updatedStatus:(NSDictionary*)status {
   lastStatus = status;
   // TODO: find place to display, now that we're using nightscout
 }

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Pete Schwamb. All rights reserved.
 //
 
-#import "RileyLink.h"
+#import "RileyLinkBLEManager.h"
 #import "MinimedPacket.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "RileyLinkDevice.h"
+#import "RileyLinkBLEDevice.h"
 #import "CBPeripheral+UUIDString.h"
 
 #define GLUCOSELINK_SERVICE_UUID       @"d39f1890-17eb-11e4-8c21-0800200c9a66"
@@ -25,13 +25,13 @@
 
 static NSDateFormatter *iso8601Formatter;
 
-@interface RileyLink () <CBCentralManagerDelegate, CBPeripheralDelegate> {
+@interface RileyLinkBLEManager () <CBCentralManagerDelegate, CBPeripheralDelegate> {
   NSTimer *timer;
   NSInteger rssi;
   NSInteger batteryPct;
   NSMutableArray *outgoingQueue;
   NSMutableDictionary *seenPeripherals; // CBPeripherals by UUID
-  NSMutableDictionary *seenRileyLinks; // RileyLinkDevices by UUID
+  NSMutableDictionary *seenRileyLinks; // RileyLinkBLEDevices by UUID
 }
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
@@ -48,11 +48,11 @@ static NSDateFormatter *iso8601Formatter;
 @end
 
 
-@implementation RileyLink
+@implementation RileyLinkBLEManager
 
 
-+ (id)sharedRileyLink {
-  static RileyLink *sharedMyRileyLink = nil;
++ (id)sharedManager {
+  static RileyLinkBLEManager *sharedMyRileyLink = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedMyRileyLink = [[self alloc] init];
@@ -72,8 +72,6 @@ static NSDateFormatter *iso8601Formatter;
   if (self) {
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _data = [[NSMutableData alloc] init];
-    seenRileyLinks = [NSMutableDictionary dictionary];
-    seenPeripherals = [NSMutableDictionary dictionary];
     _connected = NO;
     NSTimer *statusUpdateTimer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(updateStatus) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:statusUpdateTimer forMode:NSDefaultRunLoopMode];
@@ -81,8 +79,18 @@ static NSDateFormatter *iso8601Formatter;
     batteryPct = 0;
     outgoingQueue = [NSMutableArray array];
     [self updateStatus];
+    
+    seenPeripherals = [NSMutableDictionary dictionary];
+    seenRileyLinks = [NSMutableDictionary dictionary];
   }
   return self;
+}
+
+- (RileyLinkBLEDevice*) newRileyLinkFromPeripheral:(CBPeripheral*)peripheral {
+  RileyLinkBLEDevice *device = [[RileyLinkBLEDevice alloc] init];
+  device.name = peripheral.name;
+  device.peripheralId = peripheral.UUIDString;
+  return device;
 }
 
 - (void)stop {
@@ -138,9 +146,7 @@ static NSDateFormatter *iso8601Formatter;
   
   seenPeripherals[peripheral.UUIDString] = peripheral;
   
-  RileyLinkDevice *d = [[RileyLinkDevice alloc] init];
-  d.name = peripheral.name;
-  d.identifier = peripheral.UUIDString;
+  RileyLinkBLEDevice *d = [self newRileyLinkFromPeripheral:peripheral];
   d.RSSI = RSSI;
   seenRileyLinks[peripheral.UUIDString] = d;
   

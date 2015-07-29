@@ -8,11 +8,15 @@
 
 #import "RileyLinkListTableViewController.h"
 #import "SWRevealViewController.h"
-#import "RileyLink.h"
+#import "RileyLinkBLEManager.h"
 #import "RileyLinkTableViewCell.h"
+#import "RileyLinkBLEDevice.h"
+#import "AppDelegate.h"
 
 @interface RileyLinkListTableViewController () {
-  NSArray *rileyLinks;
+  NSMutableArray *rileyLinkRecords;
+  NSMutableDictionary *recordsById;
+  NSMutableDictionary *devicesById;
   IBOutlet UIBarButtonItem *menuButton;
 }
 
@@ -23,24 +27,78 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = appDelegate.managedObjectContext;
+  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(listUpdated:)
                                                name:RILEY_LINK_EVENT_LIST_UPDATED
                                              object:nil];
   
-  rileyLinks = [[RileyLink sharedRileyLink] rileyLinkList];
-    
   if (self.revealViewController != nil) {
     menuButton.target = self.revealViewController;
     [menuButton setAction:@selector(revealToggle:)];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
   }
+  
+  [self loadRecordsFromDB];
+  [self processVisibleDevices];
+}
+
+- (void)processVisibleDevices {
+  devicesById = [NSMutableDictionary dictionary];
+  
+  for (RileyLinkBLEDevice *device in [[RileyLinkBLEManager sharedManager] rileyLinkList]) {
+    devicesById[device.peripheralId] = device;
+    
+    RileyLinkRecord *existingRecord = recordsById[device.peripheralId];
+    
+    if (existingRecord == NULL) {
+      // Haven't seen this device before; add it to Core Data
+      RileyLinkRecord *record = [NSEntityDescription
+                                  insertNewObjectForEntityForName:@"RileyLinkRecord"
+                                  inManagedObjectContext:self.managedObjectContext];
+      record.name = device.name;
+      record.peripheralId = device.peripheralId;
+      record.firstSeenAt = [NSDate date];
+      record.autoConnect = @NO;
+      recordsById[device.peripheralId] = record;
+      [rileyLinkRecords addObject: record];
+    } else {
+      // Have seen it; update name
+      existingRecord.name = device.name;
+    }
+  }
+  NSError *error;
+  if (![self.managedObjectContext save:&error]) {
+    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  }
+  [self.tableView reloadData];
 }
 
 - (void)listUpdated:(NSNotification *)notification {
-  rileyLinks = [[RileyLink sharedRileyLink] rileyLinkList];
-  [self.tableView reloadData];
+  [self processVisibleDevices];
 }
+
+- (void)loadRecordsFromDB {
+  rileyLinkRecords = [NSMutableArray array];
+  recordsById = [NSMutableDictionary dictionary];
+  
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"firstSeenAt" ascending:YES];
+  [fetchRequest setSortDescriptors:@[sortDescriptor1]];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"RileyLinkRecord"
+                                            inManagedObjectContext:self.managedObjectContext];
+  [fetchRequest setEntity:entity];
+  NSError *error;
+  NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  for (RileyLinkRecord *record in fetchedObjects) {
+    NSLog(@"Loaded: %@ from db", record.name);
+    recordsById[record.peripheralId] = record;
+    [rileyLinkRecords addObject:record];
+  }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -56,12 +114,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
-  return [rileyLinks count];
+  return [rileyLinkRecords count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   RileyLinkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rileylink" forIndexPath:indexPath];
-  cell.rileyLink = rileyLinks[indexPath.row];
+  RileyLinkRecord *record = rileyLinkRecords[indexPath.row];
+  cell.name = record.name;
+  cell.autoConnect = [record.autoConnect boolValue];
+  
+  RileyLinkBLEDevice *device = devicesById[record.peripheralId];
+  if (device) {
+    cell.visible = YES;
+    cell.RSSI = device.RSSI;
+  } else {
+    cell.visible = NO;
+    cell.RSSI = nil;
+  }
   return cell;
 }
 

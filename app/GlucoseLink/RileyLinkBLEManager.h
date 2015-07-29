@@ -13,14 +13,13 @@
 
 @protocol RileyLinkDelegate;
 
-
-@interface RileyLink : NSObject
+@interface RileyLinkBLEManager : NSObject
 
 - (void)stop;
 - (void)sendPacket:(MinimedPacket*)packet;
 - (NSArray*)rileyLinkList;
 
-+ (id)sharedRileyLink;
++ (id)sharedManager;
 
 @property (nonatomic, weak) id<RileyLinkDelegate> delegate;
 @property (nonatomic, readonly) BOOL connected;
@@ -31,10 +30,10 @@
 
 @protocol RileyLinkDelegate <NSObject>
 
-- (void)rileyLink:(RileyLink*)rileyLink
+- (void)rileyLink:(RileyLinkBLEManager*)rileyLink
              didReceivePacket:(MinimedPacket*)packet;
 
-- (void)rileyLink:(RileyLink*)rileyLink updatedStatus:(NSDictionary*)status;
+- (void)rileyLink:(RileyLinkBLEManager*)rileyLink updatedStatus:(NSDictionary*)status;
 
 
 @end
