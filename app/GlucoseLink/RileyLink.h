@@ -9,12 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "MinimedPacket.h"
 
+#define RILEY_LINK_EVENT_LIST_UPDATED @"RILEY_LINK_EVENT_LIST_UPDATED"
+
 @protocol RileyLinkDelegate;
+
 
 @interface RileyLink : NSObject
 
 - (void)stop;
 - (void)sendPacket:(MinimedPacket*)packet;
+- (NSArray*)rileyLinkList;
+
++ (id)sharedRileyLink;
 
 @property (nonatomic, weak) id<RileyLinkDelegate> delegate;
 @property (nonatomic, readonly) BOOL connected;

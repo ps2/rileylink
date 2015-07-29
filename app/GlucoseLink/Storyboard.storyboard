@@ -260,7 +260,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="LlF-8z-sPI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="rileylink" id="LlF-8z-sPI" customClass="RileyLinkTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LlF-8z-sPI" id="flN-zP-nQW">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -280,6 +280,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="nameLabel" destination="v7m-2f-3Ri" id="wh5-Wh-G1D"/>
+                                    <outlet property="rssiLabel" destination="vnK-YK-N1I" id="nuV-fS-ec0"/>
                                     <segue destination="fgz-Td-7EZ" kind="push" id="ijm-Zz-Ahk"/>
                                 </connections>
                             </tableViewCell>
@@ -291,6 +293,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="RileyLink List" id="mbx-dO-fIN">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Wrv-YJ-Uu5"/>
                         <barButtonItem key="leftBarButtonItem" image="menu" id="O6k-XV-Qbh">
                             <color key="tintColor" red="0.78039222959999999" green="0.81568634510000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         </barButtonItem>
@@ -326,7 +329,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l"/>
+                    <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l">
+                        <barButtonItem key="backBarButtonItem" title="Back2" id="sRo-7s-gPK"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUO-fc-3NC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

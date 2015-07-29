@@ -9,6 +9,8 @@
 #import "RileyLink.h"
 #import "MinimedPacket.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "RileyLinkDevice.h"
+#import "CBPeripheral+UUIDString.h"
 
 #define GLUCOSELINK_SERVICE_UUID       @"d39f1890-17eb-11e4-8c21-0800200c9a66"
 #define GLUCOSELINK_BATTERY_SERVICE    @"180f"
@@ -28,6 +30,8 @@ static NSDateFormatter *iso8601Formatter;
   NSInteger rssi;
   NSInteger batteryPct;
   NSMutableArray *outgoingQueue;
+  NSMutableDictionary *seenPeripherals; // CBPeripherals by UUID
+  NSMutableDictionary *seenRileyLinks; // RileyLinkDevices by UUID
 }
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
@@ -46,6 +50,17 @@ static NSDateFormatter *iso8601Formatter;
 
 @implementation RileyLink
 
+
++ (id)sharedRileyLink {
+  static RileyLink *sharedMyRileyLink = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedMyRileyLink = [[self alloc] init];
+  });
+  return sharedMyRileyLink;
+}
+
+
 + (void)initialize {
   iso8601Formatter = [[NSDateFormatter alloc] init];
   [iso8601Formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
@@ -57,6 +72,8 @@ static NSDateFormatter *iso8601Formatter;
   if (self) {
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _data = [[NSMutableData alloc] init];
+    seenRileyLinks = [NSMutableDictionary dictionary];
+    seenPeripherals = [NSMutableDictionary dictionary];
     _connected = NO;
     NSTimer *statusUpdateTimer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(updateStatus) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:statusUpdateTimer forMode:NSDefaultRunLoopMode];
@@ -84,12 +101,15 @@ static NSDateFormatter *iso8601Formatter;
   }
 }
 
+- (void) sendNotice:(NSString*)name {
+  [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil];
+}
 
 - (void)updateStatus {
   NSMutableDictionary *status = [NSMutableDictionary dictionary];
   [status setObject:(_connected ? @YES : @NO) forKey:@"connected"];
-  [status setObject:[NSNumber numberWithInt:rssi] forKey:@"rssi"];
-  [status setObject:[NSNumber numberWithInt:batteryPct] forKey:@"batteryPct"];
+  [status setObject:[NSNumber numberWithLong:rssi] forKey:@"rssi"];
+  [status setObject:[NSNumber numberWithLong:batteryPct] forKey:@"batteryPct"];
   [status setObject:[iso8601Formatter stringFromDate:[NSDate date]] forKey:@"updatedAt"];
   [self.delegate rileyLink:self updatedStatus:status];
 }
@@ -107,10 +127,24 @@ static NSDateFormatter *iso8601Formatter;
   }
 }
 
+- (NSArray*)rileyLinkList {
+  return [seenRileyLinks allValues];
+}
+
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
   
   NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
   rssi = [RSSI integerValue];
+  
+  seenPeripherals[peripheral.UUIDString] = peripheral;
+  
+  RileyLinkDevice *d = [[RileyLinkDevice alloc] init];
+  d.name = peripheral.name;
+  d.identifier = peripheral.UUIDString;
+  d.RSSI = RSSI;
+  seenRileyLinks[peripheral.UUIDString] = d;
+  
+  [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
   
   if (_discoveredPeripheral != peripheral) {
     // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
@@ -171,12 +205,7 @@ static NSDateFormatter *iso8601Formatter;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
-  if (error) {
-    NSLog(@"Could not get rssi: %@", error);
-    rssi = 0;
-  } else {
-    rssi = RSSI.integerValue;
-  }
+  [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
@@ -206,7 +235,6 @@ static NSDateFormatter *iso8601Formatter;
   }
   
   if (_batteryCharacteristic != nil && timer == nil) {
-    [peripheral readRSSI];
     timer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     [self updateBatteryLevel];

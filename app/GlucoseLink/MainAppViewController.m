@@ -19,7 +19,6 @@
   NSDictionary *lastStatus;
 }
 
-@property (strong, nonatomic) RileyLink *rileyLink;
 @property (strong, nonatomic) ISO8601DateFormatter *dateFormatter;
 @property (strong, nonatomic) NSTimeZone *utcTimeZone;
 @property (strong, nonatomic) NightScoutUploader *uploader;
@@ -32,9 +31,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  _rileyLink = [[RileyLink alloc] init];
-  _rileyLink.channel = 2;
-  _rileyLink.delegate = self;
+  [[RileyLink sharedRileyLink] setChannel:2];
+  [[RileyLink sharedRileyLink] setDelegate:self];
   
   _dateFormatter = [[ISO8601DateFormatter alloc] init];
   _dateFormatter.includeTime = YES;
@@ -58,7 +56,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   
-  [_rileyLink stop];
+  [[RileyLink sharedRileyLink] stop];
 }
 
 

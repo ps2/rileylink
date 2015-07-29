@@ -8,9 +8,11 @@
 
 #import "RileyLinkListTableViewController.h"
 #import "SWRevealViewController.h"
+#import "RileyLink.h"
+#import "RileyLinkTableViewCell.h"
 
 @interface RileyLinkListTableViewController () {
-
+  NSArray *rileyLinks;
   IBOutlet UIBarButtonItem *menuButton;
 }
 
@@ -19,13 +21,25 @@
 @implementation RileyLinkListTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(listUpdated:)
+                                               name:RILEY_LINK_EVENT_LIST_UPDATED
+                                             object:nil];
+  
+  rileyLinks = [[RileyLink sharedRileyLink] rileyLinkList];
     
   if (self.revealViewController != nil) {
     menuButton.target = self.revealViewController;
     [menuButton setAction:@selector(revealToggle:)];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
   }
+}
+
+- (void)listUpdated:(NSNotification *)notification {
+  rileyLinks = [[RileyLink sharedRileyLink] rileyLinkList];
+  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,26 +50,20 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+  // Return the number of sections.
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+  // Return the number of rows in the section.
+  return [rileyLinks count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+  RileyLinkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rileylink" forIndexPath:indexPath];
+  cell.rileyLink = rileyLinks[indexPath.row];
+  return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
