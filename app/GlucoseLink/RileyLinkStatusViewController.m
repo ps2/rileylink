@@ -8,20 +8,30 @@
 
 #import "RileyLinkStatusViewController.h"
 
-@interface RileyLinkStatusViewController ()
+@interface RileyLinkStatusViewController () {
+  IBOutlet UILabel *deviceIDLabel;
+  IBOutlet UILabel *nameLabel;
+}
 
 @end
 
 @implementation RileyLinkStatusViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  
+  deviceIDLabel.text = self.rlRecord.peripheralId;
+  nameLabel.text = self.rlRecord.name;
+  if (self.rlDevice && self.rlDevice.isConnected) {
+    nameLabel.backgroundColor = [UIColor greenColor];
+  } else {
+    nameLabel.backgroundColor = [UIColor clearColor];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 /*

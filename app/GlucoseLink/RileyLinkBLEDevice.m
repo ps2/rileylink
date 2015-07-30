@@ -7,7 +7,18 @@
 //
 
 #import "RileyLinkBLEDevice.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @implementation RileyLinkBLEDevice
+
+- (BOOL) isConnected {
+  return self.myPeripheral.state == CBPeripheralStateConnected;
+}
+
+- (CBPeripheral *) myPeripheral {
+  return (CBPeripheral *) _peripheral;
+}
+
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RileyLinkBLEDevice.h"
+#import "RileyLinkRecord.h"
 
 @interface RileyLinkStatusViewController : UIViewController
+
+@property (nonatomic, strong) RileyLinkBLEDevice *rlDevice;
+@property (nonatomic, strong) RileyLinkRecord *rlRecord;
 
 @end

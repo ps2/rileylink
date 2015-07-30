@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface RileyLinkBLEDevice : NSObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * peripheralId;
 @property (nonatomic, retain) NSNumber * RSSI;
+@property (nonatomic, retain) NSString * peripheralId;
+@property (nonatomic, retain) id peripheral;
+
+- (BOOL) isConnected;
 
 @end

@@ -12,6 +12,7 @@
 #import "RileyLinkTableViewCell.h"
 #import "RileyLinkBLEDevice.h"
 #import "AppDelegate.h"
+#import "RileyLinkStatusViewController.h"
 
 @interface RileyLinkListTableViewController () {
   NSMutableArray *rileyLinkRecords;
@@ -168,14 +169,15 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  RileyLinkStatusViewController *controller = [segue destinationViewController];
+  NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
+  RileyLinkRecord *record = rileyLinkRecords[ip.row];
+  controller.rlRecord = record;
+  controller.rlDevice = devicesById[record.peripheralId];
 }
-*/
 
 @end

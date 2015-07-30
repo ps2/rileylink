@@ -146,9 +146,14 @@ static NSDateFormatter *iso8601Formatter;
   
   seenPeripherals[peripheral.UUIDString] = peripheral;
   
-  RileyLinkBLEDevice *d = [self newRileyLinkFromPeripheral:peripheral];
+  RileyLinkBLEDevice *d = seenRileyLinks[peripheral.UUIDString];
+  if (seenRileyLinks[peripheral.UUIDString] == NULL) {
+    d = [self newRileyLinkFromPeripheral:peripheral];
+    seenRileyLinks[peripheral.UUIDString] = d;
+  }
   d.RSSI = RSSI;
-  seenRileyLinks[peripheral.UUIDString] = d;
+  d.name = peripheral.name;
+  d.peripheral = peripheral;
   
   [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
   

@@ -24,6 +24,7 @@
 @property (nonatomic, weak) id<RileyLinkDelegate> delegate;
 @property (nonatomic, readonly) BOOL connected;
 @property (nonatomic, assign) unsigned char channel;
+@property (nonatomic, strong) NSArray *autoConnectIds;
 
 @end
 

@@ -320,10 +320,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In Progress..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohV-Sn-Z6e">
-                                <rect key="frame" x="16" y="72" width="288" height="39"/>
+                                <rect key="frame" x="16" y="20" width="288" height="39"/>
                                 <color key="backgroundColor" red="0.44811690129999998" green="1" blue="0.5549573485" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Trk-2x-D8Y">
+                                <rect key="frame" x="16" y="67" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -332,6 +338,10 @@
                     <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l">
                         <barButtonItem key="backBarButtonItem" title="Back2" id="sRo-7s-gPK"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="deviceIDLabel" destination="Trk-2x-D8Y" id="K2T-LD-CXp"/>
+                        <outlet property="nameLabel" destination="ohV-Sn-Z6e" id="Vmh-xM-YbT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUO-fc-3NC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
