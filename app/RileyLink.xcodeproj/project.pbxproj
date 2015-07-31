@@ -15,6 +15,8 @@
 		C126164B1B685F93001FAD87 /* RileyLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C12616491B685F93001FAD87 /* RileyLink.xcdatamodeld */; };
 		C12616511B688D9C001FAD87 /* RileyLinkBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616501B688D9C001FAD87 /* RileyLinkBLEDevice.m */; };
 		C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616531B6892DB001FAD87 /* RileyLinkRecord.m */; };
+		C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616561B6A6130001FAD87 /* PacketLogViewController.m */; };
+		C126165A1B6B2D20001FAD87 /* PacketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */; };
 		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
 		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
@@ -72,6 +74,10 @@
 		C12616501B688D9C001FAD87 /* RileyLinkBLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkBLEDevice.m; sourceTree = "<group>"; };
 		C12616521B6892DB001FAD87 /* RileyLinkRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkRecord.h; sourceTree = "<group>"; };
 		C12616531B6892DB001FAD87 /* RileyLinkRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkRecord.m; sourceTree = "<group>"; };
+		C12616551B6A6130001FAD87 /* PacketLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketLogViewController.h; sourceTree = "<group>"; };
+		C12616561B6A6130001FAD87 /* PacketLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketLogViewController.m; sourceTree = "<group>"; };
+		C12616581B6B2D20001FAD87 /* PacketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketTableViewCell.h; sourceTree = "<group>"; };
+		C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketTableViewCell.m; sourceTree = "<group>"; };
 		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +161,8 @@
 			children = (
 				C126163A1B67CBC2001FAD87 /* RileyLinkTableViewCell.h */,
 				C126163B1B67CBC2001FAD87 /* RileyLinkTableViewCell.m */,
+				C12616581B6B2D20001FAD87 /* PacketTableViewCell.h */,
+				C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -329,6 +337,8 @@
 				C126162B1B65E9BF001FAD87 /* RileyLinkStatusViewController.m */,
 				C12616301B65F4BC001FAD87 /* RileyLinkListTableViewController.h */,
 				C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */,
+				C12616551B6A6130001FAD87 /* PacketLogViewController.h */,
+				C12616561B6A6130001FAD87 /* PacketLogViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -452,12 +462,14 @@
 				C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */,
 				C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */,
 				C12616511B688D9C001FAD87 /* RileyLinkBLEDevice.m in Sources */,
+				C126165A1B6B2D20001FAD87 /* PacketTableViewCell.m in Sources */,
 				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
 				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
 				C126162C1B65E9BF001FAD87 /* RileyLinkStatusViewController.m in Sources */,
 				C1EF58881B3F93FE001C8C80 /* Config.m in Sources */,
 				C126164B1B685F93001FAD87 /* RileyLink.xcdatamodeld in Sources */,
+				C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
 				C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */,
 				C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */,

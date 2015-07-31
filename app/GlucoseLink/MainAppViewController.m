@@ -15,7 +15,7 @@
 
 #import "MainAppViewController.h"
 
-@interface MainAppViewController () <RileyLinkDelegate> {
+@interface MainAppViewController () {
   NSDictionary *lastStatus;
 }
 
@@ -30,9 +30,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  [[RileyLinkBLEManager sharedManager] setChannel:2];
-  [[RileyLinkBLEManager sharedManager] setDelegate:self];
   
   _dateFormatter = [[ISO8601DateFormatter alloc] init];
   _dateFormatter.includeTime = YES;

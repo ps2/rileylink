@@ -7,6 +7,7 @@
 //
 
 #import "RileyLinkStatusViewController.h"
+#import "PacketLogViewController.h"
 
 @interface RileyLinkStatusViewController () {
   IBOutlet UILabel *deviceIDLabel;
@@ -27,6 +28,8 @@
   } else {
     nameLabel.backgroundColor = [UIColor clearColor];
   }
+  
+  [self.rlDevice connect];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,14 +37,12 @@
   // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  PacketLogViewController *c = (PacketLogViewController*) [segue destinationViewController];
+  c.device = self.rlDevice;
 }
-*/
 
 @end

@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSString * peripheralId;
 @property (nonatomic, retain) id peripheral;
 
+- (NSArray*) packets;
+
 - (BOOL) isConnected;
+- (void) connect;
 
 @end

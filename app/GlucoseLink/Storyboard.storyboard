@@ -332,11 +332,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31b-DE-WYY">
+                                <rect key="frame" x="121" y="165" width="78" height="30"/>
+                                <state key="normal" title="Packet Log">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7s7-Ke-qpC" kind="push" id="RaR-PN-0p8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l">
-                        <barButtonItem key="backBarButtonItem" title="Back2" id="sRo-7s-gPK"/>
+                        <barButtonItem key="backBarButtonItem" title="Back2" id="sRo-7s-gPK" userLabel="Status"/>
                     </navigationItem>
                     <connections>
                         <outlet property="deviceIDLabel" destination="Trk-2x-D8Y" id="K2T-LD-CXp"/>
@@ -346,6 +355,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUO-fc-3NC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="545" y="1171"/>
+        </scene>
+        <!--Packet Log View Controller-->
+        <scene sceneID="5Iq-Yo-5RW">
+            <objects>
+                <viewController id="7s7-Ke-qpC" customClass="PacketLogViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G2F-Sw-sXa"/>
+                        <viewControllerLayoutGuide type="bottom" id="M8L-vt-xIO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lEd-AJ-MH6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6XQ-d2-JMf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="packet" id="92S-fl-pp1" customClass="PacketTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="92S-fl-pp1" id="dd8-cy-uiQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OhQ-PK-dk1">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="rawDataLabel" destination="OhQ-PK-dk1" id="6v9-6V-kri"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7s7-Ke-qpC" id="bMZ-8B-t1f"/>
+                                    <outlet property="delegate" destination="7s7-Ke-qpC" id="iUD-TU-i4i"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oMq-c1-KQo"/>
+                    <connections>
+                        <outlet property="tableView" destination="6XQ-d2-JMf" id="tm9-oL-eMY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NEb-qk-44f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936" y="1173"/>
         </scene>
         <!--Main App View Controller-->
         <scene sceneID="Ttg-fi-7VM">
