@@ -1,5 +1,5 @@
 
-default: minimed_rf
+default: output/minimed_rf.hex
 
 output/main.rel: main.c 
 	sdcc -I. -c main.c -o output/
@@ -7,7 +7,7 @@ output/minimed_rf.rel: minimed_rf.c minimed_rf.h
 	sdcc -I. -c minimed_rf.c -o output/
 output/minimed_rf.hex: output/minimed_rf.rel output/main.rel
 	sdcc -I. output/minimed_rf.rel output/main.rel -o output/minimed_rf.hex
-minimed_rf: output/minimed_rf.hex
+install: output/minimed_rf.hex
 	cc-tool --log install.log -ew output/minimed_rf.hex
 
 test_bin: test.c
