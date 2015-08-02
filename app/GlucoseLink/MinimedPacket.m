@@ -84,7 +84,38 @@ static unsigned char crcTable[256];
   return _data.length > 0 && [self crcValid];
 }
 
-- (NSData*)decodeRFEncoding:(NSData*) rawData {
+
+- (NSData*)encodedRFData {
+  NSMutableData *outData = [NSMutableData data];
+  char codes[16] = {21,49,50,35,52,37,38,22,26,25,42,11,44,13,14,28};
+  const unsigned char *inBytes = [self.data bytes];
+  unsigned int acc = 0x0;
+  int bitcount = 0;
+  for (int i=0; i < self.data.length; i++) {
+    acc <<= 6;
+    acc |= codes[inBytes[i] >> 4];
+    bitcount += 6;
+    
+    acc <<= 6;
+    acc |= codes[inBytes[i] & 0x0f];
+    bitcount += 6;
+    
+    while (bitcount >= 8) {
+      unsigned char outByte = acc >> (bitcount-8) & 0xff;
+      [outData appendBytes:&outByte length:1];
+      bitcount -= 8;
+      acc &= (0xffff >> (16-bitcount));
+    }
+  }
+  if (bitcount > 0) {
+    acc <<= (8-bitcount);
+    unsigned char outByte = acc & 0xff;
+    [outData appendBytes:&outByte length:1];
+  }
+  return outData;
+}
+
+- (NSData*)decodeRF:(NSData*) rawData {
   // Converted from ruby using: CODE_SYMBOLS.each{|k,v| puts "@#{Integer("0b"+k)}: @#{Integer("0x"+v)},"};nil
   NSDictionary *codes = @{@21: @0,
                           @49: @1,

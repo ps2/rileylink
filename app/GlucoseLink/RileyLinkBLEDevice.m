@@ -9,6 +9,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "RileyLinkBLEDevice.h"
 #import "RileyLinkBLEManager.h"
+#import "NSData+Conversion.h"
 
 @interface RileyLinkBLEDevice () <CBPeripheralDelegate> {
   CBCharacteristic *packetRxCharacteristic;
@@ -18,7 +19,8 @@
   CBCharacteristic *batteryCharacteristic;
   CBCharacteristic *packetCountCharacteristic;
   CBCharacteristic *channelCharacteristic;
-  NSMutableArray *myPackets;
+  NSMutableArray *incomingPackets;
+  NSMutableArray *outgoingPackets;
 }
 
 @end
@@ -30,13 +32,27 @@
 {
   self = [super init];
   if (self) {
-    myPackets = [NSMutableArray array];
+    incomingPackets = [NSMutableArray array];
+    outgoingPackets = [NSMutableArray array];
   }
   return self;
 }
 
 - (NSArray*) packets {
-  return myPackets;
+  return incomingPackets;
+}
+
+- (void) sendPacketData:(NSData*)data {
+  [self.myPeripheral writeValue:data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithoutResponse];
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+  if (error) {
+    NSLog(@"Could not write characteristic: %@", error);
+    return;
+  }
+  NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
+  [self.myPeripheral writeValue:trigger forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
 - (BOOL) isConnected {
@@ -134,7 +150,7 @@
     MinimedPacket *packet = [[MinimedPacket alloc] initWithData:characteristic.value];
     packet.capturedAt = [NSDate date];
     //if ([packet isValid]) {
-    [myPackets addObject:packet];
+    [incomingPackets addObject:packet];
     NSDictionary *attrs = @{
                             @"packet": packet,
                             @"peripheral": self.peripheral,

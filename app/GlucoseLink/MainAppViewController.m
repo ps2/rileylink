@@ -44,8 +44,10 @@
 }
 
 - (void)generateMockData {
-  NSData *bgPacket = [NSData dataWithHexadecimalString:@"0000a5c527ad00f111"];
+  NSData *bgPacket = [NSData dataWithHexadecimalString:@"a7a7a7a7a7"];
   MinimedPacket *packet = [[MinimedPacket alloc] initWithData:bgPacket];
+  NSData *encodedData = [packet encodedRFData];
+  NSLog(@"encoded %@ to %@", [bgPacket hexadecimalString], [encodedData hexadecimalString])
   packet.capturedAt = [NSDate date];
   [self rileyLink:nil didReceivePacket:packet];
 }

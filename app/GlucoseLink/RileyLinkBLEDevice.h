@@ -21,5 +21,6 @@
 
 - (BOOL) isConnected;
 - (void) connect;
+- (void) sendPacketData:(NSData*)data;
 
 @end

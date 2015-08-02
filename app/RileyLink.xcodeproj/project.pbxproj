@@ -17,6 +17,7 @@
 		C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616531B6892DB001FAD87 /* RileyLinkRecord.m */; };
 		C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616561B6A6130001FAD87 /* PacketLogViewController.m */; };
 		C126165A1B6B2D20001FAD87 /* PacketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */; };
+		C126165D1B6C8076001FAD87 /* TestPacketSenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126165C1B6C8076001FAD87 /* TestPacketSenderViewController.m */; };
 		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
 		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
@@ -78,6 +79,8 @@
 		C12616561B6A6130001FAD87 /* PacketLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketLogViewController.m; sourceTree = "<group>"; };
 		C12616581B6B2D20001FAD87 /* PacketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketTableViewCell.h; sourceTree = "<group>"; };
 		C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketTableViewCell.m; sourceTree = "<group>"; };
+		C126165B1B6C8076001FAD87 /* TestPacketSenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPacketSenderViewController.h; sourceTree = "<group>"; };
+		C126165C1B6C8076001FAD87 /* TestPacketSenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPacketSenderViewController.m; sourceTree = "<group>"; };
 		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,7 +198,6 @@
 		C12EA22E198B436800309FA4 = {
 			isa = PBXGroup;
 			children = (
-				C1EF58991B3FB596001C8C80 /* UIAlertView+Blocks */,
 				C12EA240198B436800309FA4 /* RileyLink */,
 				C12EA239198B436800309FA4 /* Frameworks */,
 				C12EA238198B436800309FA4 /* Products */,
@@ -241,8 +243,6 @@
 				C12EA269198B442100309FA4 /* Storyboard.storyboard */,
 				C12EA24C198B436800309FA4 /* Images.xcassets */,
 				C12EA241198B436800309FA4 /* Supporting Files */,
-				C1E535E81991E36700C2AC49 /* NSData+Conversion.h */,
-				C1E535E91991E36700C2AC49 /* NSData+Conversion.m */,
 				C1271B061A9A34E900B7C949 /* Log.m */,
 				C1271B081A9A350400B7C949 /* Log.h */,
 				C1EF58861B3F93FE001C8C80 /* Config.h */,
@@ -285,6 +285,8 @@
 		C1AA398B1AB67F6A00BC9E33 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C1E535E81991E36700C2AC49 /* NSData+Conversion.h */,
+				C1E535E91991E36700C2AC49 /* NSData+Conversion.m */,
 				C1A47EC01B1190D800756B99 /* NSString+Hashes.h */,
 				C1A47EC11B1190D800756B99 /* NSString+Hashes.m */,
 				C1AA39921AB6804000BC9E33 /* UIAlertView+Blocks.h */,
@@ -315,13 +317,6 @@
 			name = RileyLink;
 			sourceTree = "<group>";
 		};
-		C1EF58991B3FB596001C8C80 /* UIAlertView+Blocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "UIAlertView+Blocks";
-			sourceTree = "<group>";
-		};
 		C1EF589A1B3FBA32001C8C80 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +334,8 @@
 				C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */,
 				C12616551B6A6130001FAD87 /* PacketLogViewController.h */,
 				C12616561B6A6130001FAD87 /* PacketLogViewController.m */,
+				C126165B1B6C8076001FAD87 /* TestPacketSenderViewController.h */,
+				C126165C1B6C8076001FAD87 /* TestPacketSenderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -469,6 +466,7 @@
 				C126162C1B65E9BF001FAD87 /* RileyLinkStatusViewController.m in Sources */,
 				C1EF58881B3F93FE001C8C80 /* Config.m in Sources */,
 				C126164B1B685F93001FAD87 /* RileyLink.xcdatamodeld in Sources */,
+				C126165D1B6C8076001FAD87 /* TestPacketSenderViewController.m in Sources */,
 				C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
 				C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */,
