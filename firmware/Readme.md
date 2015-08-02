@@ -4,7 +4,8 @@
 ## Prerequisites
 
 * [cc-debugger](http://www.ti.com/tool/cc-debugger)
-* linux machine (or VM) with sdcc and cc-tool (to program cc1110)
+* linux machine with sdcc and cc-tool (to program cc1110), or
+  a windows machine with [sdcc](http://sdcc.sourceforge.net/index.php#Download) and [gnu make](http://gnuwin32.sourceforge.net/downlinks/make.php).  SDCC needs to be in the PATH
 * windows machine (or VM) with [BLE Bluegiga SW Update Tool](https://www.bluegiga.com/en-US/products/software-bluegiga-bluetooth-smart/)
 
 ## Connecting cc-debugger
