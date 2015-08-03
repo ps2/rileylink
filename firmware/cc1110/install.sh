@@ -16,3 +16,4 @@ git clone https://github.com/ps2/rileylink.git
 cd rileylink/firmware/cc1110/
 mkdir output
 make
+sudo make install
