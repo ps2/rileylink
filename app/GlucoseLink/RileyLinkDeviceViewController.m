@@ -6,17 +6,18 @@
 //  Copyright (c) 2015 Pete Schwamb. All rights reserved.
 //
 
-#import "RileyLinkStatusViewController.h"
+#import "RileyLinkDeviceViewController.h"
 #import "PacketLogViewController.h"
 
-@interface RileyLinkStatusViewController () {
+@interface RileyLinkDeviceViewController () {
   IBOutlet UILabel *deviceIDLabel;
   IBOutlet UILabel *nameLabel;
+  IBOutlet UISwitch *autoConnectSwitch;
 }
 
 @end
 
-@implementation RileyLinkStatusViewController
+@implementation RileyLinkDeviceViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -29,7 +30,21 @@
     nameLabel.backgroundColor = [UIColor clearColor];
   }
   
-  [self.rlDevice connect];
+  autoConnectSwitch.on = [self.rlRecord.autoConnect boolValue];
+
+  //[self.rlDevice connect];
+}
+
+- (IBAction)autoConnectSwitchToggled:(id)sender {
+  self.rlRecord.autoConnect = [NSNumber numberWithBool:autoConnectSwitch.on];
+  NSError *error;
+  if (![self.managedObjectContext save:&error]) {
+    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  }
+  
+  if (autoConnectSwitch.on) {
+    [self.rlDevice connect];
+  }
 }
 
 - (void)didReceiveMemoryWarning {

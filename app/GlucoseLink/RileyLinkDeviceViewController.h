@@ -10,9 +10,10 @@
 #import "RileyLinkBLEDevice.h"
 #import "RileyLinkRecord.h"
 
-@interface RileyLinkStatusViewController : UIViewController
+@interface RileyLinkDeviceViewController : UIViewController
 
 @property (nonatomic, strong) RileyLinkBLEDevice *rlDevice;
 @property (nonatomic, strong) RileyLinkRecord *rlRecord;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

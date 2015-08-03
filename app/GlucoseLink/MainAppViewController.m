@@ -12,6 +12,9 @@
 #import "ISO8601DateFormatter.h"
 #import "NightScoutUploader.h"
 #import "Config.h"
+#import "AppDelegate.h"
+#import "RileyLinkRecord.h"
+#import "RileyLinkBLEManager.h"
 
 #import "MainAppViewController.h"
 
@@ -39,17 +42,10 @@
   self.uploader.endpoint = [[Config sharedInstance] nightscoutURL];
   self.uploader.APISecret = [[Config sharedInstance] nightscoutAPISecret];
   
-  //[self.uploader test];
-  //[self performSelector:@selector(generateMockData) withObject:nil afterDelay:2];
-}
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = appDelegate.managedObjectContext;
 
-- (void)generateMockData {
-  NSData *bgPacket = [NSData dataWithHexadecimalString:@"a7a7a7a7a7"];
-  MinimedPacket *packet = [[MinimedPacket alloc] initWithData:bgPacket];
-  NSData *encodedData = [packet encodedRFData];
-  NSLog(@"encoded %@ to %@", [bgPacket hexadecimalString], [encodedData hexadecimalString])
-  packet.capturedAt = [NSDate date];
-  [self rileyLink:nil didReceivePacket:packet];
+  [self setupAutoConnect];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -57,6 +53,25 @@
   
   [[RileyLinkBLEManager sharedManager] stop];
 }
+
+- (void)setupAutoConnect {
+  
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"RileyLinkRecord"
+                                            inManagedObjectContext:self.managedObjectContext];
+  [fetchRequest setEntity:entity];
+  NSError *error;
+  NSMutableArray *autoConnectIds = [NSMutableArray array];
+  NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  for (RileyLinkRecord *record in fetchedObjects) {
+    NSLog(@"Loaded: %@ from db", record.name);
+    if (record.autoConnect) {
+      [autoConnectIds addObject:record.peripheralId];
+    }
+  }
+  [[RileyLinkBLEManager sharedManager] setAutoConnectIds:autoConnectIds];
+}
+
 
 
 - (void)didReceiveMemoryWarning {

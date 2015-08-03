@@ -119,6 +119,21 @@ static NSDateFormatter *iso8601Formatter;
   d.peripheral = peripheral;
   
   [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
+  
+  if ([self.autoConnectIds indexOfObject:d.peripheralId]) {
+    [self connectToRileyLink:d];
+  }
+  
+}
+
+- (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device {
+  self.autoConnectIds = [self.autoConnectIds arrayByAddingObject:device.peripheralId];
+}
+
+- (void)removeDeviceFromAutoConnectList:(RileyLinkBLEDevice*)device {
+  NSMutableArray *mutableList = [self.autoConnectIds mutableCopy];
+  [mutableList removeObject:device.peripheralId];
+  self.autoConnectIds = mutableList;
 }
 
 - (void)connectToRileyLink:(RileyLinkBLEDevice *)device {
@@ -153,7 +168,7 @@ static NSDateFormatter *iso8601Formatter;
                           @"peripheral": peripheral,
                           @"device": devicesById[peripheral.UUIDString]
                           };
-  [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
+  [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_DISCONNECTED object:attrs];
 }
 
 

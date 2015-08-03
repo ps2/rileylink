@@ -118,7 +118,6 @@
   
   for (CBCharacteristic *characteristic in service.characteristics) {
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT]]) {
-      NSLog(@"***: %@, %@", service.UUID, characteristic.UUID);
       [peripheral setNotifyValue:YES forCharacteristic:characteristic];
       packetCountCharacteristic = characteristic;
       [peripheral readValueForCharacteristic:characteristic];

@@ -34,7 +34,8 @@
 - (void)sendPacket:(MinimedPacket*)packet;
 - (NSArray*)rileyLinkList;
 - (void)connectToRileyLink:(RileyLinkBLEDevice *)device;
-
+- (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device;
+- (void)removeDeviceFromAutoConnectList:(RileyLinkBLEDevice*)device;
 + (id)sharedManager;
 
 @property (nonatomic, weak) id<RileyLinkDelegate> delegate;
