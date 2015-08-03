@@ -18,7 +18,7 @@ static NSDateFormatter *iso8601Formatter;
   NSTimer *timer;
   NSMutableArray *outgoingQueue;
   NSMutableDictionary *peripheralsById; // CBPeripherals by UUID
-  NSMutableDictionary *rileyLinksById; // RileyLinkBLEDevices by UUID
+  NSMutableDictionary *devicesById; // RileyLinkBLEDevices by UUID
 }
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
@@ -54,7 +54,7 @@ static NSDateFormatter *iso8601Formatter;
     outgoingQueue = [NSMutableArray array];
     
     peripheralsById = [NSMutableDictionary dictionary];
-    rileyLinksById = [NSMutableDictionary dictionary];
+    devicesById = [NSMutableDictionary dictionary];
   }
   return self;
 }
@@ -100,7 +100,7 @@ static NSDateFormatter *iso8601Formatter;
 }
 
 - (NSArray*)rileyLinkList {
-  return [rileyLinksById allValues];
+  return [devicesById allValues];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -109,10 +109,10 @@ static NSDateFormatter *iso8601Formatter;
   
   peripheralsById[peripheral.UUIDString] = peripheral;
   
-  RileyLinkBLEDevice *d = rileyLinksById[peripheral.UUIDString];
-  if (rileyLinksById[peripheral.UUIDString] == NULL) {
+  RileyLinkBLEDevice *d = devicesById[peripheral.UUIDString];
+  if (devicesById[peripheral.UUIDString] == NULL) {
     d = [self newRileyLinkFromPeripheral:peripheral];
-    rileyLinksById[peripheral.UUIDString] = d;
+    devicesById[peripheral.UUIDString] = d;
   }
   d.RSSI = RSSI;
   d.name = peripheral.name;
@@ -146,10 +146,14 @@ static NSDateFormatter *iso8601Formatter;
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
   
   if (error) {
-    NSLog(@"Disconnected: %@", error);
+    NSLog(@"Disconnection error: %@", error);
   }
-
-  [self restartScan];
+  
+  NSDictionary *attrs = @{
+                          @"peripheral": peripheral,
+                          @"device": devicesById[peripheral.UUIDString]
+                          };
+  [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
 }
 
 

@@ -43,7 +43,7 @@
 }
 
 - (void) sendPacketData:(NSData*)data {
-  [self.myPeripheral writeValue:data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithoutResponse];
+  [self.myPeripheral writeValue:data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
@@ -51,8 +51,11 @@
     NSLog(@"Could not write characteristic: %@", error);
     return;
   }
-  NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
-  [self.myPeripheral writeValue:trigger forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithoutResponse];
+  if (characteristic == packetTxCharacteristic) {
+    NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
+    [self.myPeripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
+  }
+  NSLog(@"Did write characteristic: %@", characteristic);
 }
 
 - (BOOL) isConnected {
@@ -94,7 +97,10 @@
     } else if ([service.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]]) {
       [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID],
                                             [CBUUID UUIDWithString:GLUCOSELINK_CHANNEL_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT]] forService:service];
+                                            [CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT],
+                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID],
+                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_TRIGGER_UUID],
+                                            ] forService:service];
     }
   }
   // Discover other characteristics
@@ -130,27 +136,19 @@
   }
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-  if (error) {
-    NSLog(@"Error writing %@: %@", characteristic, error);
-    return;
-  }
-  NSLog(@"Did write value for characteristic: %@", characteristic.UUID);
-  
-}
-
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
   if (error) {
     NSLog(@"Error updating %@: %@", characteristic, error);
     return;
   }
-  NSLog(@"didUpdateValueForCharacteristic: %@", characteristic);
+  //NSLog(@"didUpdateValueForCharacteristic: %@", characteristic);
   
   if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
     MinimedPacket *packet = [[MinimedPacket alloc] initWithData:characteristic.value];
     packet.capturedAt = [NSDate date];
     //if ([packet isValid]) {
     [incomingPackets addObject:packet];
+    NSLog(@"Read packet: %@", packet.data.hexadecimalString);
     NSDictionary *attrs = @{
                             @"packet": packet,
                             @"peripheral": self.peripheral,
@@ -167,6 +165,7 @@
     const unsigned char packetCount = ((const unsigned char*)[characteristic.value bytes])[0];
     NSLog(@"Updated packet count: %d", packetCount);
     if (packetCount > 0) {
+      NSLog(@"Reading rx");
       [peripheral readValueForCharacteristic:packetRxCharacteristic];
     }
   }

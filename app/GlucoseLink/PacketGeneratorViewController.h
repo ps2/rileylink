@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RileyLinkBLEDevice.h"
 
-@interface TestPacketSenderViewController : UIViewController
+@interface PacketGeneratorViewController : UIViewController
 
 @property (nonatomic, strong) RileyLinkBLEDevice *device;
 

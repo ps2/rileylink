@@ -53,9 +53,13 @@
   return [_device.packets count];
 }
 
+- (MinimedPacket *)packetForIndex:(NSInteger) idx {
+  return _device.packets[_device.packets.count - idx - 1];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   PacketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"packet" forIndexPath:indexPath];
-  MinimedPacket *packet = _device.packets[indexPath.row];
+  MinimedPacket *packet = [self packetForIndex:indexPath.row];
   cell.packet = packet;
   return cell;
 }

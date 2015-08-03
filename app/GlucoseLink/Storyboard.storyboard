@@ -342,8 +342,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXe-rJ-4my">
-                                <rect key="frame" x="96" y="222" width="128" height="30"/>
-                                <state key="normal" title="Send Test Packets">
+                                <rect key="frame" x="96" y="222" width="121" height="30"/>
+                                <state key="normal" title="Packet Generator">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -360,7 +360,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="RileyLink Status" id="bmH-cT-R3l">
-                        <barButtonItem key="backBarButtonItem" title="Back2" id="sRo-7s-gPK" userLabel="Status"/>
+                        <barButtonItem key="backBarButtonItem" title="Status" id="sRo-7s-gPK" userLabel="Status"/>
                     </navigationItem>
                     <connections>
                         <outlet property="deviceIDLabel" destination="Trk-2x-D8Y" id="K2T-LD-CXp"/>
@@ -371,7 +371,7 @@
             </objects>
             <point key="canvasLocation" x="545" y="1171"/>
         </scene>
-        <!--Packet Log View Controller-->
+        <!--Packet Log-->
         <scene sceneID="5Iq-Yo-5RW">
             <objects>
                 <viewController id="7s7-Ke-qpC" customClass="PacketLogViewController" sceneMemberID="viewController">
@@ -393,15 +393,43 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OhQ-PK-dk1">
-                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <rect key="frame" x="62" y="8" width="216" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="07C-RU-X8a">
+                                                    <rect key="frame" x="8" y="3" width="46" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wMz-4c-kvD">
+                                                    <rect key="frame" x="8" y="17" width="46" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-F5-Yuy">
+                                                    <rect key="frame" x="270" y="0.0" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkb-yK-lKU">
+                                                    <rect key="frame" x="270" y="17" width="42" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="07C-RU-X8a" id="nvJ-90-W5d"/>
+                                            <outlet property="packetNumberLabel" destination="kkb-yK-lKU" id="D2P-c9-Z38"/>
                                             <outlet property="rawDataLabel" destination="OhQ-PK-dk1" id="6v9-6V-kri"/>
+                                            <outlet property="rssiLabel" destination="jHa-F5-Yuy" id="kZw-K6-U1c"/>
+                                            <outlet property="timeLabel" destination="wMz-4c-kvD" id="GHv-7l-X3j"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -413,7 +441,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oMq-c1-KQo"/>
+                    <navigationItem key="navigationItem" title="Packet Log" id="oMq-c1-KQo"/>
                     <connections>
                         <outlet property="tableView" destination="6XQ-d2-JMf" id="tm9-oL-eMY"/>
                     </connections>
@@ -422,10 +450,10 @@
             </objects>
             <point key="canvasLocation" x="936" y="1173"/>
         </scene>
-        <!--View Controller-->
+        <!--Packet Generator-->
         <scene sceneID="Rrp-PB-Cjz">
             <objects>
-                <viewController id="LoR-ph-llS" sceneMemberID="viewController">
+                <viewController id="LoR-ph-llS" customClass="PacketGeneratorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ReW-lX-Jsa"/>
                         <viewControllerLayoutGuide type="bottom" id="dl5-aO-cjP"/>
@@ -435,22 +463,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijc-Xv-n31">
-                                <rect key="frame" x="116" y="20" width="88" height="30"/>
-                                <state key="normal" title="Send Packet">
+                                <rect key="frame" x="93" y="199" width="134" height="30"/>
+                                <state key="normal" title="Send Single Packet">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendPacketButtonPressed:" destination="LoR-ph-llS" eventType="touchUpInside" id="OMG-BX-vya"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Test Packet #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtd-bk-XC6">
-                                <rect key="frame" x="16" y="257" width="288" height="21"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Wu-lQ-bT6">
+                                <rect key="frame" x="209" y="38" width="51" height="31"/>
+                                <connections>
+                                    <action selector="continuousSendSwitchToggled:" destination="LoR-ph-llS" eventType="valueChanged" id="mu8-5U-1hP"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Continuous Send" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L52-kW-x02">
+                                <rect key="frame" x="62" y="43" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Wu-lQ-bT6">
-                                <rect key="frame" x="182" y="97" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1o2-HZ-x69">
+                                <rect key="frame" x="209" y="92" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Continuous Send" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L52-kW-x02">
-                                <rect key="frame" x="35" y="102" width="133" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Encode Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAt-Cq-9gQ">
+                                <rect key="frame" x="96" y="97" width="99" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Test Packet #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtd-bk-XC6">
+                                <rect key="frame" x="16" y="265" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -458,7 +501,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ACl-ci-hdY"/>
+                    <navigationItem key="navigationItem" title="Packet Generator" id="ACl-ci-hdY"/>
+                    <connections>
+                        <outlet property="continuousSendSwitch" destination="8Wu-lQ-bT6" id="r8b-Xe-DZT"/>
+                        <outlet property="encodeDataSwitch" destination="1o2-HZ-x69" id="7if-tX-4Jp"/>
+                        <outlet property="testPacketNumberLabel" destination="Jtd-bk-XC6" id="T7L-lR-jvg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T76-vZ-pwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
