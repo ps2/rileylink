@@ -80,12 +80,12 @@ void configureRadio()
   FSCTRL0   = 0x00; 
   FREQ2     = 0x23; // frequency control word, high byte
   FREQ1     = 0x40; // frequency control word, middle byte
-  FREQ0     = 0x00; // frequency control word, low byte
+  FREQ0     = 0xAD; // frequency control word, low byte
   MDMCFG4   = 0x69; // modem configuration
   MDMCFG3   = 0x4A; // modem configuration
   MDMCFG2   = 0x33; // modem configuration
   MDMCFG1   = 0x11; // modem configuration
-  MDMCFG0   = 0xC5; // modem configuration
+  MDMCFG0   = 0x84; // modem configuration
   DEVIATN   = 0x15; // modem deviation setting
   MCSM2     = 0x07; 
   MCSM1     = 0x30; 
