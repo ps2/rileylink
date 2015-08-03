@@ -144,18 +144,19 @@
   //NSLog(@"didUpdateValueForCharacteristic: %@", characteristic);
   
   if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
-    MinimedPacket *packet = [[MinimedPacket alloc] initWithData:characteristic.value];
-    packet.capturedAt = [NSDate date];
-    //if ([packet isValid]) {
-    [incomingPackets addObject:packet];
-    NSLog(@"Read packet: %@", packet.data.hexadecimalString);
-    NSDictionary *attrs = @{
-                            @"packet": packet,
-                            @"peripheral": self.peripheral,
-                            @"device": self
-                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
-
+    if (characteristic.value.length > 0) {
+      MinimedPacket *packet = [[MinimedPacket alloc] initWithData:characteristic.value];
+      packet.capturedAt = [NSDate date];
+      //if ([packet isValid]) {
+      [incomingPackets addObject:packet];
+      NSLog(@"Read packet: %@", packet.data.hexadecimalString);
+      NSDictionary *attrs = @{
+                              @"packet": packet,
+                              @"peripheral": self.peripheral,
+                              @"device": self
+                              };
+      [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
+    }
     [peripheral readValueForCharacteristic:packetCountCharacteristic];
     
   } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_UUID]]) {
@@ -165,7 +166,6 @@
     const unsigned char packetCount = ((const unsigned char*)[characteristic.value bytes])[0];
     NSLog(@"Updated packet count: %d", packetCount);
     if (packetCount > 0) {
-      NSLog(@"Reading rx");
       [peripheral readValueForCharacteristic:packetRxCharacteristic];
     }
   }
