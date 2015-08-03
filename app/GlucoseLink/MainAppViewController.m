@@ -6,20 +6,22 @@
 //  Copyright (c) 2015 Pete Schwamb. All rights reserved.
 //
 
-#import "RileyLink.h"
+#import "RileyLinkBLEManager.h"
 #import "NSData+Conversion.h"
 #import "PumpStatusMessage.h"
 #import "ISO8601DateFormatter.h"
 #import "NightScoutUploader.h"
 #import "Config.h"
+#import "AppDelegate.h"
+#import "RileyLinkRecord.h"
+#import "RileyLinkBLEManager.h"
 
 #import "MainAppViewController.h"
 
-@interface MainAppViewController () <RileyLinkDelegate> {
+@interface MainAppViewController () {
   NSDictionary *lastStatus;
 }
 
-@property (strong, nonatomic) RileyLink *rileyLink;
 @property (strong, nonatomic) ISO8601DateFormatter *dateFormatter;
 @property (strong, nonatomic) NSTimeZone *utcTimeZone;
 @property (strong, nonatomic) NightScoutUploader *uploader;
@@ -32,10 +34,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  _rileyLink = [[RileyLink alloc] init];
-  _rileyLink.channel = 2;
-  _rileyLink.delegate = self;
-  
   _dateFormatter = [[ISO8601DateFormatter alloc] init];
   _dateFormatter.includeTime = YES;
   _dateFormatter.defaultTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
@@ -44,22 +42,36 @@
   self.uploader.endpoint = [[Config sharedInstance] nightscoutURL];
   self.uploader.APISecret = [[Config sharedInstance] nightscoutAPISecret];
   
-  //[self.uploader test];
-  //[self performSelector:@selector(generateMockData) withObject:nil afterDelay:2];
-}
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = appDelegate.managedObjectContext;
 
-- (void)generateMockData {
-  NSData *bgPacket = [NSData dataWithHexadecimalString:@"0000a5c527ad00f111"];
-  MinimedPacket *packet = [[MinimedPacket alloc] initWithData:bgPacket];
-  packet.capturedAt = [NSDate date];
-  [self glucoseLink:nil didReceivePacket:packet];
+  [self setupAutoConnect];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   
-  [_rileyLink stop];
+  [[RileyLinkBLEManager sharedManager] stop];
 }
+
+- (void)setupAutoConnect {
+  
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"RileyLinkRecord"
+                                            inManagedObjectContext:self.managedObjectContext];
+  [fetchRequest setEntity:entity];
+  NSError *error;
+  NSMutableArray *autoConnectIds = [NSMutableArray array];
+  NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  for (RileyLinkRecord *record in fetchedObjects) {
+    NSLog(@"Loaded: %@ from db", record.name);
+    if (record.autoConnect) {
+      [autoConnectIds addObject:record.peripheralId];
+    }
+  }
+  [[RileyLinkBLEManager sharedManager] setAutoConnectIds:autoConnectIds];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -69,11 +81,11 @@
 
 #pragma mark GlucoseLinkDelegate methods
 
-- (void)glucoseLink:(RileyLink *)glucoseLink didReceivePacket:(MinimedPacket*)packet {
+- (void)rileyLink:(RileyLinkBLEManager *)rileyLink didReceivePacket:(MinimedPacket*)packet {
   [self.uploader addPacket:packet];
 }
 
-- (void)glucoseLink:(RileyLink *)glucoseLink updatedStatus:(NSDictionary*)status {
+- (void)rileyLink:(RileyLinkBLEManager *)rileyLink updatedStatus:(NSDictionary*)status {
   lastStatus = status;
   // TODO: find place to display, now that we're using nightscout
 }

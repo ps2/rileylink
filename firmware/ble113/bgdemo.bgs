@@ -134,6 +134,9 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
 	  call write_tx_packet()
 	end if
 
+	if reason = 2 # User requesting response
+	  call attributes_user_write_response(connection, 0)
+	end if
 end
 
 event attributes_user_read_request(connection, handle, offset, maxsize)

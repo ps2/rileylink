@@ -10,5 +10,6 @@
 
 @interface MainAppViewController : SWRevealViewController
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

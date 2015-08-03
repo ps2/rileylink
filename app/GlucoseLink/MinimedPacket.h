@@ -34,6 +34,7 @@ typedef enum {
 - (PacketType) packetType;
 - (MessageType) messageType;
 - (NSString*) address;
+- (NSData*)encodedRFData;
 
 @property (strong, nonatomic) NSData *data;
 @property (nonatomic, strong) NSDate *capturedAt;

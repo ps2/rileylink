@@ -13,6 +13,7 @@
 #import "PumpStatusMessage.h"
 #import "ISO8601DateFormatter.h"
 #import "MeterMessage.h"
+#import "RileyLinkBLEManager.h"
 
 typedef enum {
   DX_SENSOR_NOT_ACTIVE = 1,
@@ -46,8 +47,19 @@ static NSString *defaultNightscoutBatteryPath = @"/api/v1/devicestatus.json";
     _dateFormatter.includeTime = YES;
     _dateFormatter.useMillisecondPrecision = YES;
     _dateFormatter.defaultTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(packetReceived:)
+                                                 name:RILEY_LINK_EVENT_PACKET_RECEIVED
+                                               object:nil];
+
   }
   return self;
+}
+
+- (void)packetReceived:(NSNotification*)notification {
+  NSDictionary *attrs = notification.object;
+  MinimedPacket *packet = attrs[@"packet"];
+  [self addPacket:packet];
 }
 
 //var DIRECTIONS = {

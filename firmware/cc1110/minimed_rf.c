@@ -393,13 +393,16 @@ void receiveRadioSymbol(unsigned char value) {
     if (symbol == 0) {
       continue;
     }
-    if (symbol >= sizeof(symbolTable) ||
-        (symbol = symbolTable[symbol]) == 16) {
-      symbolErrorCount++;
+    if (symbol >= sizeof(symbolTable) ) {
+      ++symbolErrorCount;
       break;
-    } else {
-      symbolOutputBuffer = (symbolOutputBuffer << 4) + symbol;
     }
+    symbol = symbolTable[symbol];
+    if( symbol == 16 ) {
+      ++symbolErrorCount;
+      break;
+    }
+    symbolOutputBuffer = (symbolOutputBuffer << 4) + symbol;
     symbolOutputBitCount += 4;
   }
   while (symbolOutputBitCount >= 8) {

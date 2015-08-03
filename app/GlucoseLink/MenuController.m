@@ -38,7 +38,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -49,6 +49,8 @@
     cellIdentifier = @"configuration";
   } else if (indexPath.row == 2) {
     cellIdentifier = @"nightscout";
+  } else if (indexPath.row == 3) {
+    cellIdentifier = @"rileylink";
   }
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   if (cell == nil) {
