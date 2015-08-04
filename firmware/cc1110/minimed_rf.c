@@ -95,7 +95,7 @@ unsigned char packetOverflowCount = 0;
 unsigned char bufferOverflowCount = 0;
 
 int symbolInputBitCount = 0;
-int symbolOutputBuffer = 0;
+unsigned int symbolOutputBuffer = 0;
 int symbolOutputBitCount = 0;
 int symbolErrorCount = 0;
 
@@ -119,7 +119,7 @@ unsigned char XDATA(0xf5a8) radioOutputBuffer[256];
 // Symbol decoding - 53 bytes + 1 pad 
 unsigned char XDATA(0xf572) symbolTable[] = {16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 16, 13, 14, 16, 16, 16, 16, 16, 16, 0, 7, 16, 16, 9, 8, 16, 15, 16, 16, 16, 16, 16, 16, 3, 16, 5, 6, 16, 16, 16, 10, 16, 12, 16, 16, 16, 16, 1, 2, 16, 4};
 
-int symbolInputBuffer = 0;
+unsigned int symbolInputBuffer = 0;
 
 int timerCounter = 0;
 
