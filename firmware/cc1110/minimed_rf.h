@@ -6,6 +6,7 @@ void handleRX0();
 void handleRX1();
 void handleRFTXRX();
 void handleRF();
+void handleTimer();
 void setChannel(unsigned char newChannel);
 
 // Commands

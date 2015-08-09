@@ -80,12 +80,12 @@ void configureRadio()
   FSCTRL0   = 0x00; 
   FREQ2     = 0x23; // frequency control word, high byte
   FREQ1     = 0x40; // frequency control word, middle byte
-  FREQ0     = 0x00; // frequency control word, low byte
+  FREQ0     = 0xAD; // frequency control word, low byte
   MDMCFG4   = 0x69; // modem configuration
   MDMCFG3   = 0x4A; // modem configuration
   MDMCFG2   = 0x33; // modem configuration
   MDMCFG1   = 0x11; // modem configuration
-  MDMCFG0   = 0xC5; // modem configuration
+  MDMCFG0   = 0x84; // modem configuration
   DEVIATN   = 0x15; // modem deviation setting
   MCSM2     = 0x07; 
   MCSM1     = 0x30; 
@@ -119,6 +119,11 @@ void rf_interrupt(void) __interrupt RF_VECTOR
   handleRF();
 }
 
+void t1_interrupt(void) __interrupt T1_VECTOR
+{
+  handleTimer();
+}
+
 int main(void)
 {
   // init LEDS
@@ -140,6 +145,21 @@ int main(void)
   GREEN_LED = 0;
   BLUE_LED = 0;
 
+  // Configure timer
+  T1CTL = 0x0e;  // TickFreq/128, Free Running
+  IEN1 |= 0x02;   // Enable Timer 1 interrupts
+  TIMIF |= OVFIM; // Enable Timer 1 overflow interrupt mask
+  T1CNTL = 0x00; // Clear counter low
+  T1CC0H = 0xFF;
+  T1CC0L = 0xFF;
+// Set Timer 1 mode 
+  T1CCTL0 = 0x44; 
+ 
+  // Clear any pending Timer 1 Interrupt Flag
+  IRCON &= ~0x02;
+  
+  // Start Timer 1
+  //T1CTL = 0x0E;
 
   TCON &= ~BIT3; // Clear URX1IF
   URX1IE = 1;    // Enable URX1IE interrupt
@@ -178,6 +198,8 @@ int main(void)
       /* Put radio into RX. */
       RFST = RFST_SRX;
       while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
+
+      GREEN_LED = !GREEN_LED;
 
       // minimed code will clear this when wanting to exit RX
       while (RFTXRXIE);

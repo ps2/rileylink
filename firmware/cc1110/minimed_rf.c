@@ -95,7 +95,7 @@ unsigned char packetOverflowCount = 0;
 unsigned char bufferOverflowCount = 0;
 
 int symbolInputBitCount = 0;
-int symbolOutputBuffer = 0;
+unsigned int symbolOutputBuffer = 0;
 int symbolOutputBitCount = 0;
 int symbolErrorCount = 0;
 
@@ -119,7 +119,11 @@ unsigned char XDATA(0xf5a8) radioOutputBuffer[256];
 // Symbol decoding - 53 bytes + 1 pad 
 unsigned char XDATA(0xf572) symbolTable[] = {16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 16, 13, 14, 16, 16, 16, 16, 16, 16, 0, 7, 16, 16, 9, 8, 16, 15, 16, 16, 16, 16, 16, 16, 3, 16, 5, 6, 16, 16, 16, 10, 16, 12, 16, 16, 16, 16, 1, 2, 16, 4};
 
-int symbolInputBuffer = 0;
+unsigned int symbolInputBuffer = 0;
+
+int timerCounter = 0;
+
+
 void initMinimedRF() {
 
   // init crc table
@@ -348,10 +352,7 @@ void finishIncomingPacket() {
 //    // Drop this packet
 //    dropCurrentPacket();
   } else {
-    //P0_1 = !P0_1;
     //printf("valid crc\n");
-    if (packets[packetHeadIdx].length == 0) {
-    }
     packetCount++;
     packetHeadIdx++;
     if (packetHeadIdx == MAX_PACKETS) {
@@ -392,13 +393,16 @@ void receiveRadioSymbol(unsigned char value) {
     if (symbol == 0) {
       continue;
     }
-    if (symbol >= sizeof(symbolTable) ||
-        (symbol = symbolTable[symbol]) == 16) {
-      symbolErrorCount++;
+    if (symbol >= sizeof(symbolTable) ) {
+      ++symbolErrorCount;
       break;
-    } else {
-      symbolOutputBuffer = (symbolOutputBuffer << 4) + symbol;
     }
+    symbol = symbolTable[symbol];
+    if( symbol == 16 ) {
+      ++symbolErrorCount;
+      break;
+    }
+    symbolOutputBuffer = (symbolOutputBuffer << 4) + symbol;
     symbolOutputBitCount += 4;
   }
   while (symbolOutputBitCount >= 8) {
@@ -414,14 +418,12 @@ void receiveRadioSymbol(unsigned char value) {
 void handleRFTXRX() {
   switch (MARCSTATE & MARCSTATE_MARC_STATE) {
   case MARC_STATE_RX:
+    GREEN_LED = !GREEN_LED;
     receiveRadioSymbol(RFD);
     break;
   case MARC_STATE_TX:
     RFD = radioOutputBuffer[radioOutputBufferReadPos++];
     if (radioOutputBufferReadPos == radioOutputDataLength) {
-      if (radioOutputDataLength == 10) {
-        BLUE_LED = !BLUE_LED;
-      }
       radioOutputBufferWritePos = 0;
       radioOutputBufferReadPos = 0;
       radioOutputDataLength = 0;
@@ -451,3 +453,15 @@ void handleRF()
   }
   // Use ”else if” to check and handle other RFIF flags
 }
+
+void handleTimer() 
+{
+  timerCounter++;
+  // If > 20 counts, and not in the middle of rx'ing a packet
+  if (timerCounter > 20 && packets[packetHeadIdx].length == 0) {
+    BLUE_LED = !BLUE_LED;
+    RFTXRXIE = 0;
+    timerCounter = 0;
+  }
+}
+
