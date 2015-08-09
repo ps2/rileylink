@@ -18,6 +18,10 @@
 		C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616561B6A6130001FAD87 /* PacketLogViewController.m */; };
 		C126165A1B6B2D20001FAD87 /* PacketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */; };
 		C126165D1B6C8076001FAD87 /* PacketGeneratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126165C1B6C8076001FAD87 /* PacketGeneratorViewController.m */; };
+		C12616671B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616601B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.m */; };
+		C12616681B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616621B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.m */; };
+		C12616691B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616641B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.m */; };
+		C126166A1B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616661B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		C1271B071A9A34E900B7C949 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C1271B061A9A34E900B7C949 /* Log.m */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
 		C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23C198B436800309FA4 /* CoreGraphics.framework */; };
@@ -81,6 +85,14 @@
 		C12616591B6B2D20001FAD87 /* PacketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketTableViewCell.m; sourceTree = "<group>"; };
 		C126165B1B6C8076001FAD87 /* PacketGeneratorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketGeneratorViewController.h; sourceTree = "<group>"; };
 		C126165C1B6C8076001FAD87 /* PacketGeneratorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketGeneratorViewController.m; sourceTree = "<group>"; };
+		C126165F1B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		C12616601B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		C12616611B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		C12616621B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		C12616631B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		C12616641B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		C12616651B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		C12616661B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		C1271B061A9A34E900B7C949 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		C1271B081A9A350400B7C949 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +192,21 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		C126165E1B76E8DC001FAD87 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				C126165F1B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.h */,
+				C12616601B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.m */,
+				C12616611B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.h */,
+				C12616621B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.m */,
+				C12616631B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.h */,
+				C12616641B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.m */,
+				C12616651B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				C12616661B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		C12964E91B1581D200516761 /* MinimedRF */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +255,7 @@
 		C12EA240198B436800309FA4 /* RileyLink */ = {
 			isa = PBXGroup;
 			children = (
+				C126165E1B76E8DC001FAD87 /* TPKeyboardAvoiding */,
 				C12616451B685F35001FAD87 /* CoreData */,
 				C12616391B67CB9C001FAD87 /* TableViewCells */,
 				C1EF589A1B3FBA32001C8C80 /* ViewControllers */,
@@ -449,6 +477,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C12EA24B198B436800309FA4 /* AppDelegate.m in Sources */,
+				C12616691B76E8DC001FAD87 /* TPKeyboardAvoidingTableView.m in Sources */,
+				C12616681B76E8DC001FAD87 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				C1743CDF199D374500ED623E /* PumpStatusMessage.m in Sources */,
 				C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */,
 				C1EF58971B3FA462001C8C80 /* MenuController.m in Sources */,
@@ -458,9 +488,11 @@
 				C12EA26D198B456D00309FA4 /* NightscoutWebView.m in Sources */,
 				C12616541B6892DB001FAD87 /* RileyLinkRecord.m in Sources */,
 				C13DB3A51B1583E900121E02 /* MessageBase.m in Sources */,
+				C12616671B76E8DC001FAD87 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C12616511B688D9C001FAD87 /* RileyLinkBLEDevice.m in Sources */,
 				C126165A1B6B2D20001FAD87 /* PacketTableViewCell.m in Sources */,
 				C174F26B19EB824D00398C72 /* ISO8601DateFormatter.m in Sources */,
+				C126166A1B76E8DC001FAD87 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				C1E535F01991E6A200C2AC49 /* MinimedPacket.m in Sources */,
 				C1AA39941AB6804000BC9E33 /* UIAlertView+Blocks.m in Sources */,
 				C126162C1B65E9BF001FAD87 /* RileyLinkDeviceViewController.m in Sources */,
