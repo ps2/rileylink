@@ -8,6 +8,9 @@
 
 #import "RileyLinkDeviceViewController.h"
 #import "PacketLogViewController.h"
+#import "PumpChatViewController.h"
+#import "PacketGeneratorViewController.h"
+#import "RileyLinkBLEManager.h"
 
 @interface RileyLinkDeviceViewController () {
   IBOutlet UILabel *deviceIDLabel;
@@ -24,16 +27,50 @@
   
   deviceIDLabel.text = self.rlRecord.peripheralId;
   nameLabel.text = self.rlRecord.name;
+  
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(deviceDisconnected:)
+                                               name:RILEY_LINK_EVENT_DEVICE_DISCONNECTED
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(deviceConnected:)
+                                               name:RILEY_LINK_EVENT_DEVICE_CONNECTED
+                                             object:nil];
+
+
+  [self updateConnectedHighlight];
+  autoConnectSwitch.on = [self.rlRecord.autoConnect boolValue];
+}
+
+- (void)dealloc
+{
+  [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
+- (void)updateConnectedHighlight {
   if (self.rlDevice && self.rlDevice.isConnected) {
     nameLabel.backgroundColor = [UIColor greenColor];
   } else {
     nameLabel.backgroundColor = [UIColor clearColor];
   }
-  
-  autoConnectSwitch.on = [self.rlRecord.autoConnect boolValue];
-
-  //[self.rlDevice connect];
 }
+
+- (void)deviceDisconnected:(NSNotification*)notification {
+  NSDictionary *attrs = notification.object;
+  if (attrs[@"device"] == self.rlDevice) {
+    [self updateConnectedHighlight];
+  }
+}
+
+- (void)deviceConnected:(NSNotification*)notification {
+  NSDictionary *attrs = notification.object;
+  if (attrs[@"device"] == self.rlDevice) {
+    [self updateConnectedHighlight];
+  }
+}
+
 
 - (IBAction)autoConnectSwitchToggled:(id)sender {
   self.rlRecord.autoConnect = [NSNumber numberWithBool:autoConnectSwitch.on];
@@ -56,8 +93,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  PacketLogViewController *c = (PacketLogViewController*) [segue destinationViewController];
-  c.device = self.rlDevice;
+  if([segue.identifier isEqualToString:@"pumpChat"]) {
+    PumpChatViewController *c = (PumpChatViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  } else if([segue.identifier isEqualToString:@"packetGenerator"]) {
+    PacketGeneratorViewController *c = (PacketGeneratorViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  } else if([segue.identifier isEqualToString:@"packetLog"]) {
+    PacketLogViewController *c = (PacketLogViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  }
 }
 
 @end

@@ -12,6 +12,7 @@
 
 #define RILEY_LINK_EVENT_LIST_UPDATED        @"RILEY_LINK_EVENT_LIST_UPDATED"
 #define RILEY_LINK_EVENT_PACKET_RECEIVED     @"RILEY_LINK_EVENT_PACKET_RECEIVED"
+#define RILEY_LINK_EVENT_DEVICE_CONNECTED    @"RILEY_LINK_EVENT_DEVICE_CONNECTED"
 #define RILEY_LINK_EVENT_DEVICE_DISCONNECTED @"RILEY_LINK_EVENT_DEVICE_DISCONNECTED"
 
 #define GLUCOSELINK_SERVICE_UUID       @"d39f1890-17eb-11e4-8c21-0800200c9a66"
@@ -31,7 +32,6 @@
 @interface RileyLinkBLEManager : NSObject
 
 - (void)stop;
-- (void)sendPacket:(MinimedPacket*)packet;
 - (NSArray*)rileyLinkList;
 - (void)connectToRileyLink:(RileyLinkBLEDevice *)device;
 - (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device;

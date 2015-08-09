@@ -52,9 +52,18 @@
   return [_defaults stringForKey:@"nightscoutAPISecret"];
 }
 
+- (void) setPumpID:(NSString *)pumpID {
+  [_defaults setValue:pumpID forKey:@"pumpID"];
+}
+
+- (NSString*) pumpID {
+  return [_defaults stringForKey:@"pumpID"];
+}
+
 - (BOOL) hasValidConfiguration {
   return self.nightscoutURL != NULL && ![self.nightscoutURL isEqualToString:@""];
 }
+
 
 
 @end

@@ -10,6 +10,7 @@
 #import "RileyLinkBLEDevice.h"
 #import "RileyLinkBLEManager.h"
 #import "NSData+Conversion.h"
+#import "SendDataTask.h"
 
 @interface RileyLinkBLEDevice () <CBPeripheralDelegate> {
   CBCharacteristic *packetRxCharacteristic;
@@ -20,7 +21,10 @@
   CBCharacteristic *packetCountCharacteristic;
   CBCharacteristic *channelCharacteristic;
   NSMutableArray *incomingPackets;
-  NSMutableArray *outgoingPackets;
+  NSMutableArray *sendTasks;
+  SendDataTask *currentSendTask;
+  NSInteger copiesLeftToSend;
+  NSTimer *sendTimer;
 }
 
 @end
@@ -33,7 +37,8 @@
   self = [super init];
   if (self) {
     incomingPackets = [NSMutableArray array];
-    outgoingPackets = [NSMutableArray array];
+    sendTasks = [NSMutableArray array];
+    currentSendTask = nil;
   }
   return self;
 }
@@ -43,8 +48,65 @@
 }
 
 - (void) sendPacketData:(NSData*)data {
-  [self.myPeripheral writeValue:data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithResponse];
+  [self sendPacketData:data withCount:1 andTimeBetweenPackets:0];
 }
+
+- (void) sendPacketData:(NSData*)data withCount:(NSInteger)count andTimeBetweenPackets:(NSTimeInterval)timeBetweenPackets {
+  if (count <= 0) {
+    NSLog(@"Invalid repeat count for sendPacketData");
+    return;
+  }
+  SendDataTask *task = [[SendDataTask alloc] init];
+  task.data = data;
+  task.repeatCount = count;
+  task.timeBetweenPackets = timeBetweenPackets;
+  [sendTasks addObject:task];
+  [self dequeueSendTasks];
+}
+
+- (void) dequeueSendTasks {
+  if (!currentSendTask && sendTasks.count > 0) {
+    currentSendTask = sendTasks[0];
+    copiesLeftToSend = currentSendTask.repeatCount;
+    [sendTasks removeObjectAtIndex:0];
+    NSLog(@"Prepping for send: %@", [currentSendTask.data hexadecimalString]);
+    [self.myPeripheral writeValue:currentSendTask.data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithResponse];
+  }
+}
+
+- (void) triggerSend {
+  if (copiesLeftToSend > 0) {
+    NSLog(@"Sending copy %d", (currentSendTask.repeatCount - copiesLeftToSend) + 1);
+    NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
+    [self.myPeripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
+    copiesLeftToSend--;
+  }
+  
+  if (copiesLeftToSend > 0) {
+    if (!sendTimer) {
+      sendTimer = [NSTimer timerWithTimeInterval:currentSendTask.timeBetweenPackets target:self selector:@selector(triggerSend) userInfo:nil repeats:YES];
+      [[NSRunLoop currentRunLoop] addTimer:sendTimer forMode:NSRunLoopCommonModes];
+    }
+  }
+  else {
+    currentSendTask = nil;
+    [sendTimer invalidate];
+    sendTimer = nil;
+  }
+}
+
+- (void) cancelSending {
+  [sendTimer invalidate];
+  sendTimer = nil;
+  copiesLeftToSend = 0;
+  currentSendTask = nil;
+}
+
+- (void) setChannel:(unsigned char)channel {
+  NSData *trigger = [NSData dataWithBytes:&channel length:1];
+  [self.myPeripheral writeValue:trigger forCharacteristic:channelCharacteristic type:CBCharacteristicWriteWithResponse];
+}
+
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
   if (error) {
@@ -52,8 +114,7 @@
     return;
   }
   if (characteristic == packetTxCharacteristic) {
-    NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
-    [self.myPeripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self triggerSend];
   }
   NSLog(@"Did write characteristic: %@", characteristic);
 }
@@ -71,7 +132,6 @@
   return (CBPeripheral *) _peripheral;
 }
 
-
 - (void) connect {
   [[RileyLinkBLEManager sharedManager] connectToRileyLink:self];
 }
@@ -79,10 +139,6 @@
 - (void)updateBatteryLevel {
   [self.myPeripheral readValueForCharacteristic:batteryCharacteristic];
   [self.myPeripheral readRSSI];
-}
-
-- (void)didConnect {
-  
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
@@ -148,7 +204,7 @@
       packet.capturedAt = [NSDate date];
       //if ([packet isValid]) {
       [incomingPackets addObject:packet];
-      NSLog(@"Read packet: %@", packet.data.hexadecimalString);
+      NSLog(@"Read packet (%d): %@", packet.rssi, packet.data.hexadecimalString);
       NSDictionary *attrs = @{
                               @"packet": packet,
                               @"peripheral": self.peripheral,

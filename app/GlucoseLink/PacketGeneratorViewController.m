@@ -47,13 +47,10 @@
 
 - (void)sendTestPacket {
   NSString *packetStr = [@"614C05E077" stringByAppendingFormat:@"%02x", testPacketNum];
+  NSData *data = [NSData dataWithHexadecimalString:packetStr];
   if (encodeDataSwitch.on) {
-    packetStr = [@"0000" stringByAppendingString:packetStr];
-    NSData *data = [NSData dataWithHexadecimalString:packetStr];
-    MinimedPacket *packet = [[MinimedPacket alloc] initWithData:data];
-    [_device sendPacketData:packet.encodedRFData];
+    [_device sendPacketData:[MinimedPacket encodeData:data]];
   } else {
-    NSData *data = [NSData dataWithHexadecimalString:packetStr];
     [_device sendPacketData:data];
   }
 }

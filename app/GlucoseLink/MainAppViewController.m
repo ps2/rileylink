@@ -65,7 +65,7 @@
   NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
   for (RileyLinkRecord *record in fetchedObjects) {
     NSLog(@"Loaded: %@ from db", record.name);
-    if (record.autoConnect) {
+    if ([record.autoConnect boolValue]) {
       [autoConnectIds addObject:record.peripheralId];
     }
   }
