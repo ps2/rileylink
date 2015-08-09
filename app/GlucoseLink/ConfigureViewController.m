@@ -16,6 +16,7 @@
 
   IBOutlet UITextField *nightscoutURL;
   IBOutlet UITextField *nightscoutAPISecret;
+  IBOutlet UITextField *pumpId;
   IBOutlet UIBarButtonItem *menuButton;
   BOOL initialConfig;
   IBOutlet UIButton *continueButton;
@@ -85,11 +86,13 @@
 - (void) loadValues {
   nightscoutURL.text = [[Config sharedInstance] nightscoutURL];
   nightscoutAPISecret.text = [[Config sharedInstance] nightscoutAPISecret];
+  pumpId.text = [[Config sharedInstance] pumpID];
 }
 
 - (void) saveValues {
   [[Config sharedInstance] setNightscoutURL: nightscoutURL.text];
   [[Config sharedInstance] setNightscoutAPISecret: nightscoutAPISecret.text];
+  [[Config sharedInstance] setPumpID:pumpId.text];
 }
 
 - (BOOL) validateValues {

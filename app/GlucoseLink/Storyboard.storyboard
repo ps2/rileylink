@@ -179,14 +179,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is the API_SECRET for the REST API, usually entered into the Azure Management portal" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-vs-lJP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is the API_SECRET for the REST API, usually entered into the Azure Management portal." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-vs-lJP">
                                 <rect key="frame" x="16" y="137" width="288" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medtronic Pump ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSC-xQ-7OU">
+                                <rect key="frame" x="16" y="215" width="288" height="25"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is a 6 digit number that can be found on the back of your pump." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAc-jo-xof">
+                                <rect key="frame" x="16" y="238" width="288" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwf-eS-iC4">
-                                <rect key="frame" x="16" y="220" width="288" height="30"/>
+                                <rect key="frame" x="21" y="306" width="288" height="30"/>
                                 <state key="normal" title="Continue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -194,6 +206,16 @@
                                     <action selector="continuePressed:" destination="1pp-Ej-SdS" eventType="touchUpInside" id="BNt-Le-LKe"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-NR-mXf">
+                                <rect key="frame" x="16" y="297" width="288" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="pump id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="POJ-k9-2po">
+                                <rect key="frame" x="16" y="270" width="288" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.90727361538856344" green="0.92090938279503265" blue="0.89915326106176408" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -227,6 +249,7 @@
                         <outlet property="menuButton" destination="KdH-tm-gGT" id="8Hn-dm-af1"/>
                         <outlet property="nightscoutAPISecret" destination="rM2-ef-2cW" id="zsd-qK-ngq"/>
                         <outlet property="nightscoutURL" destination="avZ-w3-rcf" id="AfJ-TL-WGy"/>
+                        <outlet property="pumpId" destination="POJ-k9-2po" id="FW6-Zt-XS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTG-Ou-gp7" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -148,7 +148,7 @@
       packet.capturedAt = [NSDate date];
       //if ([packet isValid]) {
       [incomingPackets addObject:packet];
-      NSLog(@"Read packet: %@", packet.data.hexadecimalString);
+      NSLog(@"Read packet (%d): %@", packet.rssi, packet.data.hexadecimalString);
       NSDictionary *attrs = @{
                               @"packet": packet,
                               @"peripheral": self.peripheral,

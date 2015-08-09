@@ -166,7 +166,8 @@ static NSDateFormatter *iso8601Formatter;
   
   NSDictionary *attrs = @{
                           @"peripheral": peripheral,
-                          @"device": devicesById[peripheral.UUIDString]
+                          @"device": devicesById[peripheral.UUIDString],
+                          @"error": error
                           };
   [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_DISCONNECTED object:attrs];
 }
