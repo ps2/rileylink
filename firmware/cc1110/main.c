@@ -187,22 +187,9 @@ int main(void)
     RFTXRXIE = 1;
 
     if (radioMode == RADIO_MODE_TX) {
-      /* Put radio into TX. */
-      RFTXRXIF = 0;
-      RFST = RFST_STX;
-      // Wait for radio to enter TX
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_TX);
-      // Wait for radio to leave TX (usually after packet is sent)
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) == MARC_STATE_TX);
+      enterTX();
     } else if (radioMode == RADIO_MODE_RX) {
-      /* Put radio into RX. */
-      RFST = RFST_SRX;
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
-
-      GREEN_LED = !GREEN_LED;
-
-      // minimed code will clear this when wanting to exit RX
-      while (RFTXRXIE);
+      enterRX();
     }
   }
 }
