@@ -14,6 +14,7 @@
 #import "ISO8601DateFormatter.h"
 #import "MeterMessage.h"
 #import "RileyLinkBLEManager.h"
+#import "Config.h"
 
 typedef enum {
   DX_SENSOR_NOT_ACTIVE = 1,
@@ -112,6 +113,10 @@ static NSString *defaultNightscoutBatteryPath = @"/api/v1/devicestatus.json";
   if ([packet packetType] == PACKET_TYPE_PUMP && [packet messageType] == MESSAGE_TYPE_PUMP_STATUS) {
     PumpStatusMessage *msg = [[PumpStatusMessage alloc] initWithData:packet.data];
     NSNumber *epochTime = [NSNumber numberWithDouble:[msg.measurementTime timeIntervalSince1970] * 1000];
+    
+    if (![packet.address isEqualToString:[[Config sharedInstance] pumpID]]) {
+      NSLog(@"Dropping mysentry packet for pump: %@", packet.address);
+    }
     
     NSInteger glucose = msg.glucose;
     switch ([msg sensorStatus]) {
