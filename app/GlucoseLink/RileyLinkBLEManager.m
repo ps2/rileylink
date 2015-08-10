@@ -120,7 +120,7 @@ static NSDateFormatter *iso8601Formatter;
   
   [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
   
-  if ([self.autoConnectIds indexOfObject:d.peripheralId]) {
+  if ([self.autoConnectIds indexOfObject:d.peripheralId] != NSNotFound) {
     [self connectToRileyLink:d];
   }
   

@@ -23,4 +23,6 @@
 - (void) connect;
 - (void) sendPacketData:(NSData*)data;
 
+- (void) sendPacketData:(NSData*)data withCount:(NSInteger)count andTimeBetweenPackets:(NSTimeInterval)timeBetweenPackets;
+
 @end

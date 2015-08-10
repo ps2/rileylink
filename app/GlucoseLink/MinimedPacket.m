@@ -67,6 +67,17 @@ static unsigned char crcTable[256];
   return self;
 }
 
++ (unsigned char) crcForData:(NSData*)data {
+  unsigned char crc = 0;
+  const unsigned char *pdata = data.bytes;
+  unsigned long nbytes = data.length;
+  /* loop over the buffer data */
+  while (nbytes-- > 0) {
+    crc = crcTable[(crc ^ *pdata++) & 0xff];
+  }
+  return crc;
+}
+
 - (BOOL) crcValid {
   unsigned char crc = 0;
   const unsigned char *pdata = _data.bytes;
@@ -84,14 +95,16 @@ static unsigned char crcTable[256];
   return _data.length > 0 && [self crcValid];
 }
 
-
-- (NSData*)encodedRFData {
++ (NSData*)encodeData:(NSData*)data {
   NSMutableData *outData = [NSMutableData data];
+  NSMutableData *dataPlusCrc = [data mutableCopy];
+  unsigned char crc = [MinimedPacket crcForData:data];
+  [dataPlusCrc appendBytes:&crc length:1];
   char codes[16] = {21,49,50,35,52,37,38,22,26,25,42,11,44,13,14,28};
-  const unsigned char *inBytes = [self.data bytes];
+  const unsigned char *inBytes = [dataPlusCrc bytes];
   unsigned int acc = 0x0;
   int bitcount = 0;
-  for (int i=0; i < self.data.length; i++) {
+  for (int i=0; i < dataPlusCrc.length; i++) {
     acc <<= 6;
     acc |= codes[inBytes[i] >> 4];
     bitcount += 6;

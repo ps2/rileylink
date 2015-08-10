@@ -116,6 +116,7 @@ static NSString *defaultNightscoutBatteryPath = @"/api/v1/devicestatus.json";
     
     if (![packet.address isEqualToString:[[Config sharedInstance] pumpID]]) {
       NSLog(@"Dropping mysentry packet for pump: %@", packet.address);
+      return;
     }
     
     NSInteger glucose = msg.glucose;

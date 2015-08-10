@@ -8,6 +8,8 @@
 
 #import "RileyLinkDeviceViewController.h"
 #import "PacketLogViewController.h"
+#import "PumpChatViewController.h"
+#import "PacketGeneratorViewController.h"
 
 @interface RileyLinkDeviceViewController () {
   IBOutlet UILabel *deviceIDLabel;
@@ -56,8 +58,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  PacketLogViewController *c = (PacketLogViewController*) [segue destinationViewController];
-  c.device = self.rlDevice;
+  if([segue.identifier isEqualToString:@"pumpChat"]) {
+    PumpChatViewController *c = (PumpChatViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  } else if([segue.identifier isEqualToString:@"packetGenerator"]) {
+    PacketGeneratorViewController *c = (PacketGeneratorViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  } else if([segue.identifier isEqualToString:@"packetLog"]) {
+    PacketLogViewController *c = (PacketLogViewController*) [segue destinationViewController];
+    c.device = self.rlDevice;
+  }
 }
 
 @end
