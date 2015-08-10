@@ -10,8 +10,8 @@
 
 @implementation CBPeripheral (UUIDString)
 
-- (NSString*) UUIDString {
-  return (__bridge_transfer NSString *)CFUUIDCreateString(NULL, self.UUID);
+- (NSString *) UUIDString {
+  return self.identifier.UUIDString;
 }
 
 @end
