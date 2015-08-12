@@ -95,6 +95,19 @@
   }
 }
 
+- (void) cancelSending {
+  [sendTimer invalidate];
+  sendTimer = nil;
+  copiesLeftToSend = 0;
+  currentSendTask = nil;
+}
+
+- (void) setChannel:(unsigned char)channel {
+  NSData *trigger = [NSData dataWithBytes:&channel length:1];
+  [self.myPeripheral writeValue:trigger forCharacteristic:channelCharacteristic type:CBCharacteristicWriteWithResponse];
+}
+
+
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
   if (error) {
     NSLog(@"Could not write characteristic: %@", error);
@@ -118,7 +131,6 @@
 - (CBPeripheral *) myPeripheral {
   return (CBPeripheral *) _peripheral;
 }
-
 
 - (void) connect {
   [[RileyLinkBLEManager sharedManager] connectToRileyLink:self];

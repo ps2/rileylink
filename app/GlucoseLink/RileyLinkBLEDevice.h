@@ -21,8 +21,9 @@
 
 - (BOOL) isConnected;
 - (void) connect;
+- (void) cancelSending;
+- (void) setChannel:(unsigned char)channel;
 - (void) sendPacketData:(NSData*)data;
-
 - (void) sendPacketData:(NSData*)data withCount:(NSInteger)count andTimeBetweenPackets:(NSTimeInterval)timeBetweenPackets;
 
 @end
