@@ -129,10 +129,6 @@
   [self.myPeripheral readRSSI];
 }
 
-- (void)didConnect {
-  
-}
-
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
   if (error) {
     NSLog(@"Failure while discovering services: %@", error);

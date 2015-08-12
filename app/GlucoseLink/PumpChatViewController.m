@@ -43,6 +43,8 @@
   [_device sendPacketData:[MinimedPacket encodeData:data] withCount:90 andTimeBetweenPackets:0.078];
 }
 
+
+
 /*
 #pragma mark - Navigation
 
