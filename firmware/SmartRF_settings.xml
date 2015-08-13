@@ -22,7 +22,7 @@
         </Register>
         <Register>
             <Name>FREQ0</Name>
-            <Value>0x00</Value>
+            <Value>0x78</Value>
         </Register>
         <Register>
             <Name>FREQ1</Name>
@@ -58,11 +58,11 @@
         </Register>
         <Register>
             <Name>MDMCFG0</Name>
-            <Value>0xc5</Value>
+            <Value>0x84</Value>
         </Register>
         <Register>
             <Name>MDMCFG1</Name>
-            <Value>0x11</Value>
+            <Value>0x61</Value>
         </Register>
         <Register>
             <Name>MDMCFG2</Name>
@@ -74,7 +74,7 @@
         </Register>
         <Register>
             <Name>MDMCFG4</Name>
-            <Value>0x69</Value>
+            <Value>0xc9</Value>
         </Register>
         <Register>
             <Name>PA_TABLE1</Name>
@@ -86,7 +86,7 @@
         </Register>
         <Register>
             <Name>PKTLEN</Name>
-            <Value>0x0e</Value>
+            <Value>0x18</Value>
         </Register>
         <Register>
             <Name>SYNC0</Name>
@@ -128,10 +128,10 @@
         <Property role="44" name="m_chkAutoScroll">2</Property>
     </contrx>
     <packettx>
-        <Property role="42" name="m_edtPayloadSize">14</Property>
+        <Property role="42" name="m_edtPayloadSize">24</Property>
         <Property role="42" name="m_edtPacketCount">100</Property>
         <Property role="42" name="m_edtPacketCountEsy">100</Property>
-        <Property role="42" name="m_edtRandomPacketData">f6 22 91 9d e1 8b 1f da b0 ca 99 02 </Property>
+        <Property role="42" name="m_edtRandomPacketData">b9 72 9d 49 2c 80 7e c5 99 d5 e9 80 b2 ea c9 cc 53 bf 67 d6 bf 14 </Property>
         <Property role="42" name="m_edtPacketData"></Property>
         <Property role="42" name="m_edtAccessAddress"></Property>
         <Property role="44" name="m_chkAddSeqNbr">2</Property>
@@ -142,11 +142,11 @@
         <Property role="45" name="m_rbtHex">0</Property>
         <Property role="44" name="m_chkAdvanced">2</Property>
         <Property role="46" name="m_cmbSyncWord">3</Property>
-        <Property role="46" name="m_cmbPreambleCount">1</Property>
+        <Property role="46" name="m_cmbPreambleCount">6</Property>
         <Property role="44" name="m_chkAddress">0</Property>
         <Property role="42" name="m_edtAddress"></Property>
         <Property role="46" name="m_cmbLengthConfig">0</Property>
-        <Property role="42" name="m_edtLengthConfig">14</Property>
+        <Property role="42" name="m_edtLengthConfig">24</Property>
         <Property role="52" name="m_spnPktInterval">600</Property>
         <Property role="44" name="m_chkDefPktInterval">2</Property>
     </packettx>
@@ -159,8 +159,15 @@
         <Property role="46" name="m_cmbViewFormat">0</Property>
         <Property role="44" name="m_chkSeqNbrIncluded">0</Property>
         <Property role="42" name="m_edtDumpFile"></Property>
-        <Property role="44" name="m_chkAdvanced">0</Property>
+        <Property role="44" name="m_chkAdvanced">2</Property>
         <Property role="44" name="m_chk802154gMode">0</Property>
+        <Property role="46" name="m_cmbSyncWord">3</Property>
+        <Property role="46" name="m_cmbAddressConfig">0</Property>
+        <Property role="44" name="m_chkAddress">0</Property>
+        <Property role="44" name="m_chkFifoAutoFlush">0</Property>
+        <Property role="42" name="m_edtAddress"></Property>
+        <Property role="46" name="m_cmbLengthConfig">0</Property>
+        <Property role="42" name="m_edtLengthConfig">24</Property>
     </packetrx>
     <commandpanel>
         <Property role="44" name="m_chkInsertLength">0</Property>
