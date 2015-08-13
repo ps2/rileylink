@@ -139,13 +139,22 @@ procedure get_buf_bytes(connection, offset, maxsize)
 end
 
 event attributes_value(connection, reason, handle, offset, value_len, value_data)
-	if handle = xgatt_channel then
+	if handle = xgatt_rx_channel then
 		# Listen on channel specified by ble client
 		call hardware_io_port_write(0, $10, 0)   # slave select low
-		call hardware_spi_transfer(0,1,"\x02")
+		call hardware_spi_transfer(0,1,2)
 		call hardware_spi_transfer(0,1,value_data(0:1))
 		call hardware_io_port_write(0, $10, $10) # slave select high
 	end if
+	
+	if handle = xgatt_tx_channel then
+		# Future packets will be sent on this channel 
+		call hardware_io_port_write(0, $10, 0)   # slave select low
+		call hardware_spi_transfer(0,1,17)
+		call hardware_spi_transfer(0,1,value_data(0:1))
+		call hardware_io_port_write(0, $10, $10) # slave select high
+	end if
+
 	
 	if handle = xgatt_custom_name then
 	  memcpy(name(0), value_data(0), value_len)

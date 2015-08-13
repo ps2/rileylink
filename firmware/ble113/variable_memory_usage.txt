@@ -77,11 +77,12 @@
 0:0	system_endpoint_uart1
 0:0	system_endpoint_usb
 0:0	xgatt_battery
-0:0	xgatt_channel
 0:0	xgatt_custom_name
 0:0	xgatt_name
+0:0	xgatt_rx_channel
 0:0	xgatt_rx_packet
 0:0	xgatt_rx_packet_count
+0:0	xgatt_tx_channel
 0:0	xgatt_tx_packet
 0:0	xgatt_tx_packet_trigger
 0:0	CMD_NOP

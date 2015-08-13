@@ -35,8 +35,13 @@
             <properties write="true" read="true" />
             <value type="utf-8" length="20" variable_length="true">RileyLink</value>
         </characteristic>
-        <characteristic uuid="d93b2af0-1ea8-11e4-8c21-0800200c9a66" id="xgatt_channel">
-			<description>Channel</description>
+        <characteristic uuid="d93b2af0-1ea8-11e4-8c21-0800200c9a66" id="xgatt_rx_channel">
+			<description>RX Channel</description>
+            <properties write="true" />
+            <value type="hex">00</value>
+        </characteristic>
+        <characteristic uuid="d93b2af0-1458-11e4-8c21-0800200c9a66" id="xgatt_tx_channel">
+			<description>TX Channel</description>
             <properties write="true" />
             <value type="hex">00</value>
         </characteristic>
