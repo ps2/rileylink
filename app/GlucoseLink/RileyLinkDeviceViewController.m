@@ -81,6 +81,8 @@
   
   if (autoConnectSwitch.on) {
     [self.rlDevice connect];
+  } else {
+    [self.rlDevice disconnect];
   }
 }
 

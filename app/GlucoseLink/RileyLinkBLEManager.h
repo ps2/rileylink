@@ -19,10 +19,11 @@
 #define GLUCOSELINK_BATTERY_SERVICE    @"180f"
 
 #define GLUCOSELINK_RX_PACKET_UUID     @"2fb1a490-1940-11e4-8c21-0800200c9a66"
-#define GLUCOSELINK_CHANNEL_UUID       @"d93b2af0-1ea8-11e4-8c21-0800200c9a66"
+#define GLUCOSELINK_RX_CHANNEL_UUID    @"d93b2af0-1ea8-11e4-8c21-0800200c9a66"
 #define GLUCOSELINK_PACKET_COUNT       @"41825a20-7402-11e4-8c21-0800200c9a66"
 #define GLUCOSELINK_TX_PACKET_UUID     @"2fb1a490-1941-11e4-8c21-0800200c9a66"
 #define GLUCOSELINK_TX_TRIGGER_UUID    @"2fb1a490-1942-11e4-8c21-0800200c9a66"
+#define GLUCOSELINK_TX_CHANNEL_UUID    @"d93b2af0-1458-11e4-8c21-0800200c9a66"
 
 #define GLUCOSELINK_BATTERY_UUID       @"2A19"
 
@@ -34,6 +35,7 @@
 - (void)stop;
 - (NSArray*)rileyLinkList;
 - (void)connectToRileyLink:(RileyLinkBLEDevice *)device;
+- (void)disconnectRileyLink:(RileyLinkBLEDevice *)device;
 - (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device;
 - (void)removeDeviceFromAutoConnectList:(RileyLinkBLEDevice*)device;
 + (id)sharedManager;

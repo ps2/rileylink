@@ -19,7 +19,8 @@
   CBCharacteristic *packetRssiCharacteristic;
   CBCharacteristic *batteryCharacteristic;
   CBCharacteristic *packetCountCharacteristic;
-  CBCharacteristic *channelCharacteristic;
+  CBCharacteristic *txChannelCharacteristic;
+  CBCharacteristic *rxChannelCharacteristic;
   NSMutableArray *incomingPackets;
   NSMutableArray *sendTasks;
   SendDataTask *currentSendTask;
@@ -102,9 +103,22 @@
   currentSendTask = nil;
 }
 
-- (void) setChannel:(unsigned char)channel {
-  NSData *trigger = [NSData dataWithBytes:&channel length:1];
-  [self.myPeripheral writeValue:trigger forCharacteristic:channelCharacteristic type:CBCharacteristicWriteWithResponse];
+- (void) setRXChannel:(unsigned char)channel {
+  if (rxChannelCharacteristic) {
+    NSData *data = [NSData dataWithBytes:&channel length:1];
+    [self.myPeripheral writeValue:data forCharacteristic:rxChannelCharacteristic type:CBCharacteristicWriteWithResponse];
+  } else {
+    NSLog(@"Missing rx channel characteristic");
+  }
+}
+
+- (void) setTXChannel:(unsigned char)channel {
+  if (rxChannelCharacteristic) {
+    NSData *data = [NSData dataWithBytes:&channel length:1];
+    [self.myPeripheral writeValue:data forCharacteristic:txChannelCharacteristic type:CBCharacteristicWriteWithResponse];
+  } else {
+    NSLog(@"Missing tx channel characteristic");    
+  }
 }
 
 
@@ -135,6 +149,11 @@
 - (void) connect {
   [[RileyLinkBLEManager sharedManager] connectToRileyLink:self];
 }
+
+- (void) disconnect {
+  [[RileyLinkBLEManager sharedManager] disconnectRileyLink:self];
+}
+
    
 - (void)updateBatteryLevel {
   [self.myPeripheral readValueForCharacteristic:batteryCharacteristic];
@@ -152,7 +171,8 @@
       [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_UUID]] forService:service];
     } else if ([service.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]]) {
       [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_CHANNEL_UUID],
+                                            [CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID],
+                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID],
                                             [CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT],
                                             [CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID],
                                             [CBUUID UUIDWithString:GLUCOSELINK_TX_TRIGGER_UUID],
@@ -177,8 +197,10 @@
       [peripheral setNotifyValue:YES forCharacteristic:characteristic];
       packetCountCharacteristic = characteristic;
       [peripheral readValueForCharacteristic:characteristic];
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_CHANNEL_UUID]]) {
-      channelCharacteristic = characteristic;
+    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID]]) {
+      rxChannelCharacteristic = characteristic;
+    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID]]) {
+      txChannelCharacteristic = characteristic;
     } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
       packetRxCharacteristic = characteristic;
     } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID]]) {

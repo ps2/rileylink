@@ -51,25 +51,36 @@
 - (void)queryPumpForVersion {
   resultsLabel.text = @"Sending wakeup packets...";
   
-  [_device setChannel:2];
-  
   NSString *pumpId = [[Config sharedInstance] pumpID];
   
   NSString *packetStr = [@"a7" stringByAppendingFormat:@"%@5D00", pumpId];
   NSData *data = [NSData dataWithHexadecimalString:packetStr];
-  [_device sendPacketData:[MinimedPacket encodeData:data] withCount:90 andTimeBetweenPackets:0.078];
+  [_device sendPacketData:[MinimedPacket encodeData:data] withCount:100 andTimeBetweenPackets:0.078];
+}
+
+- (void)handlePacketFromPump:(MinimedPacket*)p {
+  if (p.messageType == MESSAGE_TYPE_PUMP_STATUS_ACK) {
+    resultsLabel.text = @"Pump acknowleged wakeup!";
+    // Send query for pump model #
+    NSString *packetStr = [@"a7" stringByAppendingFormat:@"%@8d00", [[Config sharedInstance] pumpID]];
+    NSData *data = [NSData dataWithHexadecimalString:packetStr];
+    [_device sendPacketData:[MinimedPacket encodeData:data]];
+  } else if (p.messageType == MESSAGE_TYPE_GET_PUMP_MODEL) {
+    //unsigned char len = [p.data bytes][6];
+    NSString *version = [NSString stringWithCString:&[p.data bytes][7] encoding:NSASCIIStringEncoding];
+    resultsLabel.text = [@"Pump Model: " stringByAppendingString:version];
+    
+  }
+  
 }
 
 
 - (void)packetReceived:(NSNotification*)notification {
   NSDictionary *attrs = notification.object;
   if (attrs[@"device"] == self.device) {
-    NSString *pumpId = [[Config sharedInstance] pumpID];
     MinimedPacket *packet = attrs[@"packet"];
-    if (packet &&
-        packet.messageType == MESSAGE_TYPE_PUMP_STATUS_ACK &&
-        [packet.address isEqualToString:pumpId]) {
-      resultsLabel.text = @"Pump acknowleged wakeup!";
+    if (packet && [packet.address isEqualToString:[[Config sharedInstance] pumpID]]) {
+      [self handlePacketFromPump:packet];
     }
   }
 }
