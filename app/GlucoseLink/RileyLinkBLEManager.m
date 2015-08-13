@@ -128,6 +128,12 @@ static NSDateFormatter *iso8601Formatter;
   [_centralManager connectPeripheral:device.peripheral options:nil];
 }
 
+- (void)disconnectRileyLink:(RileyLinkBLEDevice *)device {
+  NSLog(@"Disconnecting from peripheral %@", device.peripheral);
+  [_centralManager cancelPeripheralConnection:device.peripheral];
+}
+
+
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
   NSLog(@"Failed to connect to peripheral: %@", error);
 }
@@ -143,7 +149,7 @@ static NSDateFormatter *iso8601Formatter;
                           @"device": devicesById[peripheral.UUIDString]
                           };
   [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_CONNECTED object:attrs];
-
+  
 }
 
 - (void)restartScan {
@@ -168,12 +174,15 @@ static NSDateFormatter *iso8601Formatter;
   if (error) {
     NSLog(@"Disconnection: %@", error);
   }
+  NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
   
-  NSDictionary *attrs = @{
-                          @"peripheral": peripheral,
-                          @"device": devicesById[peripheral.UUIDString],
-                          @"error": error
-                          };
+  attrs[@"peripheral"] = peripheral;
+  attrs[@"device"] = devicesById[peripheral.UUIDString];
+  
+  if (error) {
+    attrs[@"error"] = error;
+  }
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_DISCONNECTED object:attrs];
   
   if (!reconnectTimer) {
