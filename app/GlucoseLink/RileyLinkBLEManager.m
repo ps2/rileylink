@@ -10,7 +10,6 @@
 #import "MinimedPacket.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "RileyLinkBLEDevice.h"
-#import "CBPeripheral+UUIDString.h"
 
 static NSDateFormatter *iso8601Formatter;
 
@@ -60,7 +59,7 @@ static NSDateFormatter *iso8601Formatter;
 - (RileyLinkBLEDevice*) newRileyLinkFromPeripheral:(CBPeripheral*)peripheral {
   RileyLinkBLEDevice *device = [[RileyLinkBLEDevice alloc] init];
   device.name = peripheral.name;
-  device.peripheralId = peripheral.UUIDString;
+  device.peripheralId = peripheral.identifier.UUIDString;
   return device;
 }
 
@@ -94,12 +93,12 @@ static NSDateFormatter *iso8601Formatter;
   
   NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
   
-  peripheralsById[peripheral.UUIDString] = peripheral;
+  peripheralsById[peripheral.identifier.UUIDString] = peripheral;
   
-  RileyLinkBLEDevice *d = devicesById[peripheral.UUIDString];
-  if (devicesById[peripheral.UUIDString] == NULL) {
+  RileyLinkBLEDevice *d = devicesById[peripheral.identifier.UUIDString];
+  if (devicesById[peripheral.identifier.UUIDString] == NULL) {
     d = [self newRileyLinkFromPeripheral:peripheral];
-    devicesById[peripheral.UUIDString] = d;
+    devicesById[peripheral.identifier.UUIDString] = d;
   }
   d.RSSI = RSSI;
   d.name = peripheral.name;
@@ -146,7 +145,7 @@ static NSDateFormatter *iso8601Formatter;
   
   NSDictionary *attrs = @{
                           @"peripheral": peripheral,
-                          @"device": devicesById[peripheral.UUIDString]
+                          @"device": devicesById[peripheral.identifier.UUIDString]
                           };
   [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_CONNECTED object:attrs];
   
@@ -177,7 +176,7 @@ static NSDateFormatter *iso8601Formatter;
   NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
   
   attrs[@"peripheral"] = peripheral;
-  attrs[@"device"] = devicesById[peripheral.UUIDString];
+  attrs[@"device"] = devicesById[peripheral.identifier.UUIDString];
   
   if (error) {
     attrs[@"error"] = error;
