@@ -63,7 +63,7 @@ static NSString *defaultNightscoutBatteryPath = @"/api/v1/devicestatus.json";
 }
 
 - (void)packetReceived:(NSNotification*)notification {
-  NSDictionary *attrs = notification.object;
+  NSDictionary *attrs = notification.userInfo;
   MinimedPacket *packet = attrs[@"packet"];
   [self addPacket:packet];
 }
