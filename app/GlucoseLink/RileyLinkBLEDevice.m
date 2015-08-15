@@ -229,10 +229,9 @@
       NSLog(@"Read packet (%d): %@", packet.rssi, packet.data.hexadecimalString);
       NSDictionary *attrs = @{
                               @"packet": packet,
-                              @"peripheral": self.peripheral,
-                              @"device": self
+                              @"peripheral": self.peripheral
                               };
-      [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
+      [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:self userInfo:attrs];
     }
     [peripheral readValueForCharacteristic:packetCountCharacteristic];
     
