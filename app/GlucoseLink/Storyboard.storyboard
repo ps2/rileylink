@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -422,12 +422,6 @@
                                     <segue destination="7s7-Ke-qpC" kind="push" identifier="packetLog" id="RaR-PN-0p8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPo-cK-wev">
-                                <rect key="frame" x="92" y="284" width="137" height="30"/>
-                                <state key="normal" title="Setup For MySentry">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qQd-MR-uSP">
                                 <rect key="frame" x="197" y="240" width="51" height="31"/>
                                 <connections>
@@ -456,6 +450,15 @@
                                 </state>
                                 <connections>
                                     <segue destination="U6s-FT-nQH" kind="push" identifier="pumpChat" id="Qeo-hS-wf4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPo-cK-wev">
+                                <rect key="frame" x="92" y="284" width="137" height="30"/>
+                                <state key="normal" title="Setup For MySentry">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bIR-nw-zEq" kind="push" id="hxL-eb-WdN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -641,7 +644,69 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T76-vZ-pwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="1807"/>
+            <point key="canvasLocation" x="936" y="1816"/>
+        </scene>
+        <!--MySentry Pairing-->
+        <scene sceneID="tb3-wT-tie">
+            <objects>
+                <viewController id="bIR-nw-zEq" customClass="MySentryPairingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Csu-xg-nGE"/>
+                        <viewControllerLayoutGuide type="bottom" id="NjR-4H-1y0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="asJ-D5-6dR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eu8-3h-oKB">
+                                <rect key="frame" x="114" y="334" width="92" height="30"/>
+                                <state key="normal" title="Begin Pairing">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MySentry ID" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="itA-Oe-kgM">
+                                <rect key="frame" x="16" y="36" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Instruction label]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wm9-qS-bD9">
+                                <rect key="frame" x="16" y="8" width="288" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-sR-LXH">
+                                <rect key="frame" x="85" y="324" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Q6F-vC-a2s"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eu8-3h-oKB" firstAttribute="top" secondItem="hKP-sR-LXH" secondAttribute="bottom" constant="8" symbolic="YES" id="1CB-Ib-lnl"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="trailing" secondItem="itA-Oe-kgM" secondAttribute="trailing" id="1fe-Sv-s0h"/>
+                            <constraint firstItem="itA-Oe-kgM" firstAttribute="top" secondItem="wm9-qS-bD9" secondAttribute="bottom" constant="8" symbolic="YES" id="KA5-Oa-xhn"/>
+                            <constraint firstAttribute="centerX" secondItem="hKP-sR-LXH" secondAttribute="centerX" id="Oce-GO-7PR"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="top" secondItem="Csu-xg-nGE" secondAttribute="bottom" constant="8" symbolic="YES" id="QpZ-hD-kXH"/>
+                            <constraint firstItem="NjR-4H-1y0" firstAttribute="top" secondItem="Eu8-3h-oKB" secondAttribute="bottom" constant="8" symbolic="YES" id="TvU-za-K5j"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="leading" secondItem="asJ-D5-6dR" secondAttribute="leadingMargin" id="jTT-SS-NR3"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="trailing" secondItem="asJ-D5-6dR" secondAttribute="trailingMargin" id="tid-W5-eCm"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="leading" secondItem="itA-Oe-kgM" secondAttribute="leading" id="wom-Oh-sf4"/>
+                            <constraint firstItem="Eu8-3h-oKB" firstAttribute="centerX" secondItem="asJ-D5-6dR" secondAttribute="centerX" id="xu5-uy-TUe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="MySentry Pairing" id="Ygr-Ws-7Av"/>
+                    <connections>
+                        <outlet property="deviceIDTextField" destination="itA-Oe-kgM" id="xbo-Nk-Axn"/>
+                        <outlet property="instructionLabel" destination="wm9-qS-bD9" id="AYH-6r-sUb"/>
+                        <outlet property="progressView" destination="hKP-sR-LXH" id="lp5-nK-X2S"/>
+                        <outlet property="startButton" destination="Eu8-3h-oKB" id="gc4-t7-Lf3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fk6-QL-ZgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99" y="1816"/>
         </scene>
         <!--Pump Chat-->
         <scene sceneID="FHn-lU-ghE">
@@ -652,7 +717,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WXK-wk-Az1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yBb-jp-prw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No response yet..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iif-iF-xEU">
@@ -687,7 +752,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVC-lR-z0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1816"/>
+            <point key="canvasLocation" x="545" y="1816"/>
         </scene>
         <!--Main App View Controller-->
         <scene sceneID="Ttg-fi-7VM">

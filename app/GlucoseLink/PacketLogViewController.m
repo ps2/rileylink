@@ -25,7 +25,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(packetReceived:)
                                                name:RILEY_LINK_EVENT_PACKET_RECEIVED
-                                             object:nil];
+                                             object:self.device];
 
 }
 
@@ -40,10 +40,7 @@
 }
 
 - (void)packetReceived:(NSNotification*)notification {
-  NSDictionary *attrs = notification.object;
-  if (attrs[@"device"] == self.device) {
     [tableView reloadData];
-  }
 }
 
 #pragma mark - Table view data source
