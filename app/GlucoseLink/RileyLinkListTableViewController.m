@@ -46,6 +46,11 @@
   [self processVisibleDevices];
 }
 
+- (void)dealloc
+{
+  [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
 - (void)processVisibleDevices {
   devicesById = [NSMutableDictionary dictionary];
   

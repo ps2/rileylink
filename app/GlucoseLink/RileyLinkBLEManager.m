@@ -10,13 +10,11 @@
 #import "MinimedPacket.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "RileyLinkBLEDevice.h"
-#import "CBPeripheral+UUIDString.h"
 
 static NSDateFormatter *iso8601Formatter;
 
 @interface RileyLinkBLEManager () <CBCentralManagerDelegate, CBPeripheralDelegate> {
-  NSTimer *timer;
-  NSMutableArray *outgoingQueue;
+  NSTimer *reconnectTimer;
   NSMutableDictionary *peripheralsById; // CBPeripherals by UUID
   NSMutableDictionary *devicesById; // RileyLinkBLEDevices by UUID
 }
@@ -51,7 +49,6 @@ static NSDateFormatter *iso8601Formatter;
   if (self) {
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _data = [[NSMutableData alloc] init];
-    outgoingQueue = [NSMutableArray array];
     
     peripheralsById = [NSMutableDictionary dictionary];
     devicesById = [NSMutableDictionary dictionary];
@@ -62,24 +59,13 @@ static NSDateFormatter *iso8601Formatter;
 - (RileyLinkBLEDevice*) newRileyLinkFromPeripheral:(CBPeripheral*)peripheral {
   RileyLinkBLEDevice *device = [[RileyLinkBLEDevice alloc] init];
   device.name = peripheral.name;
-  device.peripheralId = peripheral.UUIDString;
+  device.peripheralId = peripheral.identifier.UUIDString;
   return device;
 }
 
 - (void)stop {
   NSLog(@"Stopping scan");
   [_centralManager stopScan];
-}
-
-- (void)sendPacket:(MinimedPacket*)packet {
-  [outgoingQueue addObject:packet];
-}
-
-- (void)flushOutgoingQueue {
-  if (outgoingQueue.count > 0) {
-    // TODO
-    //[_packetTxCharacteristic ]
-  }
 }
 
 - (void) sendNotice:(NSString*)name {
@@ -107,12 +93,12 @@ static NSDateFormatter *iso8601Formatter;
   
   NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
   
-  peripheralsById[peripheral.UUIDString] = peripheral;
+  peripheralsById[peripheral.identifier.UUIDString] = peripheral;
   
-  RileyLinkBLEDevice *d = devicesById[peripheral.UUIDString];
-  if (devicesById[peripheral.UUIDString] == NULL) {
+  RileyLinkBLEDevice *d = devicesById[peripheral.identifier.UUIDString];
+  if (devicesById[peripheral.identifier.UUIDString] == NULL) {
     d = [self newRileyLinkFromPeripheral:peripheral];
-    devicesById[peripheral.UUIDString] = d;
+    devicesById[peripheral.identifier.UUIDString] = d;
   }
   d.RSSI = RSSI;
   d.name = peripheral.name;
@@ -120,7 +106,7 @@ static NSDateFormatter *iso8601Formatter;
   
   [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
   
-  if ([self.autoConnectIds indexOfObject:d.peripheralId]) {
+  if ([self.autoConnectIds indexOfObject:d.peripheralId] != NSNotFound) {
     [self connectToRileyLink:d];
   }
   
@@ -141,6 +127,12 @@ static NSDateFormatter *iso8601Formatter;
   [_centralManager connectPeripheral:device.peripheral options:nil];
 }
 
+- (void)disconnectRileyLink:(RileyLinkBLEDevice *)device {
+  NSLog(@"Disconnecting from peripheral %@", device.peripheral);
+  [_centralManager cancelPeripheralConnection:device.peripheral];
+}
+
+
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
   NSLog(@"Failed to connect to peripheral: %@", error);
 }
@@ -150,6 +142,13 @@ static NSDateFormatter *iso8601Formatter;
   NSLog(@"Discovering services");
   [peripheral discoverServices:@[[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID],
                                  [CBUUID UUIDWithString:GLUCOSELINK_BATTERY_SERVICE]]];
+  
+  NSDictionary *attrs = @{
+                          @"peripheral": peripheral,
+                          @"device": devicesById[peripheral.identifier.UUIDString]
+                          };
+  [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_CONNECTED object:attrs];
+  
 }
 
 - (void)restartScan {
@@ -157,18 +156,39 @@ static NSDateFormatter *iso8601Formatter;
   [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
 }
 
+- (void)attemptReconnectForDisconnectedDevices {
+  for (RileyLinkBLEDevice *device in [self rileyLinkList]) {
+    CBPeripheral *peripheral = device.peripheral;
+    if (peripheral.state == CBPeripheralStateDisconnected
+        && [self.autoConnectIds indexOfObject:device.peripheralId] != NSNotFound) {
+      NSLog(@"Attempting reconnect to %@", device);
+      [self connectToRileyLink:device];
+    }
+  }
+}
+
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
   
   if (error) {
-    NSLog(@"Disconnection error: %@", error);
+    NSLog(@"Disconnection: %@", error);
+  }
+  NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+  
+  attrs[@"peripheral"] = peripheral;
+  attrs[@"device"] = devicesById[peripheral.identifier.UUIDString];
+  
+  if (error) {
+    attrs[@"error"] = error;
   }
   
-  NSDictionary *attrs = @{
-                          @"peripheral": peripheral,
-                          @"device": devicesById[peripheral.UUIDString]
-                          };
   [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_DEVICE_DISCONNECTED object:attrs];
+  
+  if (!reconnectTimer) {
+    reconnectTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(attemptReconnectForDisconnectedDevices) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:reconnectTimer forMode:NSRunLoopCommonModes];
+  }
+
 }
 
 

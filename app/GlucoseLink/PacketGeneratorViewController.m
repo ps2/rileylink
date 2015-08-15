@@ -15,6 +15,8 @@
   IBOutlet UILabel *testPacketNumberLabel;
   IBOutlet UISwitch *continuousSendSwitch;
   IBOutlet UISwitch *encodeDataSwitch;
+  IBOutlet UITextField *channelNumberTextField;
+  IBOutlet UILabel *packetData;
   NSTimer *timer;
 }
 
@@ -26,6 +28,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self updatePacketNumberLabel];
+  
+  UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+  numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+  numberToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneChangingChannel)]];
+  [numberToolbar sizeToFit];
+  channelNumberTextField.inputAccessoryView = numberToolbar;
+}
+
+- (void)doneChangingChannel {
+  [self.device setTXChannel:[channelNumberTextField.text intValue]];
+  [channelNumberTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,15 +61,12 @@
 
 - (void)sendTestPacket {
   NSString *packetStr = [@"614C05E077" stringByAppendingFormat:@"%02x", testPacketNum];
+  NSData *data = [NSData dataWithHexadecimalString:packetStr];
   if (encodeDataSwitch.on) {
-    packetStr = [@"0000" stringByAppendingString:packetStr];
-    NSData *data = [NSData dataWithHexadecimalString:packetStr];
-    MinimedPacket *packet = [[MinimedPacket alloc] initWithData:data];
-    [_device sendPacketData:packet.encodedRFData];
-  } else {
-    NSData *data = [NSData dataWithHexadecimalString:packetStr];
-    [_device sendPacketData:data];
+    data = [MinimedPacket encodeData:data];
   }
+  packetData.text = [data hexadecimalString];
+  [_device sendPacketData:data];
 }
 
 - (IBAction)sendPacketButtonPressed:(id)sender {

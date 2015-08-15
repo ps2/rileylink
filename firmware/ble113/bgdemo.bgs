@@ -13,6 +13,8 @@ dim tmp(1)
 dim buf(128)
 dim buf_len
 dim buf_idx
+dim name(32)
+dim name_len
 dim psize
 dim out_buf(128)
 dim out_len
@@ -34,9 +36,25 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	batconn_handle=$ff
 	psize=0
 	buf_len=0
+	name_len=0
 
+	call flash_ps_load($8000)(result, name_len, name(0:name_len))
+	if result != 0 then
+	  name_len = 9
+	  name(0:1) = $52 # R
+	  name(1:1) = $69 # i
+	  name(2:1) = $6c # l
+	  name(3:1) = $65 # e
+	  name(4:1) = $79 # y
+	  name(5:1) = $4c # L
+	  name(6:1) = $69 # i
+	  name(7:1) = $6e # n
+	  name(8:1) = $6b # k
+	end if
+	
 	#start advertising in connectible mode
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
+		
 	# Start a 50ms timer
 	call hardware_set_soft_timer($666, 0, 0)
 	
@@ -45,12 +63,16 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	
 	# Turn P0_0 (green led) and P0_1 (blue led) off
 	call hardware_io_port_write(0, $3, 0)
-	
+		
 	# Send reset to radio
 	call hardware_io_port_write(0, $10, 0)   # slave select low
 	call hardware_spi_transfer(0,2,"\x05\x00")
 	call hardware_io_port_write(0, $10, $10) # slave select high
 	
+
+	call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
+	call attributes_write(xgatt_custom_name, 0, name_len, name(0:name_len))
+
 end
 
 procedure write_tx_packet()
@@ -117,12 +139,26 @@ procedure get_buf_bytes(connection, offset, maxsize)
 end
 
 event attributes_value(connection, reason, handle, offset, value_len, value_data)
-	if handle = xgatt_channel then
+	if handle = xgatt_rx_channel then
 		# Listen on channel specified by ble client
 		call hardware_io_port_write(0, $10, 0)   # slave select low
-		call hardware_spi_transfer(0,1,"\x02")
+		call hardware_spi_transfer(0,1,2)
 		call hardware_spi_transfer(0,1,value_data(0:1))
 		call hardware_io_port_write(0, $10, $10) # slave select high
+	end if
+	
+	if handle = xgatt_tx_channel then
+		# Future packets will be sent on this channel 
+		call hardware_io_port_write(0, $10, 0)   # slave select low
+		call hardware_spi_transfer(0,1,17)
+		call hardware_spi_transfer(0,1,value_data(0:1))
+		call hardware_io_port_write(0, $10, $10) # slave select high
+	end if
+
+	
+	if handle = xgatt_custom_name then
+	  memcpy(name(0), value_data(0), value_len)
+	  name_len = value_len
 	end if
 	
 	if handle = xgatt_tx_packet then
@@ -204,7 +240,7 @@ end
 # Connection event listener
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
 	# Device is connected. Turn on blue led
-    call hardware_io_port_write(0, $1, $1)
+    call hardware_io_port_write(0, $1, $1)	
 end
 
 event connection_disconnected(handle,res)
@@ -212,4 +248,11 @@ event connection_disconnected(handle,res)
     call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
 	# Device disconnected. Turn off blue led
     call hardware_io_port_write(0, $1, $0)
+	
+	# Save name
+	if name_len > 0
+		call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
+		call flash_ps_save($8000, name_len, name(0:name_len))
+	end if
+
 end

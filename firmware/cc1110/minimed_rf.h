@@ -7,7 +7,10 @@ void handleRX1();
 void handleRFTXRX();
 void handleRF();
 void handleTimer();
-void setChannel(unsigned char newChannel);
+void setRXChannel(unsigned char newChannel);
+
+void enterRX();
+void enterTX();
 
 // Commands
 #define CMD_NOP 0
@@ -26,6 +29,7 @@ void setChannel(unsigned char newChannel);
 #define CMD_GET_PACKET_OVERFLOW_COUNT 14
 #define CMD_GET_BUFFER_OVERFLOW_COUNT 15
 #define CMD_GET_RSSI 16
+#define CMD_SET_TX_CHANNEL 17
 
 // Radio Mode
 #define RADIO_MODE_IDLE 0

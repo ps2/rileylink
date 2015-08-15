@@ -78,13 +78,13 @@ void configureRadio()
   CHANNR    = 0x02; // channel number
   FSCTRL1   = 0x06; // frequency synthesizer control
   FSCTRL0   = 0x00; 
-  FREQ2     = 0x21; // frequency control word, high byte
-  FREQ1     = 0x65; // frequency control word, middle byte
-  FREQ0     = 0xE8; // frequency control word, low byte
+  FREQ2     = 0x23; // frequency control word, high byte
+  FREQ1     = 0x40; // frequency control word, middle byte
+  FREQ0     = 0x78; // frequency control word, low byte
   MDMCFG4   = 0x69; // modem configuration
   MDMCFG3   = 0x4A; // modem configuration
   MDMCFG2   = 0x33; // modem configuration
-  MDMCFG1   = 0x11; // modem configuration
+  MDMCFG1   = 0x61; // modem configuration
   MDMCFG0   = 0x84; // modem configuration
   DEVIATN   = 0x15; // modem deviation setting
   MCSM2     = 0x07; 
@@ -187,22 +187,9 @@ int main(void)
     RFTXRXIE = 1;
 
     if (radioMode == RADIO_MODE_TX) {
-      /* Put radio into TX. */
-      RFTXRXIF = 0;
-      RFST = RFST_STX;
-      // Wait for radio to enter TX
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_TX);
-      // Wait for radio to leave TX (usually after packet is sent)
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) == MARC_STATE_TX);
+      enterTX();
     } else if (radioMode == RADIO_MODE_RX) {
-      /* Put radio into RX. */
-      RFST = RFST_SRX;
-      while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
-
-      GREEN_LED = !GREEN_LED;
-
-      // minimed code will clear this when wanting to exit RX
-      while (RFTXRXIE);
+      enterRX();
     }
   }
 }

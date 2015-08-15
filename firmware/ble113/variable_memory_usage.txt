@@ -1,4 +1,4 @@
-309
+345
 0:0	GAP_AD_FLAG_BREDR_NOT_SUPPORTED
 0:0	GAP_AD_FLAG_GENERAL_DISCOVERABLE
 0:0	GAP_AD_FLAG_LIMITED_DISCOVERABLE
@@ -77,9 +77,12 @@
 0:0	system_endpoint_uart1
 0:0	system_endpoint_usb
 0:0	xgatt_battery
-0:0	xgatt_channel
+0:0	xgatt_custom_name
+0:0	xgatt_name
+0:0	xgatt_rx_channel
 0:0	xgatt_rx_packet
 0:0	xgatt_rx_packet_count
+0:0	xgatt_tx_channel
 0:0	xgatt_tx_packet
 0:0	xgatt_tx_packet_trigger
 0:0	CMD_NOP
@@ -95,15 +98,17 @@
 1:128	buf
 129:4	buf_len
 133:4	buf_idx
-137:4	psize
-141:128	out_buf
-269:4	out_len
-273:4	out_idx
-277:4	radio_mode
-281:4	result
-285:4	channel
-289:4	tlen
-293:4	bytes_to_send
-297:4	packet_count
-301:4	batconn_handle
-305:4	batresult
+137:32	name
+169:4	name_len
+173:4	psize
+177:128	out_buf
+305:4	out_len
+309:4	out_idx
+313:4	radio_mode
+317:4	result
+321:4	channel
+325:4	tlen
+329:4	bytes_to_send
+333:4	packet_count
+337:4	batconn_handle
+341:4	batresult

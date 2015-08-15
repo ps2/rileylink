@@ -65,6 +65,10 @@ unsigned char spiMode = SPI_MODE_CMD;
 // Radio mode
 unsigned char radioMode = RADIO_MODE_RX;
 
+// Channels
+unsigned char rxChannel;
+unsigned char txChannel;
+
 // Data buffer
 int bufferWritePos = 0;
 int bufferReadPos = 0;
@@ -148,7 +152,7 @@ void initMinimedRF() {
   packets[0].dataStartIdx = 0;
   packets[0].length = 0;
 
-  setChannel(2);
+  setRXChannel(2);
 }
 
 unsigned char cmdGetByte() {
@@ -195,6 +199,7 @@ void doCommand(unsigned char cmd) {
     U1DBUF = CHANNR;
     break;
   case CMD_SET_CHANNEL:
+  case CMD_SET_TX_CHANNEL:
   case CMD_SEND_PACKET:
     spiMode = SPI_MODE_ARG;
     break;
@@ -248,7 +253,8 @@ void doCommand(unsigned char cmd) {
   }
 }
 
-void setChannel(unsigned char newChannel) {
+void setRXChannel(unsigned char newChannel) {
+  rxChannel = newChannel;
   // Guard against using remote channel
   if (newChannel != 4) {
     CHANNR = newChannel;
@@ -265,7 +271,11 @@ void handleRX1() {
     value = U1DBUF;
     switch (lastCmd) {
     case CMD_SET_CHANNEL:
-      setChannel(value);
+      setRXChannel(value);
+      spiMode = SPI_MODE_CMD;
+      break;
+    case CMD_SET_TX_CHANNEL:
+      txChannel = value;
       spiMode = SPI_MODE_CMD;
       break;
     case CMD_SEND_PACKET:
@@ -463,4 +473,28 @@ void handleTimer()
     timerCounter = 0;
   }
 }
+
+void enterTX() {
+  /* Put radio into TX. */
+  CHANNR = txChannel;
+  RFTXRXIF = 0;
+  RFST = RFST_STX;
+  // Wait for radio to enter TX
+  while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_TX);
+  // Wait for radio to leave TX (usually after packet is sent)
+  while ((MARCSTATE & MARCSTATE_MARC_STATE) == MARC_STATE_TX);
+}
+
+void enterRX() {
+  /* Put radio into RX. */
+  CHANNR = rxChannel;
+  RFST = RFST_SRX;
+  while ((MARCSTATE & MARCSTATE_MARC_STATE) != MARC_STATE_RX);
+
+  GREEN_LED = !GREEN_LED;
+
+  // minimed code will clear this when wanting to exit RX
+  while (RFTXRXIE);
+}
+
 
