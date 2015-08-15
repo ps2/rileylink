@@ -53,6 +53,13 @@ typedef NS_ENUM(NSUInteger, PairingState) {
     [self.view addGestureRecognizer:self.flailGestureRecognizer];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:RILEY_LINK_EVENT_PACKET_RECEIVED
+                                                  object:self.device];
+}
+
 - (UITapGestureRecognizer *)flailGestureRecognizer
 {
     if (!_flailGestureRecognizer) {
