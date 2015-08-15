@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, PairingState) {
 @property (weak, nonatomic) IBOutlet UITextField *deviceIDTextField;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) UITapGestureRecognizer *flailGestureRecognizer;
 
 @property (nonatomic) PairingState state;
 @property (nonatomic) unsigned char sendCounter;
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSUInteger, PairingState) {
     [super viewDidLoad];
 
     self.sendCounter = 0;
+    [self.device setTXChannel:3];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(packetReceived:)
@@ -46,6 +48,19 @@ typedef NS_ENUM(NSUInteger, PairingState) {
                                                object:self.device];
 
     self.state = PairingStateNeedsConfig;
+
+    self.deviceIDTextField.delegate = self;
+    [self.view addGestureRecognizer:self.flailGestureRecognizer];
+}
+
+- (UITapGestureRecognizer *)flailGestureRecognizer
+{
+    if (!_flailGestureRecognizer) {
+        _flailGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard:)];
+        _flailGestureRecognizer.cancelsTouchesInView = NO;
+        _flailGestureRecognizer.enabled = NO;
+    }
+    return _flailGestureRecognizer;
 }
 
 - (void)setState:(PairingState)state {
@@ -59,18 +74,19 @@ typedef NS_ENUM(NSUInteger, PairingState) {
         case PairingStateNeedsConfig:
             self.startButton.enabled = NO;
 
-            self.instructionLabel.text = NSLocalizedString(@"Enter a 6-digit numeric value to identify your MySentry",
+            self.instructionLabel.text = NSLocalizedString(@"Enter a 6-digit numeric value to identify your MySentry.",
                                                            @"Device ID instruction");
             break;
         case PairingStateReady:
             self.startButton.enabled = YES;
             self.progressView.progress = 0;
 
-            self.instructionLabel.text = NSLocalizedString(@"Tap to begin",
+            self.instructionLabel.text = NSLocalizedString(@"Tap to begin.",
                                                            @"Start button instruction");
             break;
         case PairingStateStarted:
             self.startButton.enabled = NO;
+            self.deviceIDTextField.enabled = NO;
             [self.progressView setProgress:1.0 / 4.0 animated:YES];
 
             self.instructionLabel.text = NSLocalizedString(@"On your pump, go to the Find Device screen and select \"Find Device\"."
@@ -104,12 +120,34 @@ typedef NS_ENUM(NSUInteger, PairingState) {
 
 #pragma mark - UITextFieldDelegate
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.flailGestureRecognizer.enabled = YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.flailGestureRecognizer.enabled = NO;
+
     if (textField.text.length == 6) {
         self.state = PairingStateReady;
-    } else if (PairingStateNeedsConfig != self.state) {
+    } else if (PairingStateReady == self.state) {
         self.state = PairingStateNeedsConfig;
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+    if (newString.length > 6) {
+        return NO;
+    } else if (newString.length == 6) {
+        textField.text = newString;
+        [textField resignFirstResponder];
+        return NO;
+    } else if (PairingStateReady == self.state) {
+        self.state = PairingStateNeedsConfig;
+    }
+
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -148,25 +186,30 @@ typedef NS_ENUM(NSUInteger, PairingState) {
     }
 }
 
-- (IBAction)startPairing:(id)sender {
-    if (PairingStateReady == self.state) {
-        self.state = PairingStateStarted;
-    }
-}
-
 - (void)sendReplyToPacket:(MinimedPacket *)packet
 {
     NSString *replyString = [NSString stringWithFormat:@"%02x%@%02x%02x%@00%02x000000",
-                                PACKET_TYPE_PUMP,
-                                [Config sharedInstance].pumpID,
-                                MESSAGE_TYPE_PUMP_STATUS_ACK,
-                                self.sendCounter++,
-                                self.deviceIDTextField.text,
-                                packet.messageType
+                             PACKET_TYPE_PUMP,
+                             [Config sharedInstance].pumpID,
+                             MESSAGE_TYPE_PUMP_STATUS_ACK,
+                             self.sendCounter++,
+                             self.deviceIDTextField.text,
+                             packet.messageType
                              ];
     NSData *data = [NSData dataWithHexadecimalString:replyString];
 
     [self.device sendPacketData:[MinimedPacket encodeData:data]];
+}
+
+- (void)closeKeyboard:(id)sender
+{
+    [self.view endEditing:YES];
+}
+
+- (IBAction)startPairing:(id)sender {
+    if (PairingStateReady == self.state) {
+        self.state = PairingStateStarted;
+    }
 }
 
 @end
