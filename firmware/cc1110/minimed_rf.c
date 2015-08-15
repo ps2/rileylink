@@ -333,8 +333,7 @@ void finishIncomingPacket() {
   /* loop over the buffer data */
   while (crcLen-- > 0) {
     crc = crcTable[(crc ^ dataBuffer[crcReadIdx]) & 0xff];
-    crcReadIdx++;
-    if (crcReadIdx >= BUFFER_SIZE) {
+    if (++crcReadIdx >= BUFFER_SIZE) {
       crcReadIdx = 0;
     }
   }
