@@ -7,6 +7,7 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "MinimedPacket.h"
 #import "RileyLinkBLEDevice.h"
 #import "RileyLinkBLEManager.h"
 #import "NSData+Conversion.h"
@@ -77,7 +78,7 @@
 
 - (void) triggerSend {
   if (copiesLeftToSend > 0) {
-    NSLog(@"Sending copy %d", (currentSendTask.repeatCount - copiesLeftToSend) + 1);
+    NSLog(@"Sending copy %ld", (currentSendTask.repeatCount - copiesLeftToSend) + 1);
     NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
     [self.myPeripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
     copiesLeftToSend--;

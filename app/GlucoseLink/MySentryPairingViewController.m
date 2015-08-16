@@ -8,6 +8,7 @@
 
 #import "MySentryPairingViewController.h"
 #import "Config.h"
+#import "MinimedPacket.h"
 #import "NSData+Conversion.h"
 #import "RileyLinkBLEManager.h"
 

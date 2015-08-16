@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MinimedPacket.h"
 #import "RileyLinkBLEDevice.h"
 
 #define RILEY_LINK_EVENT_LIST_UPDATED        @"RILEY_LINK_EVENT_LIST_UPDATED"
