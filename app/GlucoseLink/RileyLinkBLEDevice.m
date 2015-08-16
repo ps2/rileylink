@@ -199,6 +199,7 @@
       [peripheral readValueForCharacteristic:characteristic];
     } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID]]) {
       rxChannelCharacteristic = characteristic;
+      [self setRXChannel:2];
     } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID]]) {
       txChannelCharacteristic = characteristic;
     } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
@@ -229,10 +230,9 @@
       NSLog(@"Read packet (%d): %@", packet.rssi, packet.data.hexadecimalString);
       NSDictionary *attrs = @{
                               @"packet": packet,
-                              @"peripheral": self.peripheral,
-                              @"device": self
+                              @"peripheral": self.peripheral
                               };
-      [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:attrs];
+      [[NSNotificationCenter defaultCenter] postNotificationName:RILEY_LINK_EVENT_PACKET_RECEIVED object:self userInfo:attrs];
     }
     [peripheral readValueForCharacteristic:packetCountCharacteristic];
     

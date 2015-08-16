@@ -28,7 +28,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(packetReceived:)
                                                name:RILEY_LINK_EVENT_PACKET_RECEIVED
-                                             object:nil];
+                                             object:self.device];
   
   pumpIdLabel.text = [NSString stringWithFormat:@"PumpID: %@", [[Config sharedInstance] pumpID]];
 }
@@ -76,9 +76,8 @@
 
 
 - (void)packetReceived:(NSNotification*)notification {
-  NSDictionary *attrs = notification.object;
-  if (attrs[@"device"] == self.device) {
-    MinimedPacket *packet = attrs[@"packet"];
+  if (notification.object == self.device) {
+    MinimedPacket *packet = notification.userInfo[@"packet"];
     if (packet && [packet.address isEqualToString:[[Config sharedInstance] pumpID]]) {
       [self handlePacketFromPump:packet];
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -23,7 +23,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RileyLink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8s5-H2-a4r">
                                             <rect key="frame" x="19" y="3" width="283" height="37"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -151,25 +151,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nightscout URL:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gc-2E-cj3">
-                                        <rect key="frame" x="20" y="20" width="122" height="19.5"/>
+                                        <rect key="frame" x="20" y="20" width="122" height="20"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nightscout API Secret:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksS-ny-SlC">
-                                        <rect key="frame" x="20" y="121.5" width="168.5" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nightscout API Secret:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksS-ny-SlC">
+                                        <rect key="frame" x="20" y="122" width="169" height="20"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medtronic Pump ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSC-xQ-7OU">
-                                        <rect key="frame" x="20" y="224" width="148.5" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Medtronic Pump ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSC-xQ-7OU">
+                                        <rect key="frame" x="20" y="224" width="149" height="20"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://mysitename.azurewebsites.net/" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avZ-w3-rcf">
-                                        <rect key="frame" x="20" y="73.5" width="214" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://mysitename.azurewebsites.net/" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avZ-w3-rcf">
+                                        <rect key="frame" x="20" y="74" width="214" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ZsS-Ih-TGy"/>
                                         </constraints>
@@ -177,7 +177,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="secret_key" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-ef-2cW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="secret_key" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-ef-2cW">
                                         <rect key="frame" x="20" y="176" width="214" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5sV-5w-2P8"/>
@@ -186,7 +186,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="pump id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="POJ-k9-2po">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="pump id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="POJ-k9-2po">
                                         <rect key="frame" x="20" y="278" width="214" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="h2L-kz-KRx"/>
@@ -195,21 +195,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rae-Vh-O1x">
-                                        <rect key="frame" x="20" y="98.5" width="214" height="1"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rae-Vh-O1x">
+                                        <rect key="frame" x="20" y="99" width="214" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="n2N-CW-FVl"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="0iR-09-3aO">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0iR-09-3aO">
                                         <rect key="frame" x="20" y="201" width="214" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nkz-9I-1LQ"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-NR-mXf">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-NR-mXf">
                                         <rect key="frame" x="20" y="303" width="214" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -217,18 +217,18 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the url of your nightscout website. It will be used for upload and display." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yU-mS-alk">
-                                        <rect key="frame" x="20" y="39.5" width="284" height="26.5"/>
+                                        <rect key="frame" x="20" y="40" width="284" height="27"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a 6 digit number that can be found on the back of your pump." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAc-jo-xof">
-                                        <rect key="frame" x="20" y="243.5" width="284" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a 6 digit number that can be found on the back of your pump." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAc-jo-xof">
+                                        <rect key="frame" x="20" y="244" width="284" height="27"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwf-eS-iC4">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwf-eS-iC4">
                                         <rect key="frame" x="23" y="312" width="208" height="30"/>
                                         <state key="normal" title="Continue">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -237,8 +237,8 @@
                                             <action selector="continuePressed:" destination="1pp-Ej-SdS" eventType="touchUpInside" id="BNt-Le-LKe"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the API_SECRET for the REST API, usually entered into the Azure Management portal." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-vs-lJP">
-                                        <rect key="frame" x="20" y="141" width="284" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is the API_SECRET for the REST API, usually entered into the Azure Management portal." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-vs-lJP">
+                                        <rect key="frame" x="20" y="141" width="284" height="27"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -422,12 +422,6 @@
                                     <segue destination="7s7-Ke-qpC" kind="push" identifier="packetLog" id="RaR-PN-0p8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPo-cK-wev">
-                                <rect key="frame" x="92" y="284" width="137" height="30"/>
-                                <state key="normal" title="Setup For MySentry">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qQd-MR-uSP">
                                 <rect key="frame" x="197" y="240" width="51" height="31"/>
                                 <connections>
@@ -456,6 +450,15 @@
                                 </state>
                                 <connections>
                                     <segue destination="U6s-FT-nQH" kind="push" identifier="pumpChat" id="Qeo-hS-wf4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPo-cK-wev">
+                                <rect key="frame" x="92" y="284" width="137" height="30"/>
+                                <state key="normal" title="Setup For MySentry">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bIR-nw-zEq" kind="push" id="hxL-eb-WdN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -641,7 +644,78 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T76-vZ-pwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="1807"/>
+            <point key="canvasLocation" x="936" y="1816"/>
+        </scene>
+        <!--MySentry Pairing-->
+        <scene sceneID="tb3-wT-tie">
+            <objects>
+                <viewController id="bIR-nw-zEq" customClass="MySentryPairingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Csu-xg-nGE"/>
+                        <viewControllerLayoutGuide type="bottom" id="NjR-4H-1y0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="asJ-D5-6dR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="000000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="itA-Oe-kgM">
+                                <rect key="frame" x="100" y="20" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="uJC-8s-xia"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-sR-LXH">
+                                <rect key="frame" x="85" y="355" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Q6F-vC-a2s"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eu8-3h-oKB">
+                                <rect key="frame" x="109" y="314" width="102" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Begin Pairing">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startPairing:" destination="bIR-nw-zEq" eventType="touchDragInside" id="K4C-bJ-mnx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Instruction label]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wm9-qS-bD9">
+                                <rect key="frame" x="16" y="58" width="288" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Sv9-RJ-Aub"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="itA-Oe-kgM" firstAttribute="top" secondItem="Csu-xg-nGE" secondAttribute="bottom" constant="20" id="7vB-GE-NsP"/>
+                            <constraint firstAttribute="centerX" secondItem="hKP-sR-LXH" secondAttribute="centerX" id="Oce-GO-7PR"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="top" secondItem="itA-Oe-kgM" secondAttribute="bottom" constant="8" symbolic="YES" id="Rmd-LI-hqG"/>
+                            <constraint firstItem="NjR-4H-1y0" firstAttribute="top" secondItem="hKP-sR-LXH" secondAttribute="bottom" constant="15" id="iP5-6d-i4K"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="leading" secondItem="asJ-D5-6dR" secondAttribute="leadingMargin" id="jTT-SS-NR3"/>
+                            <constraint firstItem="hKP-sR-LXH" firstAttribute="top" secondItem="Eu8-3h-oKB" secondAttribute="bottom" constant="8" symbolic="YES" id="jhd-Vu-pVy"/>
+                            <constraint firstAttribute="centerX" secondItem="itA-Oe-kgM" secondAttribute="centerX" id="li2-IR-z3w"/>
+                            <constraint firstItem="wm9-qS-bD9" firstAttribute="trailing" secondItem="asJ-D5-6dR" secondAttribute="trailingMargin" id="tid-W5-eCm"/>
+                            <constraint firstItem="Eu8-3h-oKB" firstAttribute="centerX" secondItem="asJ-D5-6dR" secondAttribute="centerX" id="xu5-uy-TUe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="MySentry Pairing" id="Ygr-Ws-7Av"/>
+                    <connections>
+                        <outlet property="deviceIDTextField" destination="itA-Oe-kgM" id="xbo-Nk-Axn"/>
+                        <outlet property="instructionLabel" destination="wm9-qS-bD9" id="AYH-6r-sUb"/>
+                        <outlet property="progressView" destination="hKP-sR-LXH" id="lp5-nK-X2S"/>
+                        <outlet property="startButton" destination="Eu8-3h-oKB" id="gc4-t7-Lf3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fk6-QL-ZgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99" y="1816"/>
         </scene>
         <!--Pump Chat-->
         <scene sceneID="FHn-lU-ghE">
@@ -652,7 +726,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WXK-wk-Az1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yBb-jp-prw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No response yet..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iif-iF-xEU">
@@ -687,7 +761,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVC-lR-z0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1816"/>
+            <point key="canvasLocation" x="545" y="1816"/>
         </scene>
         <!--Main App View Controller-->
         <scene sceneID="Ttg-fi-7VM">

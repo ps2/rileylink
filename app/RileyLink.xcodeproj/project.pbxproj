@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43737CE11B7F06F100835F8D /* MySentryPairingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43737CE01B7F06F100835F8D /* MySentryPairingViewController.m */; };
 		43EC9DCB1B786C6200DB0D18 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EC9DCA1B786C6200DB0D18 /* LaunchScreen.xib */; };
 		C126162C1B65E9BF001FAD87 /* RileyLinkDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C126162B1B65E9BF001FAD87 /* RileyLinkDeviceViewController.m */; };
 		C12616321B65F4BC001FAD87 /* RileyLinkListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */; };
@@ -67,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43737CDF1B7F06F100835F8D /* MySentryPairingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySentryPairingViewController.h; sourceTree = "<group>"; };
+		43737CE01B7F06F100835F8D /* MySentryPairingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySentryPairingViewController.m; sourceTree = "<group>"; };
 		43EC9DCA1B786C6200DB0D18 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C126162A1B65E9BF001FAD87 /* RileyLinkDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RileyLinkDeviceViewController.h; sourceTree = "<group>"; };
 		C126162B1B65E9BF001FAD87 /* RileyLinkDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RileyLinkDeviceViewController.m; sourceTree = "<group>"; };
@@ -356,22 +359,24 @@
 			children = (
 				C1EF58831B3E5DA4001C8C80 /* ConfigureViewController.h */,
 				C1EF58841B3E5DA4001C8C80 /* ConfigureViewController.m */,
-				C12EA26B198B456D00309FA4 /* NightscoutWebView.h */,
-				C12EA26C198B456D00309FA4 /* NightscoutWebView.m */,
-				C1EF58951B3FA462001C8C80 /* MenuController.h */,
-				C1EF58961B3FA462001C8C80 /* MenuController.m */,
 				C1EF589C1B3FBFE7001C8C80 /* MainAppViewController.h */,
 				C1EF589D1B3FBFE7001C8C80 /* MainAppViewController.m */,
+				C1EF58951B3FA462001C8C80 /* MenuController.h */,
+				C1EF58961B3FA462001C8C80 /* MenuController.m */,
+				43737CDF1B7F06F100835F8D /* MySentryPairingViewController.h */,
+				43737CE01B7F06F100835F8D /* MySentryPairingViewController.m */,
+				C12EA26B198B456D00309FA4 /* NightscoutWebView.h */,
+				C12EA26C198B456D00309FA4 /* NightscoutWebView.m */,
+				C126165B1B6C8076001FAD87 /* PacketGeneratorViewController.h */,
+				C126165C1B6C8076001FAD87 /* PacketGeneratorViewController.m */,
+				C12616551B6A6130001FAD87 /* PacketLogViewController.h */,
+				C12616561B6A6130001FAD87 /* PacketLogViewController.m */,
+				C126166B1B76ECBA001FAD87 /* PumpChatViewController.h */,
+				C126166C1B76ECBA001FAD87 /* PumpChatViewController.m */,
 				C126162A1B65E9BF001FAD87 /* RileyLinkDeviceViewController.h */,
 				C126162B1B65E9BF001FAD87 /* RileyLinkDeviceViewController.m */,
 				C12616301B65F4BC001FAD87 /* RileyLinkListTableViewController.h */,
 				C12616311B65F4BC001FAD87 /* RileyLinkListTableViewController.m */,
-				C12616551B6A6130001FAD87 /* PacketLogViewController.h */,
-				C12616561B6A6130001FAD87 /* PacketLogViewController.m */,
-				C126165B1B6C8076001FAD87 /* PacketGeneratorViewController.h */,
-				C126165C1B6C8076001FAD87 /* PacketGeneratorViewController.m */,
-				C126166B1B76ECBA001FAD87 /* PumpChatViewController.h */,
-				C126166C1B76ECBA001FAD87 /* PumpChatViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				C126165D1B6C8076001FAD87 /* PacketGeneratorViewController.m in Sources */,
 				C12616571B6A6130001FAD87 /* PacketLogViewController.m in Sources */,
 				C14AA33B1B1A2FB100299A55 /* MeterMessage.m in Sources */,
+				43737CE11B7F06F100835F8D /* MySentryPairingViewController.m in Sources */,
 				C1EF589E1B3FBFE7001C8C80 /* MainAppViewController.m in Sources */,
 				C1EF588C1B3F9748001C8C80 /* SWRevealViewController.m in Sources */,
 				C126163C1B67CBC2001FAD87 /* RileyLinkTableViewCell.m in Sources */,
