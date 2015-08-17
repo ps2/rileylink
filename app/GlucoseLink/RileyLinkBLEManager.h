@@ -31,16 +31,26 @@
 
 @interface RileyLinkBLEManager : NSObject
 
-- (void)stop;
 - (NSArray*)rileyLinkList;
 - (void)connectToRileyLink:(RileyLinkBLEDevice *)device;
 - (void)disconnectRileyLink:(RileyLinkBLEDevice *)device;
 - (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device;
 - (void)removeDeviceFromAutoConnectList:(RileyLinkBLEDevice*)device;
-+ (id)sharedManager;
++ (instancetype)sharedManager;
 
 @property (nonatomic, weak) id<RileyLinkDelegate> delegate;
 @property (nonatomic, strong) NSArray *autoConnectIds;
+@property (nonatomic, getter=isScanningEnabled) BOOL scanningEnabled;
+
+/**
+ Converts an array of UUID strings to CBUUID objects, excluding those represented in an array of CBAttribute objects.
+
+ @param UUIDStrings An array of UUID string representations to filter
+ @param attributes  An array of CBAttribute objects to exclude
+
+ @return An array of CBUUID objects
+ */
++ (NSArray *)UUIDsFromUUIDStrings:(NSArray *)UUIDStrings excludingAttributes:(NSArray *)attributes;
 
 @end
 
