@@ -7,7 +7,6 @@
 //
 
 #import "RileyLinkBLEManager.h"
-#import "MinimedPacket.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "RileyLinkBLEDevice.h"
 

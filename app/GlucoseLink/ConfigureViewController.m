@@ -75,7 +75,8 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  [self saveValues];
+    [super viewWillDisappear:animated];
+    [self saveValues];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
