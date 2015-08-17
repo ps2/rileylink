@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oBH-3z-2fj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -400,7 +400,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In Progress..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohV-Sn-Z6e">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohV-Sn-Z6e">
                                 <rect key="frame" x="16" y="20" width="288" height="39"/>
                                 <color key="backgroundColor" red="0.44811690129999998" green="1" blue="0.5549573485" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -461,6 +461,9 @@
                                     <segue destination="bIR-nw-zEq" kind="push" id="hxL-eb-WdN"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="E6F-dM-g5s">
+                                <rect key="frame" x="232" y="30" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -469,6 +472,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="autoConnectSwitch" destination="qQd-MR-uSP" id="3nO-ue-Yeb"/>
+                        <outlet property="connectingIndicator" destination="E6F-dM-g5s" id="hew-pl-bkY"/>
                         <outlet property="deviceIDLabel" destination="Trk-2x-D8Y" id="K2T-LD-CXp"/>
                         <outlet property="nameLabel" destination="ohV-Sn-Z6e" id="Vmh-xM-YbT"/>
                     </connections>
@@ -750,11 +754,18 @@
                                     <action selector="queryPumpButtonPressed:" destination="U6s-FT-nQH" eventType="touchUpInside" id="IYW-S0-UbZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ0-DI-aEl">
+                                <rect key="frame" x="16" y="180" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pump Chat" id="UsW-cu-rdB"/>
                     <connections>
+                        <outlet property="batteryVoltage" destination="YQ0-DI-aEl" id="f7N-8a-Juc"/>
                         <outlet property="pumpIdLabel" destination="Xh4-dw-jok" id="NUk-iP-AUd"/>
                         <outlet property="resultsLabel" destination="Iif-iF-xEU" id="Cqb-Fm-1Vz"/>
                     </connections>

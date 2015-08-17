@@ -10,6 +10,12 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 
+typedef enum {
+  RILEY_LINK_STATE_CONNECTING,
+  RILEY_LINK_STATE_CONNECTED,
+  RILEY_LINK_STATE_DISCONNECTED
+} RileyLinkState;
+
 @interface RileyLinkBLEDevice : NSObject
 
 @property (nonatomic, retain) NSString * name;
@@ -19,7 +25,7 @@
 
 - (NSArray*) packets;
 
-- (BOOL) isConnected;
+- (RileyLinkState) state;
 - (void) connect;
 - (void) disconnect;
 - (void) cancelSending;

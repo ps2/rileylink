@@ -16,6 +16,7 @@
   IBOutlet UILabel *deviceIDLabel;
   IBOutlet UILabel *nameLabel;
   IBOutlet UISwitch *autoConnectSwitch;
+  IBOutlet UIActivityIndicatorView *connectingIndicator;
 }
 
 @end
@@ -50,10 +51,22 @@
 }
 
 - (void)updateConnectedHighlight {
-  if (self.rlDevice && self.rlDevice.isConnected) {
-    nameLabel.backgroundColor = [UIColor greenColor];
-  } else {
-    nameLabel.backgroundColor = [UIColor clearColor];
+  switch (self.rlDevice.state) {
+    case RILEY_LINK_STATE_CONNECTING:
+      nameLabel.backgroundColor = [UIColor clearColor];
+      nameLabel.text = @"Connecting...";
+      [connectingIndicator startAnimating];
+      break;
+    case RILEY_LINK_STATE_CONNECTED:
+      nameLabel.backgroundColor = [UIColor greenColor];
+      nameLabel.text = self.rlDevice.name;
+      [connectingIndicator stopAnimating];
+      break;
+    case RILEY_LINK_STATE_DISCONNECTED:
+      nameLabel.backgroundColor = [UIColor clearColor];
+      nameLabel.text = self.rlDevice.name;
+      [connectingIndicator stopAnimating];
+      break;
   }
 }
 

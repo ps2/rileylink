@@ -134,8 +134,20 @@
   NSLog(@"Did write characteristic: %@", characteristic);
 }
 
-- (BOOL) isConnected {
-  return self.myPeripheral.state == CBPeripheralStateConnected;
+- (RileyLinkState) state {
+  RileyLinkState rval;
+  switch (self.myPeripheral.state) {
+    case CBPeripheralStateConnected:
+      rval = RILEY_LINK_STATE_CONNECTED;
+      break;
+    case CBPeripheralStateConnecting:
+      rval = RILEY_LINK_STATE_CONNECTING;
+      break;
+    default:
+      rval = RILEY_LINK_STATE_DISCONNECTED;
+      break;
+  }
+  return rval;
 }
 
 - (void) setPeripheral:(id)peripheral {

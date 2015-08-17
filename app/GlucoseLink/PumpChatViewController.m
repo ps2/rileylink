@@ -14,6 +14,7 @@
 
 @interface PumpChatViewController () {
   IBOutlet UILabel *resultsLabel;
+  IBOutlet UILabel *batteryVoltage;
   IBOutlet UILabel *pumpIdLabel;
 }
 
@@ -62,7 +63,7 @@
   if (p.messageType == MESSAGE_TYPE_PUMP_STATUS_ACK) {
     resultsLabel.text = @"Pump acknowleged wakeup!";
     // Send query for pump model #
-    NSString *packetStr = [@"a7" stringByAppendingFormat:@"%@8d00", [[Config sharedInstance] pumpID]];
+    NSString *packetStr = [@"a7" stringByAppendingFormat:@"%@%02x00", [[Config sharedInstance] pumpID], MESSAGE_TYPE_GET_PUMP_MODEL];
     NSData *data = [NSData dataWithHexadecimalString:packetStr];
     [_device sendPacketData:[MinimedPacket encodeData:data]];
   } else if (p.messageType == MESSAGE_TYPE_GET_PUMP_MODEL) {
@@ -70,6 +71,19 @@
     NSString *version = [NSString stringWithCString:&[p.data bytes][7] encoding:NSASCIIStringEncoding];
     resultsLabel.text = [@"Pump Model: " stringByAppendingString:version];
     
+    // Send query for battery status
+    NSString *packetStr = [@"a7" stringByAppendingFormat:@"%@%02x00", [[Config sharedInstance] pumpID], MESSAGE_TYPE_GET_BATTERY];
+    NSData *data = [NSData dataWithHexadecimalString:packetStr];
+    [_device sendPacketData:[MinimedPacket encodeData:data]];
+    
+    
+    
+  } else if (p.messageType == MESSAGE_TYPE_GET_BATTERY) {
+    unsigned char *data = (unsigned char *)[p.data bytes] + 6;
+    
+    NSInteger volts = (((int)data[1]) << 8) + data[2];
+    NSString *indicator = data[0] ? @"Low" : @"Normal";
+    batteryVoltage.text = [indicator stringByAppendingFormat:@"%0.02f", volts/100.0];
   }
   
 }
