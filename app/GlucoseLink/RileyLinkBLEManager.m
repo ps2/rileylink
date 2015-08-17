@@ -12,9 +12,8 @@
 
 static NSDateFormatter *iso8601Formatter;
 
-@interface RileyLinkBLEManager () <CBCentralManagerDelegate, CBPeripheralDelegate> {
+@interface RileyLinkBLEManager () <CBCentralManagerDelegate> {
   NSTimer *reconnectTimer;
-  NSMutableDictionary *peripheralsById; // CBPeripherals by UUID
   NSMutableDictionary *devicesById; // RileyLinkBLEDevices by UUID
 }
 
@@ -26,6 +25,22 @@ static NSDateFormatter *iso8601Formatter;
 
 @implementation RileyLinkBLEManager
 
++ (NSArray *)UUIDsFromUUIDStrings:(NSArray *)UUIDStrings
+              excludingAttributes:(NSArray *)attributes {
+  NSMutableArray *unmatchedUUIDStrings = [UUIDStrings mutableCopy];
+
+  for (CBAttribute *attribute in attributes) {
+    [unmatchedUUIDStrings removeObject:attribute.UUID.UUIDString];
+  }
+
+  NSMutableArray *UUIDs = [NSMutableArray array];
+
+  for (NSString *UUIDString in unmatchedUUIDStrings) {
+    [UUIDs addObject:[CBUUID UUIDWithString:UUIDString]];
+  }
+
+  return [NSArray arrayWithArray:UUIDs];
+}
 
 + (id)sharedManager {
   static RileyLinkBLEManager *sharedMyRileyLink = nil;
@@ -46,10 +61,11 @@ static NSDateFormatter *iso8601Formatter;
 {
   self = [super init];
   if (self) {
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _centralManager = [[CBCentralManager alloc] initWithDelegate:self
+                                                             queue:nil
+                                                           options:@{CBCentralManagerOptionRestoreIdentifierKey: @"com.rileylink.CentralManager"}];
     _data = [[NSMutableData alloc] init];
-    
-    peripheralsById = [NSMutableDictionary dictionary];
+
     devicesById = [NSMutableDictionary dictionary];
   }
   return self;
@@ -62,26 +78,36 @@ static NSDateFormatter *iso8601Formatter;
   return device;
 }
 
-- (void)stop {
-  NSLog(@"Stopping scan");
-  [_centralManager stopScan];
+- (void)setScanningEnabled:(BOOL)scanningEnabled {
+    if (scanningEnabled && _centralManager.state == CBCentralManagerStatePoweredOn) {
+        [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]] options:NULL];
+        NSLog(@"Scanning started (state = powered on)");
+    } else if (!scanningEnabled || _centralManager.state == CBCentralManagerStatePoweredOff) {
+        [_centralManager stopScan];
+    }
+
+    _scanningEnabled = scanningEnabled;
 }
 
 - (void) sendNotice:(NSString*)name {
   [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil];
 }
 
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict {
+    NSArray *peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey];
+
+    for (CBPeripheral *peripheral in peripherals) {
+        [self addPeripheralToDeviceList:peripheral];
+    }
+}
+
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-  // You should test all scenarios
-  if (central.state != CBCentralManagerStatePoweredOn) {
-    return;
-  }
-  
-  if (central.state == CBCentralManagerStatePoweredOn) {
-    // Scan for devices
-    [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]] options:NULL];
-    NSLog(@"Scanning started (state = powered on)");
-  }
+    self.scanningEnabled = self.isScanningEnabled;
+
+    if (central.state != CBCentralManagerStatePoweredOn && reconnectTimer.isValid) {
+        [reconnectTimer invalidate];
+        reconnectTimer = nil;
+    }
 }
 
 - (NSArray*)rileyLinkList {
@@ -91,24 +117,28 @@ static NSDateFormatter *iso8601Formatter;
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
   
   NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
-  
-  peripheralsById[peripheral.identifier.UUIDString] = peripheral;
-  
+
+  RileyLinkBLEDevice *device = [self addPeripheralToDeviceList:peripheral];
+
+  device.RSSI = RSSI;
+
+  [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
+}
+
+- (RileyLinkBLEDevice *)addPeripheralToDeviceList:(CBPeripheral *)peripheral {
   RileyLinkBLEDevice *d = devicesById[peripheral.identifier.UUIDString];
   if (devicesById[peripheral.identifier.UUIDString] == NULL) {
     d = [self newRileyLinkFromPeripheral:peripheral];
     devicesById[peripheral.identifier.UUIDString] = d;
   }
-  d.RSSI = RSSI;
   d.name = peripheral.name;
   d.peripheral = peripheral;
-  
-  [self sendNotice:RILEY_LINK_EVENT_LIST_UPDATED];
-  
+
   if ([self.autoConnectIds indexOfObject:d.peripheralId] != NSNotFound) {
     [self connectToRileyLink:d];
   }
-  
+
+  return d;
 }
 
 - (void)addDeviceToAutoConnectList:(RileyLinkBLEDevice*)device {
@@ -137,11 +167,12 @@ static NSDateFormatter *iso8601Formatter;
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-  
+
   NSLog(@"Discovering services");
-  [peripheral discoverServices:@[[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID],
-                                 [CBUUID UUIDWithString:GLUCOSELINK_BATTERY_SERVICE]]];
-  
+  [peripheral discoverServices:[[self class] UUIDsFromUUIDStrings:@[GLUCOSELINK_SERVICE_UUID,
+                                                                    GLUCOSELINK_BATTERY_SERVICE]
+                                              excludingAttributes:peripheral.services]];
+
   NSDictionary *attrs = @{
                           @"peripheral": peripheral,
                           @"device": devicesById[peripheral.identifier.UUIDString]
@@ -156,13 +187,21 @@ static NSDateFormatter *iso8601Formatter;
 }
 
 - (void)attemptReconnectForDisconnectedDevices {
+  NSInteger reconnectCount = 0;
+
   for (RileyLinkBLEDevice *device in [self rileyLinkList]) {
     CBPeripheral *peripheral = device.peripheral;
     if (peripheral.state == CBPeripheralStateDisconnected
         && [self.autoConnectIds indexOfObject:device.peripheralId] != NSNotFound) {
       NSLog(@"Attempting reconnect to %@", device);
       [self connectToRileyLink:device];
+      reconnectCount++;
     }
+  }
+
+  if (reconnectCount == 0 && reconnectTimer.isValid) {
+    [reconnectTimer invalidate];
+    reconnectTimer = nil;
   }
 }
 

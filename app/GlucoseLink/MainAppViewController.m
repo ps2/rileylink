@@ -50,8 +50,9 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
-  
-  [[RileyLinkBLEManager sharedManager] stop];
+
+  NSLog(@"Stopping scan");
+  [RileyLinkBLEManager sharedManager].scanningEnabled = NO;
 }
 
 - (void)setupAutoConnect {

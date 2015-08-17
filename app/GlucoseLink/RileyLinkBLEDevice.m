@@ -72,7 +72,7 @@
     copiesLeftToSend = currentSendTask.repeatCount;
     [sendTasks removeObjectAtIndex:0];
     NSLog(@"Prepping for send: %@", [currentSendTask.data hexadecimalString]);
-    [self.myPeripheral writeValue:currentSendTask.data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self.peripheral writeValue:currentSendTask.data forCharacteristic:packetTxCharacteristic type:CBCharacteristicWriteWithResponse];
   }
 }
 
@@ -80,7 +80,7 @@
   if (copiesLeftToSend > 0) {
     NSLog(@"Sending copy %ld", (currentSendTask.repeatCount - copiesLeftToSend) + 1);
     NSData *trigger = [NSData dataWithHexadecimalString:@"01"];
-    [self.myPeripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self.peripheral writeValue:trigger forCharacteristic:txTriggerCharacteristic type:CBCharacteristicWriteWithResponse];
     copiesLeftToSend--;
   }
   
@@ -107,7 +107,7 @@
 - (void) setRXChannel:(unsigned char)channel {
   if (rxChannelCharacteristic) {
     NSData *data = [NSData dataWithBytes:&channel length:1];
-    [self.myPeripheral writeValue:data forCharacteristic:rxChannelCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self.peripheral writeValue:data forCharacteristic:rxChannelCharacteristic type:CBCharacteristicWriteWithResponse];
   } else {
     NSLog(@"Missing rx channel characteristic");
   }
@@ -116,7 +116,7 @@
 - (void) setTXChannel:(unsigned char)channel {
   if (rxChannelCharacteristic) {
     NSData *data = [NSData dataWithBytes:&channel length:1];
-    [self.myPeripheral writeValue:data forCharacteristic:txChannelCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self.peripheral writeValue:data forCharacteristic:txChannelCharacteristic type:CBCharacteristicWriteWithResponse];
   } else {
     NSLog(@"Missing tx channel characteristic");    
   }
@@ -135,16 +135,16 @@
 }
 
 - (BOOL) isConnected {
-  return self.myPeripheral.state == CBPeripheralStateConnected;
+  return self.peripheral.state == CBPeripheralStateConnected;
 }
 
-- (void) setPeripheral:(id)peripheral {
+- (void) setPeripheral:(CBPeripheral *)peripheral {
   _peripheral = peripheral;
-  self.myPeripheral.delegate = self;
-}
+    peripheral.delegate = self;
 
-- (CBPeripheral *) myPeripheral {
-  return (CBPeripheral *) _peripheral;
+    for (CBService *service in peripheral.services) {
+        [self setCharacteristicsFromService:service];
+    }
 }
 
 - (void) connect {
@@ -157,8 +157,31 @@
 
    
 - (void)updateBatteryLevel {
-  [self.myPeripheral readValueForCharacteristic:batteryCharacteristic];
-  [self.myPeripheral readRSSI];
+  [self.peripheral readValueForCharacteristic:batteryCharacteristic];
+  [self.peripheral readRSSI];
+}
+
+- (void)setCharacteristicsFromService:(CBService *)service {
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT]]) {
+            [self.peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            packetCountCharacteristic = characteristic;
+            [self.peripheral readValueForCharacteristic:characteristic];
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID]]) {
+            rxChannelCharacteristic = characteristic;
+            [self setRXChannel:2];
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID]]) {
+            txChannelCharacteristic = characteristic;
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
+            packetRxCharacteristic = characteristic;
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID]]) {
+            packetTxCharacteristic = characteristic;
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_TRIGGER_UUID]]) {
+            txTriggerCharacteristic = characteristic;
+        } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_UUID]]) {
+            batteryCharacteristic = characteristic;
+        }
+    }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
@@ -169,15 +192,18 @@
   NSLog(@"didDiscoverServices: %@, %@", peripheral, peripheral.services);
   for (CBService *service in peripheral.services) {
     if ([service.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_SERVICE]]) {
-      [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_UUID]] forService:service];
+      [peripheral discoverCharacteristics:[RileyLinkBLEManager UUIDsFromUUIDStrings:@[GLUCOSELINK_BATTERY_UUID]
+                                                                excludingAttributes:service.characteristics]
+                               forService:service];
     } else if ([service.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_SERVICE_UUID]]) {
-      [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID],
-                                            [CBUUID UUIDWithString:GLUCOSELINK_TX_TRIGGER_UUID],
-                                            ] forService:service];
+        [peripheral discoverCharacteristics:[RileyLinkBLEManager UUIDsFromUUIDStrings:@[GLUCOSELINK_RX_PACKET_UUID,
+                                                                                        GLUCOSELINK_RX_CHANNEL_UUID,
+                                                                                        GLUCOSELINK_TX_CHANNEL_UUID,
+                                                                                        GLUCOSELINK_PACKET_COUNT,
+                                                                                        GLUCOSELINK_TX_PACKET_UUID,
+                                                                                        GLUCOSELINK_TX_TRIGGER_UUID]
+                                                                excludingAttributes:service.characteristics]
+                               forService:service];
     }
   }
   // Discover other characteristics
@@ -192,27 +218,8 @@
     [self cleanup];
     return;
   }
-  
-  for (CBCharacteristic *characteristic in service.characteristics) {
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT]]) {
-      [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-      packetCountCharacteristic = characteristic;
-      [peripheral readValueForCharacteristic:characteristic];
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_CHANNEL_UUID]]) {
-      rxChannelCharacteristic = characteristic;
-      [self setRXChannel:2];
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_CHANNEL_UUID]]) {
-      txChannelCharacteristic = characteristic;
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_RX_PACKET_UUID]]) {
-      packetRxCharacteristic = characteristic;
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_PACKET_UUID]]) {
-      packetTxCharacteristic = characteristic;
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_TX_TRIGGER_UUID]]) {
-      txTriggerCharacteristic = characteristic;
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_BATTERY_UUID]]) {
-      batteryCharacteristic = characteristic;
-    }
-  }
+
+    [self setCharacteristicsFromService:service];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
@@ -267,13 +274,13 @@
   NSLog(@"Entering cleanup");
   
   // See if we are subscribed to a characteristic on the peripheral
-  if (self.myPeripheral.services != nil) {
-    for (CBService *service in self.myPeripheral.services) {
+  if (self.peripheral.services != nil) {
+    for (CBService *service in self.peripheral.services) {
       if (service.characteristics != nil) {
         for (CBCharacteristic *characteristic in service.characteristics) {
           if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:GLUCOSELINK_PACKET_COUNT]]) {
             if (characteristic.isNotifying) {
-              [self.myPeripheral setNotifyValue:NO forCharacteristic:characteristic];
+              [self.peripheral setNotifyValue:NO forCharacteristic:characteristic];
               return;
             }
           }

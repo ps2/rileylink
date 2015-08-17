@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * RSSI;
 @property (nonatomic, retain) NSString * peripheralId;
-@property (nonatomic, retain) id peripheral;
+@property (nonatomic, retain) CBPeripheral * peripheral;
 
 - (NSArray*) packets;
 
