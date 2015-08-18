@@ -46,6 +46,20 @@
   [self processVisibleDevices];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+
+  [RileyLinkBLEManager sharedManager].scanningEnabled = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+
+  [RileyLinkBLEManager sharedManager].scanningEnabled = NO;
+}
+
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver: self];
