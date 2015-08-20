@@ -22,7 +22,7 @@ The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware
 
 ### App
 
-The RileyLink iOS app connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
+The [RileyLink iOS app](https://github.com/ps2/rileylink_ios) connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
 
 ### License
 
