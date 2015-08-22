@@ -99,14 +99,13 @@ procedure read_rx_packet()
   call hardware_io_port_write(0, $10, 0)
   call hardware_spi_transfer(0,1,"\x03")
   call hardware_spi_transfer(0,1,"\x00")(result,channel,tlen,tmp(0))
-  psize = tmp(0)
+  psize = tmp(0:1)
   
   if psize > 0
 	 # ask cc1110 for packet rssi.
 	call hardware_spi_transfer(0,1,"\x10")
 	call hardware_spi_transfer(0,1,"\x00")(result,channel,tlen,buf(0))
 	 # ask cc1110 for packet number.
-	buf(1) = 77
 	call hardware_spi_transfer(0,1,"\x07")
 	call hardware_spi_transfer(0,1,"\x00")(result,channel,tlen,buf(1))
 	buf_idx = 2
@@ -225,7 +224,7 @@ event hardware_soft_timer(handle)
   call hardware_spi_transfer(0,1,"\x00")(result,channel,tlen,tmp(0))
   call hardware_io_port_write(0, $10, $10)
   if tmp(0) != packet_count then
-    packet_count = tmp(0)
+    packet_count = tmp(0:1)
 	call attributes_write(xgatt_rx_packet_count,0,1,packet_count)
   end if 
   

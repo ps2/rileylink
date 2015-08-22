@@ -55,7 +55,7 @@
 0:0	gap_non_discoverable
 0:0	gap_scan_policy_all
 0:0	gap_scan_policy_whitelist
-0:0	gap_scannable_connectable
+0:0	gap_scannable_non_connectable
 0:0	gap_undirected_connectable
 0:0	gap_user_data
 0:0	sm_bonding_key_addr_public
