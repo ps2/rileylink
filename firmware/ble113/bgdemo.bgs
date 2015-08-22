@@ -223,7 +223,7 @@ event hardware_soft_timer(handle)
   call hardware_spi_transfer(0,1,"\x0b")
   call hardware_spi_transfer(0,1,"\x00")(result,channel,tlen,tmp(0))
   call hardware_io_port_write(0, $10, $10)
-  if tmp(0) != packet_count then
+  if tmp(0:1) != packet_count then
     packet_count = tmp(0:1)
 	call attributes_write(xgatt_rx_packet_count,0,1,packet_count)
   end if 
