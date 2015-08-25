@@ -13,7 +13,7 @@ Please understand that this project:
 ### Setup
 
  * There is a [FAQ](https://docs.google.com/document/d/1-KlewmRObpUWCTQSq9EPraN8R-6rCksJS_sRSQSexX0/edit#) covering some questions about installing the firmware.
- * @loudnate recorded a [setup log](https://docs.google.com/document/d/1-bGBXbxVKOs_tDXi68qiOD7bIT6tQlkQydXn5Q-afLc/edit) of his experience.
+ * [@loudnate](https://github.com/loudnate) recorded a [setup log](https://docs.google.com/document/d/1-bGBXbxVKOs_tDXi68qiOD7bIT6tQlkQydXn5Q-afLc/edit) of his experience.
 
 ### Hardware
 
