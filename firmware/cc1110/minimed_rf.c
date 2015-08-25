@@ -32,13 +32,13 @@ uint8_t SLEEP;
 
 #endif
 
-uint8_t lastCmd = CMD_NOP;
+volatile uint8_t lastCmd = CMD_NOP;
 
 // SPI Mode
 #define SPI_MODE_CMD  0
 #define SPI_MODE_ARG  1
 #define SPI_MODE_READ 2
-static uint8_t spiMode = SPI_MODE_CMD;
+volatile static uint8_t spiMode = SPI_MODE_CMD;
 
 // Errors
 #define ERROR_DATA_BUFFER_OVERFLOW 0x50
@@ -65,18 +65,18 @@ static uint8_t spiMode = SPI_MODE_CMD;
 #define BIT7 0x80
 
 // Radio mode
-uint8_t radioMode = RADIO_MODE_RX;
+volatile uint8_t radioMode = RADIO_MODE_RX;
 
 // Channels
-static uint8_t rxChannel;
-static uint8_t txChannel;
+volatile static uint8_t rxChannel;
+volatile static uint8_t txChannel;
 
 // Data buffer
-static int16_t bufferWritePos = 0;
-static int16_t bufferReadPos = 0;
-static uint16_t dataBufferBytesUsed = 0;
+volatile static int16_t bufferWritePos = 0;
+volatile static int16_t bufferReadPos = 0;
+volatile static uint16_t dataBufferBytesUsed = 0;
 
-static uint8_t packetNumber = 0;
+volatile static uint8_t packetNumber = 0;
 
 // Packet
 typedef struct Packet {
@@ -86,41 +86,41 @@ typedef struct Packet {
   uint8_t packetNumber;
 } Packet;
 
-static int16_t packetCount = 0;
-static int16_t packetHeadIdx = 0;
-static int16_t packetTailIdx = 0;
+volatile static int16_t packetCount = 0;
+volatile static int16_t packetHeadIdx = 0;
+volatile static int16_t packetTailIdx = 0;
 
 // Packet sending counters
-static int16_t currentPacketByteIdx = 0;
-static int16_t currentPacketBytesRemaining = 0;
-static int16_t crcErrorCount = 0;
+volatile static int16_t currentPacketByteIdx = 0;
+volatile static int16_t currentPacketBytesRemaining = 0;
+volatile static int16_t crcErrorCount = 0;
 
-static uint8_t lastError = 0;
-static uint8_t sendingPacket = FALSE;
-static uint8_t packetOverflowCount = 0;
-static uint8_t bufferOverflowCount = 0;
+volatile static uint8_t lastError = 0;
+volatile static uint8_t sendingPacket = FALSE;
+volatile static uint8_t packetOverflowCount = 0;
+volatile static uint8_t bufferOverflowCount = 0;
 
-static int16_t symbolInputBitCount = 0;
-static uint16_t symbolOutputBuffer = 0;
-static int16_t symbolOutputBitCount = 0;
-static int16_t symbolErrorCount = 0;
+volatile static int16_t symbolInputBitCount = 0;
+volatile static uint16_t symbolOutputBuffer = 0;
+volatile static int16_t symbolOutputBitCount = 0;
+volatile static int16_t symbolErrorCount = 0;
 
 // Packet transmitting
-static int16_t radioOutputBufferWritePos = 0;
-static int16_t radioOutputBufferReadPos = 0;
-static int16_t radioOutputDataLength = 0;
+volatile static int16_t radioOutputBufferWritePos = 0;
+volatile static int16_t radioOutputBufferReadPos = 0;
+volatile static int16_t radioOutputDataLength = 0;
 
 // 1024 bytes (0xfb00 - 0xff00)
-static uint8_t XDATA(0xfb00) dataBuffer[BUFFER_SIZE]; // RF Input buffer
+volatile static uint8_t XDATA(0xfb00) dataBuffer[BUFFER_SIZE]; // RF Input buffer
 
 // 100 * 5 bytes = 500 bytes
-static Packet XDATA(0xf7a8) packets[MAX_PACKETS];
+volatile static Packet XDATA(0xf7a8) packets[MAX_PACKETS];
 
-static uint8_t XDATA(0xf5a8) radioOutputBuffer[256];
+volatile static uint8_t XDATA(0xf5a8) radioOutputBuffer[256];
 
-static uint16_t symbolInputBuffer = 0;
+volatile static uint16_t symbolInputBuffer = 0;
 
-static int16_t timerCounter = 0;
+volatile static int16_t timerCounter = 0;
 
 
 void initMinimedRF() {

@@ -35,7 +35,7 @@ void enterTX();
 #define RADIO_MODE_IDLE 0
 #define RADIO_MODE_RX   1
 #define RADIO_MODE_TX   2
-extern uint8_t radioMode;
+extern volatile uint8_t radioMode;
 
 // RileyLink HW
 #define GREEN_LED P0_0
