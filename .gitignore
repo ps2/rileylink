@@ -34,3 +34,6 @@ eagle.epf
 *.info
 
 *.eps
+
+# BLE compilation
+firmware/ble113/out.hex

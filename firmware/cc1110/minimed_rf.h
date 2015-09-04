@@ -1,5 +1,5 @@
-#ifndef MINIMED_RF_H
-#define MINIMED_RF_H
+#pragma once
+#include <stdint.h>
 
 void initMinimedRF();
 void handleRX0();
@@ -7,7 +7,7 @@ void handleRX1();
 void handleRFTXRX();
 void handleRF();
 void handleTimer();
-void setRXChannel(unsigned char newChannel);
+void setRXChannel(uint8_t newChannel);
 
 void enterRX();
 void enterTX();
@@ -35,7 +35,7 @@ void enterTX();
 #define RADIO_MODE_IDLE 0
 #define RADIO_MODE_RX   1
 #define RADIO_MODE_TX   2
-extern unsigned char radioMode;
+extern volatile uint8_t radioMode;
 
 // RileyLink HW
 #define GREEN_LED P0_0
@@ -43,19 +43,19 @@ extern unsigned char radioMode;
 
 #ifdef MOCK_RADIO
 
-extern unsigned char U0DBUF;
-extern unsigned char CHANNR;
-extern unsigned char P0_0;
-extern unsigned char P1_0;
-extern unsigned char P1_1;
-extern unsigned char EA;
-extern unsigned char WDCTL;
-extern unsigned char RFTXRXIE;
-extern unsigned char MARCSTATE;
-extern unsigned char RFIF;
-extern unsigned char RFD;
-extern unsigned char S1CON;
-extern unsigned char SLEEP;
+extern uint8_t U0DBUF;
+extern uint8_t CHANNR;
+extern uint8_t P0_0;
+extern uint8_t P1_0;
+extern uint8_t P1_1;
+extern uint8_t EA;
+extern uint8_t WDCTL;
+extern uint8_t RFTXRXIE;
+extern uint8_t MARCSTATE;
+extern uint8_t RFIF;
+extern uint8_t RFD;
+extern uint8_t S1CON;
+extern uint8_t SLEEP;
 
 #define MARC_STATE_RX 1
 #define MARC_STATE_TX 2
@@ -71,4 +71,3 @@ extern unsigned char SLEEP;
 #endif
 
 
-#endif

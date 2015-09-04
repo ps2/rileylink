@@ -10,6 +10,11 @@ Please understand that this project:
  * *Is highly experimental*
  * *Is not intended for therapy*
 
+### Setup
+
+ * There is a [FAQ](https://docs.google.com/document/d/1-KlewmRObpUWCTQSq9EPraN8R-6rCksJS_sRSQSexX0/edit#) covering some questions about installing the firmware.
+ * [@loudnate](https://github.com/loudnate) recorded a [setup log](https://docs.google.com/document/d/1-bGBXbxVKOs_tDXi68qiOD7bIT6tQlkQydXn5Q-afLc/edit) of his experience.
+
 ### Hardware
 
 See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) directory for design files to build a RileyLink. The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).  This board has small parts and will need to be reflow soldered; using a solder-paste stencil is recommended. 

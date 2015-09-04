@@ -1,42 +1,44 @@
-/* Minimed RF communications */
+﻿/* Minimed RF communications */
 
 /* Note: must issue software reset (command = 4) before transferring data
  * to make sure spi is synced */
 
- #include "minimed_rf.h"
+#include "minimed_rf.h"
+#include <stdint.h>
 
 #ifdef __GNUC__
 #define XDATA(x)
 #else
 #define XDATA(x) __xdata __at x
+//#define XDATA(x) __xdata
 #endif
 
 #ifdef MOCK_RADIO
 
 #include <stdio.h>
-unsigned char U1DBUF;
-unsigned char CHANNR;
-unsigned char P0_0;
-unsigned char P1_0;
-unsigned char P1_1;
-unsigned char EA;
-unsigned char WDCTL;
-unsigned char RFTXRXIE;
-unsigned char MARCSTATE;
-unsigned char RFIF;
-unsigned char RFD;
-unsigned char S1CON;
-unsigned char SLEEP;
+uint8_t U1DBUF;
+uint8_t CHANNR;
+uint8_t P0_0;
+uint8_t P1_0;
+uint8_t P1_1;
+uint8_t EA;
+uint8_t WDCTL;
+uint8_t RFTXRXIE;
+uint8_t MARCSTATE;
+uint8_t RFIF;
+uint8_t RFD;
+uint8_t S1CON;
+uint8_t SLEEP;
 
 #endif
 
-unsigned char lastCmd = CMD_NOP;
+volatile uint8_t lastCmd = CMD_NOP;
 
 // SPI Mode
 #define SPI_MODE_CMD  0
 #define SPI_MODE_ARG  1
 #define SPI_MODE_READ 2
-unsigned char spiMode = SPI_MODE_CMD;
+volatile static uint8_t spiMode = SPI_MODE_CMD;
 
 // Errors
 #define ERROR_DATA_BUFFER_OVERFLOW 0x50
@@ -63,91 +65,65 @@ unsigned char spiMode = SPI_MODE_CMD;
 #define BIT7 0x80
 
 // Radio mode
-unsigned char radioMode = RADIO_MODE_RX;
+volatile uint8_t radioMode = RADIO_MODE_RX;
 
 // Channels
-unsigned char rxChannel;
-unsigned char txChannel;
+volatile static uint8_t rxChannel;
+volatile static uint8_t txChannel;
 
 // Data buffer
-int bufferWritePos = 0;
-int bufferReadPos = 0;
-unsigned int dataBufferBytesUsed = 0;
+volatile static int16_t bufferWritePos = 0;
+volatile static int16_t bufferReadPos = 0;
+volatile static uint16_t dataBufferBytesUsed = 0;
 
-unsigned char packetNumber = 0;
+volatile static uint8_t packetNumber = 0;
 
 // Packet
 typedef struct Packet {
-  int dataStartIdx;
-  unsigned char length;
-  unsigned char rssi;
-  unsigned char packetNumber;
+  int16_t dataStartIdx;
+  uint8_t length;
+  uint8_t rssi;
+  uint8_t packetNumber;
 } Packet;
 
-int packetCount = 0;
-int packetHeadIdx = 0;
-int packetTailIdx = 0;
+volatile static int16_t packetCount = 0;
+volatile static int16_t packetHeadIdx = 0;
+volatile static int16_t packetTailIdx = 0;
 
 // Packet sending counters
-int currentPacketByteIdx = 0;
-int currentPacketBytesRemaining = 0;
-int crcErrorCount = 0;
+volatile static int16_t currentPacketByteIdx = 0;
+volatile static int16_t currentPacketBytesRemaining = 0;
+volatile static int16_t crcErrorCount = 0;
 
-unsigned char lastError = 0;
-unsigned char sendingPacket = FALSE;
-unsigned char packetOverflowCount = 0;
-unsigned char bufferOverflowCount = 0;
+volatile static uint8_t lastError = 0;
+volatile static uint8_t sendingPacket = FALSE;
+volatile static uint8_t packetOverflowCount = 0;
+volatile static uint8_t bufferOverflowCount = 0;
 
-int symbolInputBitCount = 0;
-unsigned int symbolOutputBuffer = 0;
-int symbolOutputBitCount = 0;
-int symbolErrorCount = 0;
+volatile static int16_t symbolInputBitCount = 0;
+volatile static uint16_t symbolOutputBuffer = 0;
+volatile static int16_t symbolOutputBitCount = 0;
+volatile static int16_t symbolErrorCount = 0;
 
 // Packet transmitting
-int radioOutputBufferWritePos = 0;
-int radioOutputBufferReadPos = 0;
-int radioOutputDataLength = 0;
+volatile static int16_t radioOutputBufferWritePos = 0;
+volatile static int16_t radioOutputBufferReadPos = 0;
+volatile static int16_t radioOutputDataLength = 0;
 
 // 1024 bytes (0xfb00 - 0xff00)
-unsigned char XDATA(0xfb00) dataBuffer[BUFFER_SIZE]; // RF Input buffer
+volatile static uint8_t XDATA(0xfb00) dataBuffer[BUFFER_SIZE]; // RF Input buffer
 
 // 100 * 5 bytes = 500 bytes
-Packet XDATA(0xf7a8) packets[MAX_PACKETS];
+volatile static Packet XDATA(0xf7a8) packets[MAX_PACKETS];
 
-// 256 bytes
-unsigned char XDATA(0xf6a8) crcTable[256];
+volatile static uint8_t XDATA(0xf5a8) radioOutputBuffer[256];
 
-// 256 bytes
-unsigned char XDATA(0xf5a8) radioOutputBuffer[256];
+volatile static uint16_t symbolInputBuffer = 0;
 
-// Symbol decoding - 53 bytes + 1 pad 
-unsigned char XDATA(0xf572) symbolTable[] = {16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 16, 13, 14, 16, 16, 16, 16, 16, 16, 0, 7, 16, 16, 9, 8, 16, 15, 16, 16, 16, 16, 16, 16, 3, 16, 5, 6, 16, 16, 16, 10, 16, 12, 16, 16, 16, 16, 1, 2, 16, 4};
-
-unsigned int symbolInputBuffer = 0;
-
-int timerCounter = 0;
+volatile static int16_t timerCounter = 0;
 
 
 void initMinimedRF() {
-
-  // init crc table
-  unsigned char polynomial = 0x9b;
-  const unsigned char msbit = 0x80;
-  int i, j;
-  unsigned char t = 1;
-
-  crcTable[0] = 0;
-
-  // msb
-  t = msbit;
-  for (i = 1; i < 256; i *= 2) {
-    t = (t << 1) ^ (t & msbit ? polynomial : 0);
-    for (j = 0; j < i; j++) {
-      //printf("i = %d, j = %d, t = %d\n", i, j, t);
-      crcTable[i+j] = crcTable[j] ^ t;
-    }
-  }
-
   // Initialize first packet
   packets[0].dataStartIdx = 0;
   packets[0].length = 0;
@@ -155,9 +131,9 @@ void initMinimedRF() {
   setRXChannel(2);
 }
 
-unsigned char cmdGetByte() {
+static uint8_t cmdGetByte() {
   Packet *packet;
-  unsigned char rval = 0;
+  uint8_t rval = 0;
   if (packetCount > 0)
   {
     packet = &packets[packetTailIdx];
@@ -192,7 +168,7 @@ unsigned char cmdGetByte() {
   return rval;
 }
 
-void doCommand(unsigned char cmd) {
+static void doCommand(uint8_t cmd) {
   lastCmd = cmd;
   switch (cmd) {
   case CMD_GET_CHANNEL:
@@ -232,7 +208,7 @@ void doCommand(unsigned char cmd) {
     U1DBUF = radioMode;
     break;
   case CMD_GET_PACKET_COUNT:
-    U1DBUF = packetCount; 
+    U1DBUF = packetCount;
     break;
   case CMD_GET_PACKET_HEAD_IDX:
     U1DBUF = packetHeadIdx;
@@ -253,7 +229,7 @@ void doCommand(unsigned char cmd) {
   }
 }
 
-void setRXChannel(unsigned char newChannel) {
+void setRXChannel(uint8_t newChannel) {
   rxChannel = newChannel;
   // Guard against using remote channel
   if (newChannel != 4) {
@@ -262,9 +238,8 @@ void setRXChannel(unsigned char newChannel) {
   }
 }
 
-
 void handleRX1() {
-  unsigned char value;
+  uint8_t value;
   if (spiMode == SPI_MODE_CMD) {
     doCommand(U1DBUF);
   } else if (spiMode == SPI_MODE_ARG) {
@@ -298,7 +273,7 @@ void handleRX1() {
   }
 }
 
-void dropCurrentPacket() {
+static void dropCurrentPacket() {
   bufferWritePos = packets[packetHeadIdx].dataStartIdx;
   dataBufferBytesUsed -= packets[packetHeadIdx].length;
   packets[packetHeadIdx].length = 0;
@@ -306,7 +281,7 @@ void dropCurrentPacket() {
   RFTXRXIE = 0;
 }
 
-void addDecodedByte(unsigned char value) {
+static void addDecodedByte(uint8_t value) {
   if (dataBufferBytesUsed < BUFFER_SIZE) {
     dataBuffer[bufferWritePos] = value;
     bufferWritePos++;
@@ -324,14 +299,14 @@ void addDecodedByte(unsigned char value) {
   }
 }
 
-void finishIncomingPacket() {
+static void finishIncomingPacket() {
   // Compute crc
-  
-  unsigned int packetCrc;
-  unsigned char crc = 0;
+	static __code uint8_t const crcTable[256] = { 0x0, 0x9B, 0xAD, 0x36, 0xC1, 0x5A, 0x6C, 0xF7, 0x19, 0x82, 0xB4, 0x2F, 0xD8, 0x43, 0x75, 0xEE, 0x32, 0xA9, 0x9F, 0x4, 0xF3, 0x68, 0x5E, 0xC5, 0x2B, 0xB0, 0x86, 0x1D, 0xEA, 0x71, 0x47, 0xDC, 0x64, 0xFF, 0xC9, 0x52, 0xA5, 0x3E, 0x8, 0x93, 0x7D, 0xE6, 0xD0, 0x4B, 0xBC, 0x27, 0x11, 0x8A, 0x56, 0xCD, 0xFB, 0x60, 0x97, 0xC, 0x3A, 0xA1, 0x4F, 0xD4, 0xE2, 0x79, 0x8E, 0x15, 0x23, 0xB8, 0xC8, 0x53, 0x65, 0xFE, 0x9, 0x92, 0xA4, 0x3F, 0xD1, 0x4A, 0x7C, 0xE7, 0x10, 0x8B, 0xBD, 0x26, 0xFA, 0x61, 0x57, 0xCC, 0x3B, 0xA0, 0x96, 0xD, 0xE3, 0x78, 0x4E, 0xD5, 0x22, 0xB9, 0x8F, 0x14, 0xAC, 0x37, 0x1, 0x9A, 0x6D, 0xF6, 0xC0, 0x5B, 0xB5, 0x2E, 0x18, 0x83, 0x74, 0xEF, 0xD9, 0x42, 0x9E, 0x5, 0x33, 0xA8, 0x5F, 0xC4, 0xF2, 0x69, 0x87, 0x1C, 0x2A, 0xB1, 0x46, 0xDD, 0xEB, 0x70, 0xB, 0x90, 0xA6, 0x3D, 0xCA, 0x51, 0x67, 0xFC, 0x12, 0x89, 0xBF, 0x24, 0xD3, 0x48, 0x7E, 0xE5, 0x39, 0xA2, 0x94, 0xF, 0xF8, 0x63, 0x55, 0xCE, 0x20, 0xBB, 0x8D, 0x16, 0xE1, 0x7A, 0x4C, 0xD7, 0x6F, 0xF4, 0xC2, 0x59, 0xAE, 0x35, 0x3, 0x98, 0x76, 0xED, 0xDB, 0x40, 0xB7, 0x2C, 0x1A, 0x81, 0x5D, 0xC6, 0xF0, 0x6B, 0x9C, 0x7, 0x31, 0xAA, 0x44, 0xDF, 0xE9, 0x72, 0x85, 0x1E, 0x28, 0xB3, 0xC3, 0x58, 0x6E, 0xF5, 0x2, 0x99, 0xAF, 0x34, 0xDA, 0x41, 0x77, 0xEC, 0x1B, 0x80, 0xB6, 0x2D, 0xF1, 0x6A, 0x5C, 0xC7, 0x30, 0xAB, 0x9D, 0x6, 0xE8, 0x73, 0x45, 0xDE, 0x29, 0xB2, 0x84, 0x1F, 0xA7, 0x3C, 0xA, 0x91, 0x66, 0xFD, 0xCB, 0x50, 0xBE, 0x25, 0x13, 0x88, 0x7F, 0xE4, 0xD2, 0x49, 0x95, 0xE, 0x38, 0xA3, 0x54, 0xCF, 0xF9, 0x62, 0x8C, 0x17, 0x21, 0xBA, 0x4D, 0xD6, 0xE0, 0x7B };
+  uint16_t packetCrc;
+  uint8_t crc = 0;
 
-  int crcReadIdx = packets[packetHeadIdx].dataStartIdx;
-  int crcLen = packets[packetHeadIdx].length-1;
+  int16_t crcReadIdx = packets[packetHeadIdx].dataStartIdx;
+  int16_t crcLen = packets[packetHeadIdx].length-1;
 
   /* Assign rssi */
   packets[packetHeadIdx].rssi = RSSI;
@@ -383,9 +358,10 @@ void finishIncomingPacket() {
   RFTXRXIE = 0;
 }
 
-void receiveRadioSymbol(unsigned char value) {
-  unsigned char symbol;
-  unsigned char outputSymbol;
+void receiveRadioSymbol(uint8_t value) {
+	static __code uint8_t const symbolTable[] = {16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 16, 13, 14, 16, 16, 16, 16, 16, 16, 0, 7, 16, 16, 9, 8, 16, 15, 16, 16, 16, 16, 16, 16, 3, 16, 5, 6, 16, 16, 16, 10, 16, 12, 16, 16, 16, 16, 1, 2, 16, 4};
+  uint8_t symbol;
+  uint8_t outputSymbol;
   //printf("receiveRadioSymbol %d\n", value);
 
   if (value == 0) {
@@ -464,7 +440,7 @@ void handleRF()
   // Use ”else if” to check and handle other RFIF flags
 }
 
-void handleTimer() 
+void handleTimer()
 {
   timerCounter++;
   // If > 20 counts, and not in the middle of rx'ing a packet
