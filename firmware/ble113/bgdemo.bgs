@@ -158,6 +158,7 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
 	if handle = xgatt_custom_name then
 	  memcpy(name(0), value_data(0), value_len)
 	  name_len = value_len
+	  call connection_disconnect(connection)
 	end if
 	
 	if handle = xgatt_tx_packet then
@@ -233,6 +234,7 @@ event hardware_soft_timer(handle)
   else
     call hardware_io_port_write(0, $2, $0)
   end if
+  
 end
 
 
