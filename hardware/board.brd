@@ -145,6 +145,7 @@
 <text x="11.75" y="3.125" size="1.4224" layer="25">Ant</text>
 <wire x1="12.375" y1="5.75" x2="10.375" y2="5.75" width="0.8636" layer="112"/>
 <rectangle x1="0.375" y1="3.75" x2="10.375" y2="7.75" layer="112"/>
+<rectangle x1="0" y1="0" x2="10" y2="10" layer="42"/>
 </plain>
 <libraries>
 <library name="discrete">
