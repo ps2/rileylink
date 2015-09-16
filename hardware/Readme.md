@@ -8,7 +8,7 @@
 
 ### Order the PCB from OSH Park:
 
-[RileyLink v0.6](https://oshpark.com/shared_projects/qpOScHlY)
+[RileyLink v0.7](https://oshpark.com/shared_projects/vmb09BAC)
 
 ### Components
 
@@ -37,6 +37,10 @@ The case is designed to hold the [850mAh Lipo](https://www.sparkfun.com/products
 ![Case Fitting](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case_fitting.jpg)
 
 Note: there’s an issue I have with the case that I haven’t fixed yet; the board in the case can rotate a bit so that the usb port doesn’t line up with the hole. If stick a small something (like those sticky pads that keep cabinet doors from slamming) to the top of the usb port, that fixes the issue.
+
+### 868MHz (EU) version
+
+You'll need an 868 MHz antenna (part #ANT-868-JJB-RA), and an 868 MHz balun ( part # 0868BM15C0001E). You'll also need to update the frequency that the cc1110 firmware runs at.
 
 ### License
 
