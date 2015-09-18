@@ -25,6 +25,17 @@ See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) direct
 
 The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware) directory runs on the RileyLink hardware.  There are two main chips on the RileyLink, and thus two firmware images.
 
+### LED Lights
+
+There are blue and green leds near both chips. The ble113 is on the upper right of the board, and the cc1110 is in the lower middle.  
+
+Blue for the ble113 indicates there are packets received and ready for a phone to pick up. Green means the phone is connected to the ble113.
+
+On the cc1110, I blue is a timer based on/off, letting you know the firmware code is running. Green is toggled when a packet comes in.
+
+The other red LED indicates charging.
+
+
 ### App
 
 The [RileyLink iOS app](https://github.com/ps2/rileylink_ios) connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
