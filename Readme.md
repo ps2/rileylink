@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display display pump and sensor data in [Nightscout](http://nightscout.github.io/).
+A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
 
 Please understand that this project:
 
