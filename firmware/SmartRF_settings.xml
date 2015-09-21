@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE configuration SYSTEM "C:/Program Files/Texas Instruments/SmartRF Tools/SmartRF Studio 7/config/xml/configdata.dtd"[]>
+<!DOCTYPE configuration SYSTEM "C:/Program Files (x86)/Texas Instruments/SmartRF Tools/SmartRF Studio 7/config/xml/configdata.dtd"[]>
 <dcpanelconfiguration>
     <Devicename>CC1110</Devicename>
     <Description>Saved configuration data</Description>
@@ -107,6 +107,7 @@
     </registersettings>
     <dcpanel>
         <Property role="44" name="m_chkRegView">2</Property>
+        <Property role="44" name="m_chkCmdView">0</Property>
         <Property role="44" name="m_chkRfParameters">2</Property>
         <Property role="37" name="m_tabUserMode">1</Property>
         <Property role="33" name="m_easyModeSettings">-1</Property>
@@ -134,6 +135,7 @@
         <Property role="42" name="m_edtRandomPacketData">b9 72 9d 49 2c 80 7e c5 99 d5 e9 80 b2 ea c9 cc 53 bf 67 d6 bf 14 </Property>
         <Property role="42" name="m_edtPacketData"></Property>
         <Property role="42" name="m_edtAccessAddress"></Property>
+        <Property role="42" name="m_edtDeviceAddress"></Property>
         <Property role="44" name="m_chkAddSeqNbr">2</Property>
         <Property role="44" name="m_chkInfinite">0</Property>
         <Property role="44" name="m_chkInfiniteEsy">0</Property>
@@ -166,8 +168,8 @@
         <Property role="44" name="m_chkAddress">0</Property>
         <Property role="44" name="m_chkFifoAutoFlush">0</Property>
         <Property role="42" name="m_edtAddress"></Property>
-        <Property role="46" name="m_cmbLengthConfig">0</Property>
-        <Property role="42" name="m_edtLengthConfig">24</Property>
+        <Property role="46" name="m_cmbLengthConfig_adv">0</Property>
+        <Property role="42" name="m_edtLengthConfig_adv">24</Property>
     </packetrx>
     <commandpanel>
         <Property role="44" name="m_chkInsertLength">0</Property>
