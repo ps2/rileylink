@@ -78,14 +78,14 @@ void configureRadio()
   CHANNR    = 0x02; // channel number
   FSCTRL1   = 0x06; // frequency synthesizer control
   FSCTRL0   = 0x00; 
-  FREQ2     = 0x23; // frequency control word, high byte
-  FREQ1     = 0x40; // frequency control word, middle byte
-  FREQ0     = 0x78; // frequency control word, low byte
-  MDMCFG4   = 0x69; // modem configuration
-  MDMCFG3   = 0x4A; // modem configuration
+  FREQ2     = 0x26; // frequency control word, high byte
+  FREQ1     = 0x2F; // frequency control word, middle byte
+  FREQ0     = 0xD9; // frequency control word, low byte
+  MDMCFG4   = 0xB9; // modem configuration
+  MDMCFG3   = 0x66; // modem configuration
   MDMCFG2   = 0x33; // modem configuration
   MDMCFG1   = 0x61; // modem configuration
-  MDMCFG0   = 0x84; // modem configuration
+  MDMCFG0   = 0xe6; // modem configuration
   DEVIATN   = 0x15; // modem deviation setting
   MCSM2     = 0x07; 
   MCSM1     = 0x30; 
@@ -101,7 +101,7 @@ void configureRadio()
   TEST1     = 0x31; // various test settings
   TEST0     = 0x09; // various test settings
   PA_TABLE0 = 0x00; // needs to be explicitly set!
-  PA_TABLE1 = 0xC0; // pa power setting 10 dBm
+  PA_TABLE1 = 0x57; // pa power setting 0 dBm
 }
 
 void urx1_isr(void) __interrupt URX1_VECTOR
