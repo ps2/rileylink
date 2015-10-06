@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.1.0">
+<eagle version="7.4.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -10284,7 +10284,7 @@ at 30/07/2012 17:04:24</description>
 </classes>
 <parts>
 <part name="CC1110" library="parts" deviceset="CC1110" device=""/>
-<part name="X1" library="cts_crystal" deviceset="CTS_32X25_SMD" device="" value="26MHz 10pF 10ppm -20C +70C"/>
+<part name="X1" library="cts_crystal" deviceset="CTS_32X25_SMD" device="" value="24MHz 8pF 10ppm -20C +70C"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="VDD" device=""/>
@@ -10321,8 +10321,8 @@ at 30/07/2012 17:04:24</description>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="U.FL" device="" value="U.FL"/>
 <part name="U3" library="sf-bluegiga" deviceset="BLE113" device="-A"/>
-<part name="C5" library="rcl" deviceset="C-EU" device="C0402K" value="27pF"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="27pF"/>
+<part name="C5" library="rcl" deviceset="C-EU" device="C0402K" value="11pF"/>
+<part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="11pF"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
 <part name="R3" library="rcl" deviceset="R-US_" device="R0402" value="56kOhm ± 1%"/>
