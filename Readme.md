@@ -4,8 +4,6 @@
 
 A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
 
-## Note: The device as is currently can not send large packets that are recongized by a medtronic pump, so this prevents some use cases, such as sending commands to the pump.
-
 Please understand that this project:
 
  * *Has no affiliation with Medtronic*
