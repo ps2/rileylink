@@ -10321,8 +10321,8 @@ at 30/07/2012 17:04:24</description>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="U.FL" device="" value="U.FL"/>
 <part name="U3" library="sf-bluegiga" deviceset="BLE113" device="-A"/>
-<part name="C5" library="rcl" deviceset="C-EU" device="C0402K" value="11pF"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="11pF"/>
+<part name="C5" library="rcl" deviceset="C-EU" device="C0402K" value="12pF ±5%"/>
+<part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="12pF ±5%"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
 <part name="R3" library="rcl" deviceset="R-US_" device="R0402" value="56kOhm ± 1%"/>

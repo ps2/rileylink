@@ -2115,10 +2115,10 @@ Please make sure your boards conform to these design rules.</description>
 <element name="C4" library="rcl" package="C0805K" value="10 uF" x="26.43" y="19.505" smashed="yes" rot="R180">
 <attribute name="VALUE" x="27.43" y="21.405" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="C5" library="rcl" package="C0402K" value="11pF" x="18.585" y="16.835" smashed="yes" rot="R180">
+<element name="C5" library="rcl" package="C0402K" value="12pF ±5%" x="18.585" y="16.835" smashed="yes" rot="R180">
 <attribute name="VALUE" x="19.085" y="18.285" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="C6" library="rcl" package="C0402K" value="11pF" x="15.255" y="14.585" smashed="yes" rot="R90">
+<element name="C6" library="rcl" package="C0402K" value="12pF ±5%" x="15.255" y="14.585" smashed="yes" rot="R90">
 <attribute name="VALUE" x="16.705" y="14.085" size="1.016" layer="27" rot="R90"/>
 </element>
 <element name="C7" library="rcl" package="C0402" value="100nF" x="22.7" y="2.5" smashed="yes" rot="R270">
@@ -2348,7 +2348,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="16.125" y="3.25" extent="1-16" drill="0.3302" diameter="0.4064"/>
 <via x="23.25" y="13.375" extent="1-16" drill="0.3302" diameter="0.4064"/>
 <via x="26.5" y="14.625" extent="1-16" drill="0.3302" diameter="0.4064"/>
-<via x="30.625" y="16.125" extent="1-16" drill="0.3302" diameter="0.4064"/>
+<via x="29.245" y="22.615" extent="1-16" drill="0.3302" diameter="0.4064"/>
 </signal>
 <signal name="VDD">
 <contactref element="REGULATOR" pad="1"/>
