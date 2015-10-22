@@ -4,6 +4,8 @@
 
 A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
 
+*Note*: If you have a RileyLink built before Oct 6, 2015, you'll want to [upgrade to a 24MHz crystal](https://github.com/ps2/rileylink/wiki/Upgrading-to-a-24MHz-crystal) if you want to send commands to a pump. 
+
 Please understand that this project:
 
  * *Has no affiliation with Medtronic*
