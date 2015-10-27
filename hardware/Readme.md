@@ -12,7 +12,7 @@
 
 ### Components
 
-Most of the parts are available at [Mouser](http://mouser.com).  A few parts (battery and connector) I ordered from [SparkFun](http://sparkfun.com). In the bottom left corner of the board, there are two alternative antennas: a post antenna, and a chip antenna. The post antenna has much better reception, so that is what is listed in the parts list (bom.csv).  The parts for the chip antenna are not included, so some of the pads in the lower left will be empty, as shown in the photo.
+There is a [Digikey BOM](https://www.digikey.com/classic/RegisteredUser/BOMBillOfMaterials.aspx?path=1&exist=1&id=2957565) that includes all the parts for a single board minus the battery.  For the small parts, there are extra included in some cases because they're easy to lose track of while assembling, or because it's cheaper to order more.
 
 ### PCB Assembly
 
