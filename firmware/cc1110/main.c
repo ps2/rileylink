@@ -104,25 +104,13 @@ void configureRadio()
   PA_TABLE1 = 0x57; // pa power setting 0 dBm
 }
 
-void urx1_isr(void) __interrupt URX1_VECTOR
-{
-  handleRX1();
-}
+void handle_rx1(void) __interrupt URX1_VECTOR;
 
-void rftxrx_isr(void) __interrupt RFTXRX_VECTOR
-{
-  handleRFTXRX();
-}
+void handle_rftxrx(void) __interrupt RFTXRX_VECTOR;
 
-void rf_interrupt(void) __interrupt RF_VECTOR
-{
-  handleRF();
-}
+void handle_rf(void) __interrupt RF_VECTOR;
 
-void t1_interrupt(void) __interrupt T1_VECTOR
-{
-  handleTimer();
-}
+void handle_timer(void) __interrupt T1_VECTOR;
 
 int main(void)
 {
