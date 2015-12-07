@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <service uuid="1800">
+      <description>Generic Access Profile</description>
+
+      <characteristic uuid="2a00" id="xgatt_name">
+        <properties read="true" />
+        <value length="20" variable_length="true">RileyLink</value>
+      </characteristic>
+
+      <characteristic uuid="2a01">
+        <properties read="true" const="true" />
+        <value type="hex">0000</value>
+      </characteristic>
+    </service>
+
+    <service uuid="180f">
+        <description>Battery</description>
+        <characteristic uuid="2a19" id="xgatt_battery">
+            <properties read="true" />
+            <value type="user" />
+        </characteristic>
+    </service>
+
+	<service uuid="d39f1890-17eb-11e4-8c21-0800200c9a66" advertise="true">
+        <description>Radio Interface</description>
+		<characteristic uuid="41825a20-7402-11e4-8c21-0800200c9a66" id="xgatt_rx_packet_count">
+			<description>RX Packet Count</description>
+            <properties read="true" notify="true" />
+            <value type="hex">00</value>
+        </characteristic>
+        <characteristic uuid="d93b2af0-1e28-11e4-8c21-0800200c9a66" id="xgatt_custom_name">
+			<description>Custom Name</description>
+            <properties write="true" read="true" />
+            <value type="utf-8" length="20" variable_length="true">RileyLink</value>
+        </characteristic>
+        <characteristic uuid="d93b2af0-1ea8-11e4-8c21-0800200c9a66" id="xgatt_rx_channel">
+			<description>RX Channel</description>
+            <properties write="true" />
+            <value type="hex">00</value>
+        </characteristic>
+        <characteristic uuid="d93b2af0-1458-11e4-8c21-0800200c9a66" id="xgatt_tx_channel">
+			<description>TX Channel</description>
+            <properties write="true" />
+            <value type="hex">00</value>
+        </characteristic>
+        <characteristic uuid="2fb1a490-1940-11e4-8c21-0800200c9a66" id="xgatt_rx_packet">
+			<description>RX Packet Data</description>
+            <properties read="true" />
+            <value type="user" length="128" variable_length="true" />
+        </characteristic>
+        <characteristic uuid="2fb1a490-1941-11e4-8c21-0800200c9a66" id="xgatt_tx_packet">
+			<description>TX Packet Data</description>
+            <properties read="true" write="true" indicate="true" />
+            <value type="hex" length="128" variable_length="true" />
+        </characteristic>
+        <characteristic uuid="2fb1a490-1942-11e4-8c21-0800200c9a66" id="xgatt_tx_packet_trigger">
+			<description>TX Packet Send Trigger</description>
+            <properties write="true" />
+            <value type="hex" length="1" variable_length="true" />
+        </characteristic>
+    </service>
+
+</configuration>
