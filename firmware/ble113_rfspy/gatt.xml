@@ -23,7 +23,7 @@
         </characteristic>
     </service>
 
-	<service uuid="d39f1890-17eb-11e4-8c21-0800200c9a66" advertise="true">
+	<service uuid="0235733b-99c5-4197-b856-69219c2a3845" advertise="true">
         <description>Radio Interface</description>
 		<characteristic uuid="c842e849-5028-42e2-867c-016adada9155" id="xgatt_data">
 			<description>Data</description>
