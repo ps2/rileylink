@@ -1,7 +1,7 @@
 
 
 dim tmp(1)
-dim buf(220)
+dim buf(255)
 dim buf_idx
 dim buf_ready
 dim name(32)
@@ -12,7 +12,11 @@ dim continue
 dim escaping
 dim bytes_to_send
 dim tlen
+dim idx
 dim response_count
+dim expected_length
+dim send_idx
+dim chunk_size
 
 #variable to save handle
 dim batconn_handle
@@ -65,16 +69,51 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
 	  call connection_disconnect(connection)
 	end if
 	
-	if handle = xgatt_data then	  
-	  buf_idx = 0
-	  buf_ready = 0
-	  # Start a 50ms timer to read spi
-	  call hardware_set_soft_timer($666, 0, 1)
+	if handle = xgatt_data then
+	  if offset = 0 then
+	    expected_length = value_data(0:1) + 1
+		buf_idx = 0
+		idx = 1
+	  else
+	    idx = 0
+	  end if
+	  # escape data
+	  while idx < value_len
+	    tmp(0:1) = value_data(idx:1)
+		if tmp(0:1) = $99 || tmp(0:1) = $98
+		  buf(buf_idx:1) = $98
+		  buf(buf_idx+1:1) = tmp(0:1) ^ $ff
+		  buf_idx = buf_idx + 2
+		else
+		  buf(buf_idx:1) = tmp(0:1)
+		  buf_idx = buf_idx + 1
+		end if
+		idx = idx + 1
+	  end while	  
 	  
-	  # write to spi
-	  call hardware_io_port_write(0, $10, 0)
-      call hardware_spi_transfer(0,value_len, value_data(0:value_len))
-      call hardware_io_port_write(0, $10, $10)
+	  # Write to SPI if finished
+	  if offset + value_len = expected_length then
+	    bytes_to_send = buf_idx
+		send_idx = 0
+        call hardware_io_port_write(0, $10, 0)
+		while bytes_to_send > 0
+	   	  chunk_size = buf_idx - send_idx
+		  if chunk_size > 32 then
+		    chunk_size = 32
+		  end if
+          call hardware_spi_transfer(0, chunk_size, buf(send_idx:chunk_size))
+		  send_idx = send_idx + chunk_size
+		  bytes_to_send = bytes_to_send - chunk_size
+		end while
+        call hardware_io_port_write(0, $10, $10)
+		
+        # Prep for rx
+	    buf_idx = 0
+	    buf_ready = 0
+	    # Start a 50ms timer to read spi
+	    call hardware_set_soft_timer($666, 0, 1)
+	  end if
+
     end if
 	
 	if reason = 2 then # User requesting response
@@ -146,7 +185,7 @@ event hardware_soft_timer(handle)
   end if
   call hardware_io_port_write(0, $10, 0)
   while continue 
-    call hardware_spi_transfer(0,1,$00)(result,channel,tlen,tmp(0))
+    call hardware_spi_transfer(0,1,$99)(result,channel,tlen,tmp(0))
     if result = 0 && tmp(0:1) != $99 then
 	  if tmp(0:1) = $98 then # escape code
 	    escaping = 1
@@ -157,7 +196,7 @@ event hardware_soft_timer(handle)
 		end if
         buf(buf_idx:1) = tmp(0:1)
 	    buf_idx = buf_idx + 1
-		if tmp(0:1) = $0 || buf_idx = 220 then
+		if tmp(0:1) = $0 || buf_idx = 255 then
 		  response_count = response_count + 1
 		  call attributes_write(xgatt_response_count,0,1,response_count)
 		  buf_ready = 1

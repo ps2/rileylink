@@ -1,4 +1,4 @@
-301
+352
 0:0	GAP_AD_FLAG_BREDR_NOT_SUPPORTED
 0:0	GAP_AD_FLAG_GENERAL_DISCOVERABLE
 0:0	GAP_AD_FLAG_LIMITED_DISCOVERABLE
@@ -82,17 +82,21 @@
 0:0	xgatt_name
 0:0	xgatt_response_count
 0:1	tmp
-1:220	buf
-221:4	buf_idx
-225:4	buf_ready
-229:32	name
-261:4	name_len
-265:4	result
-269:4	channel
-273:4	continue
-277:4	escaping
-281:4	bytes_to_send
-285:4	tlen
-289:4	response_count
-293:4	batconn_handle
-297:4	batresult
+1:255	buf
+256:4	buf_idx
+260:4	buf_ready
+264:32	name
+296:4	name_len
+300:4	result
+304:4	channel
+308:4	continue
+312:4	escaping
+316:4	bytes_to_send
+320:4	tlen
+324:4	idx
+328:4	response_count
+332:4	expected_length
+336:4	send_idx
+340:4	chunk_size
+344:4	batconn_handle
+348:4	batresult
