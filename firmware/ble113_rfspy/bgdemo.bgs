@@ -138,7 +138,7 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
 		if bytes_to_send > maxsize then
 		  bytes_to_send = maxsize
 		end if
-	    call attributes_user_read_response(connection,0,buf_idx,buf(offset:bytes_to_send))
+	    call attributes_user_read_response(connection,0,bytes_to_send,buf(offset:bytes_to_send))
 		if offset + bytes_to_send >= buf_idx then
 		  buf_idx = 0
 		  buf_ready = 0
@@ -176,7 +176,7 @@ event hardware_adc_result(input,value)
 	end if
 end
 
-# Timer event listener to update packet count
+# Timer event listener to poll data from spi
 event hardware_soft_timer(handle)
   if buf_ready = 0 then
     continue = 1
