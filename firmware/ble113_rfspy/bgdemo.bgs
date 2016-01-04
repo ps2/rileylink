@@ -1,9 +1,15 @@
 
 
-dim tmp(1)
-dim buf(255)
-dim buf_idx
-dim buf_ready
+dim tmp(2)
+dim spi_in_buf(255)
+dim spi_in_buf_len
+dim spi_out_buf(255)
+dim spi_out_buf_len
+dim waiting_for_client
+dim slave_bytes_avail
+dim spi_xfer_size
+dim spi_batch_size
+dim spi_batch_offset
 dim name(32)
 dim name_len
 dim result
@@ -26,10 +32,7 @@ dim batresult
 
 event system_boot(major,minor,patch,build,ll_version,protocol,hw)	
 	batconn_handle=$ff
-	buf_idx=0
 	name_len=0
-	buf_ready=0
-	escaping=0
 	response_count=0
 
 	call flash_ps_load($8000)(result, name_len, name(0:name_len))
@@ -61,6 +64,53 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 
 end
 
+procedure do_spi()
+  call hardware_io_port_write(0, $10, 0)
+  
+  # Do not send length byte at beginning of spi_out_buf
+  if spi_out_buf_len > 0 then
+    spi_out_buf_len = spi_out_buf_len - 1
+  end if
+  
+  tmp(0:1) = $99
+  tmp(1:1) = spi_out_buf_len
+  call hardware_spi_transfer(0,2,tmp(0:2))(result,channel,tlen,tmp(0:2))
+  slave_bytes_avail = tmp(1:1)
+  spi_xfer_size = slave_bytes_avail
+  if spi_out_buf_len > spi_xfer_size then
+    spi_xfer_size = spi_out_buf_len
+  end if
+  
+  spi_batch_size = spi_xfer_size
+  spi_batch_offset = 0
+  if spi_batch_size > 10 then
+    spi_batch_size = 10
+  end if
+  
+  while spi_batch_size > 0
+    call hardware_spi_transfer(0,spi_batch_size,spi_out_buf(spi_batch_offset+1:spi_batch_size))(result,channel,tlen,spi_in_buf(spi_batch_offset:spi_batch_size))
+    spi_batch_offset = spi_batch_offset + spi_batch_size    
+    spi_batch_size = spi_xfer_size - spi_batch_offset
+    if spi_batch_size > 10 then
+      spi_batch_size = 10
+    end if
+  end while
+  
+  spi_out_buf_len = 0
+  spi_in_buf_len = slave_bytes_avail
+  
+  call hardware_io_port_write(0, $10, $10)
+  
+  if slave_bytes_avail > 0 then
+    waiting_for_client = 1
+    response_count = response_count + 1
+    call attributes_write(xgatt_response_count,0,1,response_count)
+  else
+    call hardware_set_soft_timer($666, 0, 1)
+  end if
+  
+end
+
 event attributes_value(connection, reason, handle, offset, value_len, value_data)
 	
 	if handle = xgatt_custom_name then
@@ -72,49 +122,16 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
 	if handle = xgatt_data then
 	  if offset = 0 then
 	    expected_length = value_data(0:1) + 1
-		buf_idx = 0
-		idx = 1
-	  else
-	    idx = 0
 	  end if
-	  # escape data
-	  while idx < value_len
-	    tmp(0:1) = value_data(idx:1)
-		if tmp(0:1) = $99 || tmp(0:1) = $98
-		  buf(buf_idx:1) = $98
-		  buf(buf_idx+1:1) = tmp(0:1) ^ $ff
-		  buf_idx = buf_idx + 2
-		else
-		  buf(buf_idx:1) = tmp(0:1)
-		  buf_idx = buf_idx + 1
-		end if
-		idx = idx + 1
-	  end while	  
-	  
+    spi_out_buf(offset:value_len) = value_data(0:value_len)
+    
 	  # Write to SPI if finished
 	  if offset + value_len = expected_length then
-	    bytes_to_send = buf_idx
-		send_idx = 0
-        call hardware_io_port_write(0, $10, 0)
-		while bytes_to_send > 0
-	   	  chunk_size = buf_idx - send_idx
-		  if chunk_size > 32 then
-		    chunk_size = 32
-		  end if
-          call hardware_spi_transfer(0, chunk_size, buf(send_idx:chunk_size))
-		  send_idx = send_idx + chunk_size
-		  bytes_to_send = bytes_to_send - chunk_size
-		end while
-        call hardware_io_port_write(0, $10, $10)
-		
-        # Prep for rx
-	    buf_idx = 0
-	    buf_ready = 0
-	    # Start a 50ms timer to read spi
-	    call hardware_set_soft_timer($666, 0, 1)
+      spi_out_buf_len = expected_length
+      call do_spi()		
 	  end if
 
-    end if
+  end if
 	
 	if reason = 2 then # User requesting response
 	  call attributes_user_write_response(connection, 0)
@@ -130,22 +147,23 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
 	
 	if handle = xgatt_data then
 
-	  if buf_ready = 1 then
-	    bytes_to_send = buf_idx - offset
-		if (offset > buf_idx)
-		  bytes_to_send = 0
-		end if
-		if bytes_to_send > maxsize then
-		  bytes_to_send = maxsize
-		end if
-	    call attributes_user_read_response(connection,0,bytes_to_send,buf(offset:bytes_to_send))
-		if offset + bytes_to_send >= buf_idx then
-		  buf_idx = 0
-		  buf_ready = 0
-		end if
-      else
-	    call attributes_user_read_response(connection,0,0,buf(0:0))
+	  if waiting_for_client = 1 then
+	    bytes_to_send = spi_in_buf_len - offset
+      if bytes_to_send > maxsize then
+        bytes_to_send = maxsize
+      end if
+	    call attributes_user_read_response(connection,0,bytes_to_send,spi_in_buf(offset:bytes_to_send))
+      if offset + bytes_to_send >= spi_in_buf_len then
+        waiting_for_client = 0
+        # Sent all data, start polling again
+        call hardware_set_soft_timer($666, 0, 1)
+      end if
+    else
+      # No data to send
+	    call attributes_user_read_response(connection,0,0,spi_in_buf(0:0))
 	  end if
+    
+
 	end if
 	
 end
@@ -178,44 +196,12 @@ end
 
 # Timer event listener to poll data from spi
 event hardware_soft_timer(handle)
-  if buf_ready = 0 then
-    continue = 1
-  else
-    continue = 0
+  if waiting_for_client != 0 then
+    return
   end if
-  call hardware_io_port_write(0, $10, 0)
-  while continue 
-    call hardware_spi_transfer(0,1,$99)(result,channel,tlen,tmp(0))
-    if result = 0 && tmp(0:1) != $99 then
-	  if tmp(0:1) = $98 then # escape code
-	    escaping = 1
-	  else
-	    if escaping then
-		  tmp(0:1) = tmp(0:1) ^ $ff
-		  escaping = 0
-		end if
-        buf(buf_idx:1) = tmp(0:1)
-	    buf_idx = buf_idx + 1
-		if tmp(0:1) = $0 || buf_idx = 255 then
-		  response_count = response_count + 1
-		  call attributes_write(xgatt_response_count,0,1,response_count)
-		  buf_ready = 1
-		  continue = 0
-		end if
-      end if
-	else
-	  continue = 0
-    end if
-  end while
-  
-  call hardware_io_port_write(0, $10, $10)
-
-  if buf_ready != 1 then
-    call hardware_set_soft_timer($666, 0, 1)
-  end if
-  
+  call do_spi()
 end
-
+  
 
 # Connection event listener
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
