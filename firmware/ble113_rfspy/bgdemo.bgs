@@ -5,6 +5,8 @@ dim spi_in_buf(255)
 dim spi_in_buf_len
 dim spi_out_buf(255)
 dim spi_out_buf_len
+# 1 = waiting for ble client to read bytes from data attr.
+# We halt spi comms until this happens. Crude flow control.
 dim waiting_for_client
 dim slave_bytes_avail
 dim spi_xfer_size
@@ -30,7 +32,7 @@ dim batconn_handle
 #store battery measurement result
 dim batresult
 
-event system_boot(major,minor,patch,build,ll_version,protocol,hw)	
+event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	batconn_handle=$ff
 	name_len=0
 	response_count=0
@@ -48,16 +50,16 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	  name(7:1) = $6e # n
 	  name(8:1) = $6b # k
 	end if
-	
+
 	#start advertising in connectible mode
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
-		
+
 	# Make P0_0 and P0_4 outputs
 	call hardware_io_port_config_direction(0, $13)
-	
+
 	# Turn P0_0 (green led) and P0_1 (blue led) off
 	call hardware_io_port_write(0, $3, 0)
-		
+
 
 	call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
 	call attributes_write(xgatt_custom_name, 0, name_len, name(0:name_len))
@@ -66,12 +68,12 @@ end
 
 procedure do_spi()
   call hardware_io_port_write(0, $10, 0)
-  
+
   # Do not send length byte at beginning of spi_out_buf
   if spi_out_buf_len > 0 then
     spi_out_buf_len = spi_out_buf_len - 1
   end if
-  
+
   tmp(0:1) = $99
   tmp(1:1) = spi_out_buf_len
   call hardware_spi_transfer(0,2,tmp(0:2))(result,channel,tlen,tmp(0:2))
@@ -80,27 +82,27 @@ procedure do_spi()
   if spi_out_buf_len > spi_xfer_size then
     spi_xfer_size = spi_out_buf_len
   end if
-  
+
   spi_batch_size = spi_xfer_size
   spi_batch_offset = 0
   if spi_batch_size > 10 then
     spi_batch_size = 10
   end if
-  
+
   while spi_batch_size > 0
     call hardware_spi_transfer(0,spi_batch_size,spi_out_buf(spi_batch_offset+1:spi_batch_size))(result,channel,tlen,spi_in_buf(spi_batch_offset:spi_batch_size))
-    spi_batch_offset = spi_batch_offset + spi_batch_size    
+    spi_batch_offset = spi_batch_offset + spi_batch_size
     spi_batch_size = spi_xfer_size - spi_batch_offset
     if spi_batch_size > 10 then
       spi_batch_size = 10
     end if
   end while
-  
+
   spi_out_buf_len = 0
   spi_in_buf_len = slave_bytes_avail
-  
+
   call hardware_io_port_write(0, $10, $10)
-  
+
   if slave_bytes_avail > 0 then
     waiting_for_client = 1
     response_count = response_count + 1
@@ -108,31 +110,33 @@ procedure do_spi()
   else
     call hardware_set_soft_timer($666, 0, 1)
   end if
-  
+
 end
 
 event attributes_value(connection, reason, handle, offset, value_len, value_data)
-	
+
 	if handle = xgatt_custom_name then
 	  memcpy(name(0), value_data(0), value_len)
 	  name_len = value_len
 	  call connection_disconnect(connection)
 	end if
-	
+
 	if handle = xgatt_data then
 	  if offset = 0 then
 	    expected_length = value_data(0:1) + 1
 	  end if
     spi_out_buf(offset:value_len) = value_data(0:value_len)
-    
+
 	  # Write to SPI if finished
 	  if offset + value_len = expected_length then
       spi_out_buf_len = expected_length
-      call do_spi()		
+			if waiting_for_client != 1
+      	call do_spi()
+			end
 	  end if
 
   end if
-	
+
 	if reason = 2 then # User requesting response
 	  call attributes_user_write_response(connection, 0)
 	end if
@@ -141,10 +145,10 @@ end
 event attributes_user_read_request(connection, handle, offset, maxsize)
 	if handle = xgatt_battery then
 		batconn_handle=connection
-		#start measurement, read VDD/3, 9 effective bits 
+		#start measurement, read VDD/3, 9 effective bits
 		call hardware_adc_read(15,3,0)
 	end if
-	
+
 	if handle = xgatt_data then
 
 	  if waiting_for_client = 1 then
@@ -162,10 +166,10 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
       # No data to send
 	    call attributes_user_read_response(connection,0,0,spi_in_buf(0:0))
 	  end if
-    
+
 
 	end if
-	
+
 end
 
 event hardware_adc_result(input,value)
@@ -174,9 +178,9 @@ event hardware_adc_result(input,value)
 	#new battery ADC measurement is 32767=3.45v
 	#minimum battery voltage is 2.0 volts=2.0v/3.45v*32768= 18996
 	#32767-18996=13771
-	
+
 	batresult=(value-18995)*100/13772
-	
+
 	#clip to 100%
 	if batresult>100 then
 		batresult=100
@@ -201,12 +205,12 @@ event hardware_soft_timer(handle)
   end if
   call do_spi()
 end
-  
+
 
 # Connection event listener
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
 	# Device is connected. Turn on green led
-    call hardware_io_port_write(0, $1, $1)	
+    call hardware_io_port_write(0, $1, $1)
 end
 
 event connection_disconnected(handle,res)
@@ -214,7 +218,7 @@ event connection_disconnected(handle,res)
     call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
 	# Device disconnected. Turn off green led
     call hardware_io_port_write(0, $1, $0)
-	
+
 	# Save name
 	if name_len > 0
 		call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
