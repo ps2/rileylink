@@ -132,7 +132,7 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
       spi_out_buf_len = expected_length
 			if waiting_for_client != 1
       	call do_spi()
-			end
+			end if
 	  end if
 
   end if
