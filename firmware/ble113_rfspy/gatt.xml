@@ -40,6 +40,11 @@
             <properties write="true" read="true" />
             <value type="utf-8" length="20" variable_length="true">RileyLink</value>
         </characteristic>
+		<characteristic uuid="30d99dc9-7c91-4295-a051-0a104d238cf2">
+			<description>Version</description>
+            <properties read="true" const="true"/>
+            <value>RileyLink:ble_rfspy:0.1</value>
+        </characteristic>
     </service>
 
 </configuration>
