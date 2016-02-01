@@ -36,4 +36,4 @@ eagle.epf
 *.eps
 
 # BLE compilation
-firmware/ble113/out.hex
+*.hex
