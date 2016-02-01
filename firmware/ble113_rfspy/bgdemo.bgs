@@ -26,6 +26,8 @@ dim expected_length
 dim send_idx
 dim chunk_size
 dim in_spi
+dim timer_tick_count
+dim timer_update_count
 
 #variable to save handle
 dim batconn_handle
@@ -65,7 +67,9 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 
 	call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
 	call attributes_write(xgatt_custom_name, 0, name_len, name(0:name_len))
-
+  
+  # Start ~50ms timer
+  call hardware_set_soft_timer($666, 1, 0)
 end
 
 procedure do_spi()
@@ -110,8 +114,6 @@ procedure do_spi()
     waiting_for_client = 1
     response_count = response_count + 1
     call attributes_write(xgatt_response_count,0,1,response_count)
-  else
-    call hardware_set_soft_timer($666, 0, 1)
   end if
 
   in_spi = 0
@@ -161,13 +163,16 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
         bytes_to_send = maxsize
       end if
 	    call attributes_user_read_response(connection,0,bytes_to_send,spi_in_buf(offset:bytes_to_send))
-      if offset + bytes_to_send >= spi_in_buf_len then
+      if offset + maxsize > spi_in_buf_len then
         waiting_for_client = 0
-        # Sent all data, start polling again
-        call hardware_set_soft_timer($666, 0, 1)
       end if
     else
+      # Testing to see if this gets called with every read
+      # Turn on blue led
+      call hardware_io_port_write(0, $2, $2)
+
       # No data to send
+      waiting_for_client = 0
 	    call attributes_user_read_response(connection,0,0,spi_in_buf(0:0))
 	  end if
 
@@ -207,20 +212,35 @@ event hardware_soft_timer(handle)
 	if waiting_for_client != 1 && in_spi = 0
     call do_spi()
 	end if
+  
+  timer_tick_count = timer_tick_count + 1
+  # 1200 ticks of a 50ms timer is ~1min
+  if timer_tick_count > 1200
+    timer_tick_count = 0
+    timer_update_count = timer_update_count + 1
+    call attributes_write(xgatt_timer_tick,0,1,timer_update_count)
+  end if
 end
 
 
 # Connection event listener
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
 	# Device is connected. Turn on green led
-    call hardware_io_port_write(0, $1, $1)
+  call hardware_io_port_write(0, $1, $1)
+  
+  # Drop any data what was waiting to go to client from
+  # previous connection.
+  waiting_for_client = 0
+  spi_in_buf_len = 0 
+  slave_bytes_avail = 0
+
 end
 
 event connection_disconnected(handle,res)
-    #start advertising again after disconnection
-    call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
+  #start advertising again after disconnection
+  call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
 	# Device disconnected. Turn off green led
-    call hardware_io_port_write(0, $1, $0)
+  call hardware_io_port_write(0, $1, $0)
 
 	# Save name
 	if name_len > 0

@@ -2,4 +2,5 @@ xgatt_name 3
 xgatt_battery 8
 xgatt_data 11
 xgatt_response_count 14
-xgatt_custom_name 18
+xgatt_timer_tick 18
+xgatt_custom_name 22

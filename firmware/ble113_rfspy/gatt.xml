@@ -24,27 +24,32 @@
     </service>
 
 	<service uuid="0235733b-99c5-4197-b856-69219c2a3845" advertise="true">
-        <description>Radio Interface</description>
+    <description>Radio Interface</description>
 		<characteristic uuid="c842e849-5028-42e2-867c-016adada9155" id="xgatt_data">
 			<description>Data</description>
-            <properties read="true" write="true"/>
-            <value type="user" length="220" variable_length="true" />
-        </characteristic>
+      <properties read="true" write="true"/>
+      <value type="user" length="220" variable_length="true" />
+    </characteristic>
 		<characteristic uuid="6e6c7910-b89e-43a5-a0fe-50c5e2b81f4a" id="xgatt_response_count">
 			<description>Response Count</description>
-            <properties read="true" notify="true"/>
-            <value type="hex">00</value>
-        </characteristic>
-        <characteristic uuid="d93b2af0-1e28-11e4-8c21-0800200c9a66" id="xgatt_custom_name">
+      <properties read="true" notify="true"/>
+      <value type="hex">00</value>
+    </characteristic>
+		<characteristic uuid="6e6c7910-b89e-43a5-78af-50c5e2b86f7e" id="xgatt_timer_tick">
+			<description>Timer Tick</description>
+      <properties read="true" notify="true"/>
+      <value type="hex">00</value>
+    </characteristic>
+    <characteristic uuid="d93b2af0-1e28-11e4-8c21-0800200c9a66" id="xgatt_custom_name">
 			<description>Custom Name</description>
-            <properties write="true" read="true" />
-            <value type="utf-8" length="20" variable_length="true">RileyLink</value>
-        </characteristic>
+      <properties write="true" read="true" />
+      <value type="utf-8" length="20" variable_length="true">RileyLink</value>
+    </characteristic>
 		<characteristic uuid="30d99dc9-7c91-4295-a051-0a104d238cf2">
 			<description>Version</description>
-            <properties read="true" const="true"/>
-            <value>RileyLink:ble_rfspy:0.1</value>
-        </characteristic>
-    </service>
+      <properties read="true" const="true"/>
+      <value>RileyLink:ble_rfspy:0.1</value>
+    </characteristic>
+  </service>
 
 </configuration>
