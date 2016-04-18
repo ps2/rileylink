@@ -10367,7 +10367,7 @@ at 30/07/2012 17:04:24</description>
 <part name="C13" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
 <part name="SUPPLY19" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY20" library="supply2" deviceset="GND" device=""/>
-<part name="C11" library="rcl" deviceset="C-US" device="C0805K" value="100uF"/>
+<part name="C11" library="rcl" deviceset="C-US" device="C0805K" value="10uF"/>
 <part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY18" library="supply2" deviceset="VDD" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
