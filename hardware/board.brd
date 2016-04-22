@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.0393700787" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.000393700787" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.000393700787" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -44,7 +44,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -1501,35 +1501,6 @@ Source: http://www.ledtronics.com/ds/smd-0603/Dstr0092.pdf</description>
 </package>
 </packages>
 </library>
-<library name="Texas Instruments_By_element14_Batch_1">
-<description>Developed by element14 :&lt;br&gt;
-element14 CAD Library consolidation.ulp
-at 30/07/2012 17:45:58</description>
-<packages>
-<package name="SON50P260X260X80-11N">
-<smd name="1" x="-1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="2" x="-1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="3" x="-1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="4" x="-1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="5" x="-1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="6" x="1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="7" x="1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="8" x="1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="9" x="1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="10" x="1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="11" x="0" y="0" dx="1.2954" dy="2.1082" layer="1"/>
-<wire x1="-1.2954" y1="-1.2954" x2="1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="-1.2954" x2="1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="1.2954" x2="0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="-0.3048" y1="1.2954" x2="-1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="-1.2954" y1="1.2954" x2="-1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51" curve="-180"/>
-<text x="-3.4544" y="1.905" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-3.4544" y="-3.81" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
-</package>
-</packages>
-</library>
 <library name="sf-bluegiga">
 <description>&lt;strong&gt;Bluegiga Technologies Bluetooth and Wi-Fi modules&lt;/strong&gt;
 
@@ -1907,6 +1878,30 @@ by exp-lbrs.ulp</description>
 <circle x="-1.89" y="-1.89" radius="0.28" width="0" layer="31"/>
 <circle x="-0.63" y="-1.89" radius="0.28" width="0" layer="31"/>
 <circle x="0.63" y="-1.89" radius="0.28" width="0" layer="31"/>
+<circle x="-3.81" y="2.64" radius="0.254" width="0" layer="21"/>
+</package>
+<package name="SON50P260X260X80-11N">
+<wire x1="-1.2954" y1="-1.2954" x2="1.2954" y2="-1.2954" width="0" layer="51"/>
+<wire x1="1.2954" y1="-1.2954" x2="1.2954" y2="1.2954" width="0" layer="51"/>
+<wire x1="1.2954" y1="1.2954" x2="0.3048" y2="1.2954" width="0" layer="51"/>
+<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51"/>
+<wire x1="-0.3048" y1="1.2954" x2="-1.2954" y2="1.2954" width="0" layer="51"/>
+<wire x1="-1.2954" y1="1.2954" x2="-1.2954" y2="-1.2954" width="0" layer="51"/>
+<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51" curve="-180"/>
+<smd name="1" x="-1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="2" x="-1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="3" x="-1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="4" x="-1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="5" x="-1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="6" x="1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="7" x="1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="8" x="1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="9" x="1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="10" x="1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="11" x="0" y="0" dx="1.2954" dy="2.1082" layer="1"/>
+<text x="-3.4544" y="1.905" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
+<text x="-3.4544" y="-3.81" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
+<circle x="-1" y="1.54" radius="0.2" width="0" layer="21"/>
 </package>
 </packages>
 </library>
@@ -2208,7 +2203,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="U1" library="parts" package="5PIN_SOT23" value="" x="6.86" y="16.33" smashed="yes">
 <attribute name="VALUE" x="9.4" y="16.33" size="0.4064" layer="27"/>
 </element>
-<element name="REGULATOR" library="Texas Instruments_By_element14_Batch_1" package="SON50P260X260X80-11N" value="TPS63031" x="32.5" y="23" smashed="yes" rot="R90">
+<element name="REGULATOR" library="board" package="SON50P260X260X80-11N" value="TPS63031" x="32.5" y="23" smashed="yes" rot="R90">
 <attribute name="PACKAGE" value="SON-10" x="32.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_NEWARK" value="19P7478" x="32.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="TPS63031" x="32.5" y="23" size="1.778" layer="27" rot="R90" display="off"/>

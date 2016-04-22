@@ -9357,90 +9357,6 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="Texas Instruments_By_element14_Batch_1">
-<description>Developed by element14 :&lt;br&gt;
-element14 CAD Library consolidation.ulp
-at 30/07/2012 17:45:58</description>
-<packages>
-<package name="SON50P260X260X80-11N">
-<smd name="1" x="-1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="2" x="-1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="3" x="-1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="4" x="-1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="5" x="-1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="6" x="1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="7" x="1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="8" x="1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="9" x="1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="10" x="1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="11" x="0" y="0" dx="1.2954" dy="2.1082" layer="1"/>
-<wire x1="-1.2954" y1="-1.2954" x2="1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="-1.2954" x2="1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="1.2954" x2="0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="-0.3048" y1="1.2954" x2="-1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="-1.2954" y1="1.2954" x2="-1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51" curve="-180"/>
-<text x="-3.4544" y="1.905" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-3.4544" y="-3.81" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
-</package>
-</packages>
-<symbols>
-<symbol name="TPS63031">
-<pin name="VINA" x="-17.78" y="17.78" length="middle" direction="in"/>
-<pin name="VIN" x="-17.78" y="12.7" length="middle" direction="in"/>
-<pin name="L1" x="-17.78" y="7.62" length="middle" direction="in"/>
-<pin name="L2" x="-17.78" y="5.08" length="middle" direction="in"/>
-<pin name="EN" x="-17.78" y="0" length="middle" direction="in"/>
-<pin name="FB" x="-17.78" y="-5.08" length="middle" direction="in"/>
-<pin name="PS/SYNC" x="-17.78" y="-10.16" length="middle" direction="in"/>
-<pin name="PGND" x="-17.78" y="-15.24" length="middle" direction="pas"/>
-<pin name="GND" x="-17.78" y="-17.78" length="middle" direction="pas"/>
-<pin name="THERMALPAD" x="-17.78" y="-22.86" length="middle" direction="pas"/>
-<pin name="VOUT" x="17.78" y="17.78" length="middle" direction="out" rot="R180"/>
-<wire x1="-12.7" y1="22.86" x2="-12.7" y2="-27.94" width="0.4064" layer="94"/>
-<wire x1="-12.7" y1="-27.94" x2="12.7" y2="-27.94" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="-27.94" x2="12.7" y2="22.86" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="22.86" x2="-12.7" y2="22.86" width="0.4064" layer="94"/>
-<text x="-5.4356" y="24.5364" size="2.0828" layer="95" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-2.8448" y="-31.369" size="2.0828" layer="96" ratio="10" rot="SR0">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="TPS63031" prefix="U">
-<description>HIGH EFFICIENCY SINGLE INDUCTOR BUCK-BOOST CONVERTER WITH 1-A SWITCHES</description>
-<gates>
-<gate name="A" symbol="TPS63031" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SON50P260X260X80-11N">
-<connects>
-<connect gate="A" pin="EN" pad="6"/>
-<connect gate="A" pin="FB" pad="10"/>
-<connect gate="A" pin="GND" pad="9"/>
-<connect gate="A" pin="L1" pad="4"/>
-<connect gate="A" pin="L2" pad="2"/>
-<connect gate="A" pin="PGND" pad="3"/>
-<connect gate="A" pin="PS/SYNC" pad="7"/>
-<connect gate="A" pin="THERMALPAD" pad="11"/>
-<connect gate="A" pin="VIN" pad="5"/>
-<connect gate="A" pin="VINA" pad="8"/>
-<connect gate="A" pin="VOUT" pad="1"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="MPN" value="TPS63031" constant="no"/>
-<attribute name="OC_FARNELL" value="1686303" constant="no"/>
-<attribute name="OC_NEWARK" value="19P7478" constant="no"/>
-<attribute name="PACKAGE" value="SON-10" constant="no"/>
-<attribute name="SUPPLIER" value="Texas Instruments" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="Bourns_By_element14_Batch_1">
 <description>Developed by element14 :&lt;br&gt;
 element14 CAD Library consolidation.ulp
@@ -10172,6 +10088,30 @@ by exp-lbrs.ulp</description>
 <circle x="-1.89" y="-1.89" radius="0.28" width="0" layer="31"/>
 <circle x="-0.63" y="-1.89" radius="0.28" width="0" layer="31"/>
 <circle x="0.63" y="-1.89" radius="0.28" width="0" layer="31"/>
+<circle x="-3.81" y="2.64" radius="0.254" width="0" layer="21"/>
+</package>
+<package name="SON50P260X260X80-11N">
+<wire x1="-1.2954" y1="-1.2954" x2="1.2954" y2="-1.2954" width="0" layer="51"/>
+<wire x1="1.2954" y1="-1.2954" x2="1.2954" y2="1.2954" width="0" layer="51"/>
+<wire x1="1.2954" y1="1.2954" x2="0.3048" y2="1.2954" width="0" layer="51"/>
+<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51"/>
+<wire x1="-0.3048" y1="1.2954" x2="-1.2954" y2="1.2954" width="0" layer="51"/>
+<wire x1="-1.2954" y1="1.2954" x2="-1.2954" y2="-1.2954" width="0" layer="51"/>
+<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51" curve="-180"/>
+<smd name="1" x="-1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="2" x="-1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="3" x="-1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="4" x="-1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="5" x="-1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="6" x="1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="7" x="1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="8" x="1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="9" x="1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="10" x="1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
+<smd name="11" x="0" y="0" dx="1.2954" dy="2.1082" layer="1"/>
+<text x="-3.4544" y="1.905" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
+<text x="-3.4544" y="-3.81" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
+<circle x="-1" y="1.54" radius="0.2" width="0" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -10228,6 +10168,25 @@ by exp-lbrs.ulp</description>
 <text x="-6.35" y="-36.83" size="1.6764" layer="94">GND-PLANE</text>
 <text x="-17.78" y="40.64" size="1.778" layer="95">&gt;NAME</text>
 <text x="12.7" y="-43.18" size="1.778" layer="96">VALUE</text>
+</symbol>
+<symbol name="TPS63031">
+<wire x1="-12.7" y1="22.86" x2="-12.7" y2="-27.94" width="0.4064" layer="94"/>
+<wire x1="-12.7" y1="-27.94" x2="12.7" y2="-27.94" width="0.4064" layer="94"/>
+<wire x1="12.7" y1="-27.94" x2="12.7" y2="22.86" width="0.4064" layer="94"/>
+<wire x1="12.7" y1="22.86" x2="-12.7" y2="22.86" width="0.4064" layer="94"/>
+<pin name="EN" x="-17.78" y="0" length="middle" direction="in"/>
+<pin name="FB" x="-17.78" y="-5.08" length="middle" direction="in"/>
+<pin name="GND" x="-17.78" y="-17.78" length="middle" direction="pas"/>
+<pin name="L1" x="-17.78" y="7.62" length="middle" direction="in"/>
+<pin name="L2" x="-17.78" y="5.08" length="middle" direction="in"/>
+<pin name="PGND" x="-17.78" y="-15.24" length="middle" direction="pas"/>
+<pin name="PS/SYNC" x="-17.78" y="-10.16" length="middle" direction="in"/>
+<pin name="THERMALPAD" x="-17.78" y="-22.86" length="middle" direction="pas"/>
+<pin name="VIN" x="-17.78" y="12.7" length="middle" direction="in"/>
+<pin name="VINA" x="-17.78" y="17.78" length="middle" direction="in"/>
+<pin name="VOUT" x="17.78" y="17.78" length="middle" direction="out" rot="R180"/>
+<text x="-5.4356" y="24.5364" size="2.0828" layer="95" ratio="10" rot="SR0">&gt;NAME</text>
+<text x="-2.8448" y="-31.369" size="2.0828" layer="96" ratio="10" rot="SR0">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -10286,6 +10245,38 @@ by exp-lbrs.ulp</description>
 </device>
 </devices>
 </deviceset>
+<deviceset name="TPS63031" prefix="U">
+<description>HIGH EFFICIENCY SINGLE INDUCTOR BUCK-BOOST CONVERTER WITH 1-A SWITCHES</description>
+<gates>
+<gate name="A" symbol="TPS63031" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SON50P260X260X80-11N">
+<connects>
+<connect gate="A" pin="EN" pad="6"/>
+<connect gate="A" pin="FB" pad="10"/>
+<connect gate="A" pin="GND" pad="9"/>
+<connect gate="A" pin="L1" pad="4"/>
+<connect gate="A" pin="L2" pad="2"/>
+<connect gate="A" pin="PGND" pad="3"/>
+<connect gate="A" pin="PS/SYNC" pad="7"/>
+<connect gate="A" pin="THERMALPAD" pad="11"/>
+<connect gate="A" pin="VIN" pad="5"/>
+<connect gate="A" pin="VINA" pad="8"/>
+<connect gate="A" pin="VOUT" pad="1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MPN" value="TPS63031" constant="no"/>
+<attribute name="OC_FARNELL" value="1686303" constant="no"/>
+<attribute name="OC_NEWARK" value="19P7478" constant="no"/>
+<attribute name="PACKAGE" value="SON-10" constant="no"/>
+<attribute name="SUPPLIER" value="Texas Instruments" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -10317,7 +10308,7 @@ by exp-lbrs.ulp</description>
 <part name="C3" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="REGULATOR" library="Texas Instruments_By_element14_Batch_1" deviceset="TPS63031" device="">
+<part name="REGULATOR" library="board" deviceset="TPS63031" device="">
 <attribute name="MPN" value="TPS63031"/>
 </part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
