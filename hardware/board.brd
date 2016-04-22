@@ -2102,19 +2102,19 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="49.515" y="3.44" size="0.635" layer="25" font="vector" ratio="16" rot="R180"/>
 <attribute name="VALUE" x="49.515" y="11.695" size="0.635" layer="27" font="vector" ratio="16" rot="R180"/>
 </element>
-<element name="C1" library="rcl" package="C0402" value="100nF" x="28.99" y="7.55" smashed="yes" rot="R270">
+<element name="C1" library="rcl" package="C0402" value="0.1uF" x="28.99" y="7.55" smashed="yes" rot="R270">
 <attribute name="VALUE" x="27.085" y="8.185" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C10" library="rcl" package="C0402" value="100nF" x="19.8" y="5.5" smashed="yes" rot="R270">
+<element name="C10" library="rcl" package="C0402" value="0.1uF" x="19.8" y="5.5" smashed="yes" rot="R270">
 <attribute name="VALUE" x="17.895" y="6.135" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C11" library="rcl" package="C0805K" value="10uF" x="24.495" y="16.3" smashed="yes" rot="R270">
 <attribute name="VALUE" x="22.59" y="16.935" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C12" library="rcl" package="C0402" value="100nF" x="21.97" y="15.46" smashed="yes" rot="R270">
+<element name="C12" library="rcl" package="C0402" value="0.1uF" x="21.97" y="15.46" smashed="yes" rot="R270">
 <attribute name="VALUE" x="20.065" y="16.095" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C13" library="rcl" package="C0402" value="100nF" x="17.62" y="11.21" smashed="yes" rot="R180">
+<element name="C13" library="rcl" package="C0402" value="0.1uF" x="17.62" y="11.21" smashed="yes" rot="R180">
 <attribute name="VALUE" x="18.255" y="13.115" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C2" library="rcl" package="C0603K" value="4.7uF" x="11.04" y="18.585" smashed="yes" rot="R270">
@@ -2132,10 +2132,10 @@ Please make sure your boards conform to these design rules.</description>
 <element name="C6" library="rcl" package="C0402K" value="12pF ±5%" x="15.255" y="14.585" smashed="yes" rot="R90">
 <attribute name="VALUE" x="16.705" y="14.085" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C7" library="rcl" package="C0402" value="100nF" x="22.7" y="2.5" smashed="yes" rot="R270">
+<element name="C7" library="rcl" package="C0402" value="0.1uF" x="22.7" y="2.5" smashed="yes" rot="R270">
 <attribute name="VALUE" x="20.795" y="3.135" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C8" library="rcl" package="C0402" value="100nF" x="17.75" y="5.5" smashed="yes" rot="R270">
+<element name="C8" library="rcl" package="C0402" value="0.1uF" x="17.75" y="5.5" smashed="yes" rot="R270">
 <attribute name="VALUE" x="15.845" y="6.135" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C9" library="rcl" package="C0402K" value="1uF" x="24.345" y="1.81" smashed="yes" rot="R90">
@@ -2205,7 +2205,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="VALUE" x="15.135" y="10.155" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="U$2" library="parts" package="PTS540" value="TACTILE_SWITCH" x="30.655" y="16.735" smashed="yes" rot="R270"/>
-<element name="CHARGER" library="parts" package="5PIN_SOT23" value="" x="6.86" y="16.33" smashed="yes">
+<element name="U1" library="parts" package="5PIN_SOT23" value="" x="6.86" y="16.33" smashed="yes">
 <attribute name="VALUE" x="9.4" y="16.33" size="0.4064" layer="27"/>
 </element>
 <element name="REGULATOR" library="Texas Instruments_By_element14_Batch_1" package="SON50P260X260X80-11N" value="TPS63031" x="32.5" y="23" smashed="yes" rot="R90">
@@ -2246,7 +2246,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="X3" pad="5"/>
 <contactref element="R1" pad="1"/>
 <contactref element="C2" pad="2"/>
-<contactref element="CHARGER" pad="P$2"/>
+<contactref element="U1" pad="P$2"/>
 <contactref element="C3" pad="2"/>
 <contactref element="JP1" pad="1"/>
 <contactref element="REGULATOR" pad="3"/>
@@ -2517,13 +2517,13 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="26.552578125" y1="17" x2="27.552578125" y2="18" width="0.4064" layer="1"/>
 </signal>
 <signal name="N$3">
-<contactref element="CHARGER" pad="P$5"/>
+<contactref element="U1" pad="P$5"/>
 <contactref element="R1" pad="2"/>
 <wire x1="7.26" y1="18.2" x2="5.43" y2="18.2" width="0.45" layer="1"/>
 <wire x1="5.43" y1="18.2" x2="5.26" y2="18.03" width="0.45" layer="1"/>
 </signal>
 <signal name="N$2">
-<contactref element="CHARGER" pad="P$1"/>
+<contactref element="U1" pad="P$1"/>
 <contactref element="LED1" pad="C"/>
 <wire x1="7.26" y1="15.7" x2="6.575" y2="15.7" width="0.45" layer="1"/>
 <wire x1="6.575" y1="15.7" x2="6" y2="15.125" width="0.45" layer="1"/>
@@ -2539,7 +2539,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="1.8" y1="19.21" x2="1.89" y2="19.3" width="0.3" layer="1"/>
 </signal>
 <signal name="VIN_USB">
-<contactref element="CHARGER" pad="P$4"/>
+<contactref element="U1" pad="P$4"/>
 <contactref element="C2" pad="1"/>
 <contactref element="X3" pad="1"/>
 <contactref element="R2" pad="1"/>
@@ -2655,7 +2655,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="21.31" y1="5" x2="21.3" y2="4.15" width="0.26" layer="1"/>
 </signal>
 <signal name="VBAT">
-<contactref element="CHARGER" pad="P$3"/>
+<contactref element="U1" pad="P$3"/>
 <contactref element="C3" pad="1"/>
 <contactref element="JP1" pad="2"/>
 <contactref element="PWR" pad="NC"/>

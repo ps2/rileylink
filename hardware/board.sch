@@ -10300,10 +10300,10 @@ by exp-lbrs.ulp</description>
 <parts>
 <part name="CC1110" library="board" deviceset="CC1110" device=""/>
 <part name="X1" library="cts_crystal" deviceset="CTS_32X25_SMD" device="" value="24MHz 8pF 10ppm -20C +70C"/>
-<part name="C1" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
+<part name="C1" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="VDD" device=""/>
-<part name="CHARGER" library="parts" deviceset="MCP73831" device=""/>
+<part name="U1" library="parts" deviceset="MCP73831" device=""/>
 <part name="X3" library="con-hirose" deviceset="MINI-USB-" device="UX60-MB-5ST"/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="-JST-2MM-SMT"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
@@ -10372,14 +10372,14 @@ by exp-lbrs.ulp</description>
 <part name="SUPPLY13" library="supply2" deviceset="GND" device=""/>
 <part name="LED3" library="led" deviceset="LED" device="SML0603" value="green"/>
 <part name="R13" library="rcl" deviceset="R-US_" device="R0402" value="470 ohms"/>
-<part name="C7" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
-<part name="C12" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
+<part name="C7" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
+<part name="C12" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="SUPPLY14" library="supply2" deviceset="GND" device=""/>
-<part name="C8" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
+<part name="C8" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="SUPPLY16" library="supply2" deviceset="GND" device=""/>
-<part name="C10" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
+<part name="C10" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="SUPPLY17" library="supply2" deviceset="GND" device=""/>
-<part name="C13" library="rcl" deviceset="C-EU" device="C0402" value="100nF"/>
+<part name="C13" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="SUPPLY19" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY20" library="supply2" deviceset="GND" device=""/>
 <part name="C11" library="rcl" deviceset="C-US" device="C0805K" value="10uF"/>
@@ -10401,7 +10401,7 @@ by exp-lbrs.ulp</description>
 <instance part="C1" gate="G$1" x="43.18" y="96.52"/>
 <instance part="SUPPLY4" gate="GND" x="43.18" y="88.9"/>
 <instance part="SUPPLY1" gate="G$1" x="73.66" y="111.76"/>
-<instance part="CHARGER" gate="G$1" x="137.16" y="149.86"/>
+<instance part="U1" gate="G$1" x="137.16" y="149.86"/>
 <instance part="X3" gate="G$1" x="185.42" y="177.8"/>
 <instance part="JP1" gate="G$1" x="165.1" y="137.16" rot="R180"/>
 <instance part="GND1" gate="1" x="180.34" y="167.64"/>
@@ -10522,7 +10522,7 @@ by exp-lbrs.ulp</description>
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="CHARGER" gate="G$1" pin="VSS"/>
+<pinref part="U1" gate="G$1" pin="VSS"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="124.46" y1="149.86" x2="119.38" y2="149.86" width="0.1524" layer="91"/>
 </segment>
@@ -10758,14 +10758,14 @@ by exp-lbrs.ulp</description>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="CHARGER" gate="G$1" pin="PROG"/>
+<pinref part="U1" gate="G$1" pin="PROG"/>
 <wire x1="152.4" y1="154.94" x2="167.64" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="CHARGER" gate="G$1" pin="STAT"/>
+<pinref part="U1" gate="G$1" pin="STAT"/>
 <pinref part="LED1" gate="G$1" pin="C"/>
 <wire x1="124.46" y1="154.94" x2="114.3" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="154.94" x2="114.3" y2="157.48" width="0.1524" layer="91"/>
@@ -10779,7 +10779,7 @@ by exp-lbrs.ulp</description>
 </net>
 <net name="VIN_USB" class="0">
 <segment>
-<pinref part="CHARGER" gate="G$1" pin="VDD"/>
+<pinref part="U1" gate="G$1" pin="VDD"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="175.26" y1="152.4" x2="152.4" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="X3" gate="G$1" pin="1"/>
@@ -10901,7 +10901,7 @@ by exp-lbrs.ulp</description>
 </net>
 <net name="VBAT" class="0">
 <segment>
-<pinref part="CHARGER" gate="G$1" pin="VBAT"/>
+<pinref part="U1" gate="G$1" pin="VBAT"/>
 <wire x1="124.46" y1="144.78" x2="119.38" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
 <wire x1="119.38" y1="137.16" x2="132.08" y2="137.16" width="0.1524" layer="91"/>
