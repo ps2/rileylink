@@ -12,7 +12,7 @@
 
 ### Components
 
-There is a [Digikey BOM](https://www.digikey.com/classic/RegisteredUser/BOMBillOfMaterials.aspx?path=1&exist=1&id=2957565) that includes all the parts for a single board minus the battery.  For the small parts, there are extra included in some cases because they're easy to lose track of while assembling, or because it's cheaper to order more.
+The bom.csv file contains a list of parts and quantities along with their Digikey part number.
 
 ### PCB Assembly
 
