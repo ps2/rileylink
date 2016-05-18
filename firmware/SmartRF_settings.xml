@@ -5,10 +5,6 @@
     <Description>Saved configuration data</Description>
     <registersettings>
         <Register>
-            <Name>CHANNR</Name>
-            <Value>0x02</Value>
-        </Register>
-        <Register>
             <Name>DEVIATN</Name>
             <Value>0x15</Value>
         </Register>
@@ -22,15 +18,15 @@
         </Register>
         <Register>
             <Name>FREQ0</Name>
-            <Value>0x78</Value>
+            <Value>0xe4</Value>
         </Register>
         <Register>
             <Name>FREQ1</Name>
-            <Value>0x40</Value>
+            <Value>0x2f</Value>
         </Register>
         <Register>
             <Name>FREQ2</Name>
-            <Value>0x23</Value>
+            <Value>0x26</Value>
         </Register>
         <Register>
             <Name>FSCAL0</Name>
@@ -53,12 +49,16 @@
             <Value>0x06</Value>
         </Register>
         <Register>
+            <Name>IOCFG0</Name>
+            <Value>0x06</Value>
+        </Register>
+        <Register>
             <Name>MCSM0</Name>
             <Value>0x18</Value>
         </Register>
         <Register>
             <Name>MDMCFG0</Name>
-            <Value>0x84</Value>
+            <Value>0xe6</Value>
         </Register>
         <Register>
             <Name>MDMCFG1</Name>
@@ -70,11 +70,11 @@
         </Register>
         <Register>
             <Name>MDMCFG3</Name>
-            <Value>0x4a</Value>
+            <Value>0x66</Value>
         </Register>
         <Register>
             <Name>MDMCFG4</Name>
-            <Value>0xc9</Value>
+            <Value>0xb9</Value>
         </Register>
         <Register>
             <Name>PA_TABLE1</Name>
@@ -85,8 +85,12 @@
             <Value>0x00</Value>
         </Register>
         <Register>
+            <Name>PKTCTRL1</Name>
+            <Value>0x00</Value>
+        </Register>
+        <Register>
             <Name>PKTLEN</Name>
-            <Value>0x18</Value>
+            <Value>0x34</Value>
         </Register>
         <Register>
             <Name>SYNC0</Name>
@@ -104,6 +108,10 @@
             <Name>TEST1</Name>
             <Value>0x31</Value>
         </Register>
+        <Register>
+            <Name>VERSION</Name>
+            <Value>0x04</Value>
+        </Register>
     </registersettings>
     <dcpanel>
         <Property role="44" name="m_chkRegView">2</Property>
@@ -112,10 +120,10 @@
         <Property role="37" name="m_tabUserMode">1</Property>
         <Property role="33" name="m_easyModeSettings">-1</Property>
         <Property role="33" name="m_typicalSettings">-1</Property>
-        <Property role="37" name="m_testFuncPanel">3</Property>
+        <Property role="37" name="m_testFuncPanel">2</Property>
     </dcpanel>
     <rfparameters>
-        <Property role="46" name="Xtal frequency">26.000000</Property>
+        <Property role="46" name="Xtal frequency">24.000000</Property>
     </rfparameters>
     <conttx>
         <Property role="45" name="m_rbtModulated">1</Property>
@@ -129,28 +137,28 @@
         <Property role="44" name="m_chkAutoScroll">2</Property>
     </contrx>
     <packettx>
-        <Property role="42" name="m_edtPayloadSize">24</Property>
-        <Property role="42" name="m_edtPacketCount">100</Property>
+        <Property role="42" name="m_edtPayloadSize">52</Property>
+        <Property role="42" name="m_edtPacketCount">10</Property>
         <Property role="42" name="m_edtPacketCountEsy">100</Property>
-        <Property role="42" name="m_edtRandomPacketData">b9 72 9d 49 2c 80 7e c5 99 d5 e9 80 b2 ea c9 cc 53 bf 67 d6 bf 14 </Property>
-        <Property role="42" name="m_edtPacketData"></Property>
+        <Property role="42" name="m_edtRandomPacketData">06 b7 47 de b3 12 4d c8 43 bb 8b a6 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b 13 0d 89 0a 1c db ae 32 20 9a 50 ee 40 78 36 fd 12 49 32 f6 9e 7d </Property>
+        <Property role="42" name="m_edtPacketData">a8 b5 5c ca 5b 31 ca 35 4d c4 dc b1 55 55 4b 95 9c 55 98 e5 55 99 69 96 64 dc 71 56 6c 71 36 5c 72 aa 5c 63 8e cc 63 5b 4c 63 8e cc 72 aa 55 55 98 b3 b1 80 </Property>
         <Property role="42" name="m_edtAccessAddress"></Property>
         <Property role="42" name="m_edtDeviceAddress"></Property>
-        <Property role="44" name="m_chkAddSeqNbr">2</Property>
-        <Property role="44" name="m_chkInfinite">0</Property>
-        <Property role="44" name="m_chkInfiniteEsy">0</Property>
-        <Property role="45" name="m_rbtRandom">1</Property>
+        <Property role="44" name="m_chkAddSeqNbr">0</Property>
+        <Property role="44" name="m_chkInfinite">2</Property>
+        <Property role="44" name="m_chkInfiniteEsy">2</Property>
+        <Property role="45" name="m_rbtRandom">0</Property>
         <Property role="45" name="m_rbtText">0</Property>
-        <Property role="45" name="m_rbtHex">0</Property>
+        <Property role="45" name="m_rbtHex">1</Property>
         <Property role="44" name="m_chkAdvanced">2</Property>
         <Property role="46" name="m_cmbSyncWord">3</Property>
         <Property role="46" name="m_cmbPreambleCount">6</Property>
         <Property role="44" name="m_chkAddress">0</Property>
         <Property role="42" name="m_edtAddress"></Property>
         <Property role="46" name="m_cmbLengthConfig">0</Property>
-        <Property role="42" name="m_edtLengthConfig">24</Property>
-        <Property role="52" name="m_spnPktInterval">600</Property>
-        <Property role="44" name="m_chkDefPktInterval">2</Property>
+        <Property role="42" name="m_edtLengthConfig">52</Property>
+        <Property role="52" name="m_spnPktInterval">1600</Property>
+        <Property role="44" name="m_chkDefPktInterval">0</Property>
     </packettx>
     <packetrx>
         <Property role="42" name="m_edtPacketCount">100</Property>
@@ -169,7 +177,7 @@
         <Property role="44" name="m_chkFifoAutoFlush">0</Property>
         <Property role="42" name="m_edtAddress"></Property>
         <Property role="46" name="m_cmbLengthConfig_adv">0</Property>
-        <Property role="42" name="m_edtLengthConfig_adv">24</Property>
+        <Property role="42" name="m_edtLengthConfig_adv">52</Property>
     </packetrx>
     <commandpanel>
         <Property role="44" name="m_chkInsertLength">0</Property>
