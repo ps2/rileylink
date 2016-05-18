@@ -114,6 +114,8 @@ procedure do_spi()
     waiting_for_client = 1
     response_count = response_count + 1
     call attributes_write(xgatt_response_count,0,1,response_count)
+    # Turn on blue led
+    call hardware_io_port_write(0, $2, $2)
   end if
 
   in_spi = 0
@@ -167,14 +169,15 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
         waiting_for_client = 0
       end if
     else
-      # Testing to see if this gets called with every read
-      # Turn on blue led
-      call hardware_io_port_write(0, $2, $2)
-
       # No data to send
       waiting_for_client = 0
 	    call attributes_user_read_response(connection,0,0,spi_in_buf(0:0))
 	  end if
+    
+    if waiting_for_client = 0
+      # Turn off blue led
+      call hardware_io_port_write(0, $2, 0)
+    end if
 
 
 	end if
