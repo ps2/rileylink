@@ -16,7 +16,7 @@ For the cc1110, you should install the latest [subg_rfspy](https://github.com/ps
 For the ble113, you should install the firmware in the ble113_rfspy subdirectory.
 Using the BLE Update tool (details below).
 
-1. Install the Bluetooth Firmware Update tool and drivers as per the "Prerequisites" section below.
+1. Install the Bluetooth Firmware Update and the Bluetooth SDK tools as per the "Prerequisites" section below.
 2. Install SmartRF Studio as below, so that you have USB drivers for the CC-Debugger.
 3. Go to https://github.com/ps2/rileylink and click the "Clone or download" option.
 4. Select "Download ZIP"
@@ -47,7 +47,7 @@ use the following tools to write the firmware:
 Windows machine (or VM) with:
 
 * SmartRF Studio - tested with 2.3.1 from http://www.ti.com/tool/smartrftm-studio (Make sure to 'Extract All' if prompted at install/unzip time)
-* "BLE Update Tool v1.3.6 (Windows XP,7,8 and 10)" (or above) application
+* "BLE Update Tool v1.3.6 (Windows XP,7,8 and 10)" (or above) **AND** "Bluetooth Smart Software and SDK v.1.4.2" applications
 from the [ble113 product page](https://www.bluegiga.com/en-US/products/software-bluegiga-bluetooth-smart/)
 
 Note that you will need to sign up for an accounts to download both installers.
