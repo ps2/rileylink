@@ -23,6 +23,9 @@ See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) direct
 
 ![RileyLink Hardware](https://raw.githubusercontent.com/ps2/rileylink/master/rileylink.jpg)
 
+### Order a Pre-Assembed RileyLink
+From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are avilable you can place an order here [GetRileLink](https://getrileylink.azurewebsites.net)
+
 ### Firmware
 
 The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware) directory runs on the RileyLink hardware.  There are two main chips on the RileyLink, and thus two firmware images.
