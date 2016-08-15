@@ -8,7 +8,7 @@ Please understand that this project:
 
  * *Has no affiliation with Medtronic*
  * *Is highly experimental*
- * *Is not intended for therapy*
+ * *Is not approved for therapy*
 
 ### Setup
 
