@@ -2,15 +2,13 @@
 
 [![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
-
-*Note*: If you have a RileyLink built before Oct 6, 2015, you'll want to [upgrade to a 24MHz crystal](https://github.com/ps2/rileylink/wiki/Upgrading-to-a-24MHz-crystal) if you want to send commands to a pump. 
+A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
 
 Please understand that this project:
 
  * *Has no affiliation with Medtronic*
  * *Is highly experimental*
- * *Is not intended for therapy*
+ * *Is not approved for therapy*
 
 ### Setup
 
