@@ -4,3 +4,4 @@ xgatt_data 11
 xgatt_response_count 14
 xgatt_timer_tick 18
 xgatt_custom_name 22
+xgatt_led_mode 28

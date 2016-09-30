@@ -50,6 +50,11 @@
       <properties read="true" const="true"/>
       <value>ble_rfspy 0.9</value>
     </characteristic>
+		<characteristic uuid="c6d84241-f1a7-4f9c-a25f-fce16732f14e" id="xgatt_led_mode">
+			<description>LED Mode</description>
+      <properties read="true" write="true"/>
+      <value  type="user">00</value>
+    </characteristic>
   </service>
 
 </configuration>
