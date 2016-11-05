@@ -2,13 +2,7 @@
 
 [![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
-
-Please understand that this project:
-
- * *Has no affiliation with Medtronic*
- * *Is highly experimental*
- * *Is not approved for therapy*
+A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. 
 
 ### Setup
 
@@ -37,11 +31,6 @@ Blue for the ble113 indicates there are packets received and ready for a phone t
 On the cc1110, I blue is a timer based on/off, letting you know the firmware code is running. Green is toggled when a packet comes in.
 
 The other red LED indicates charging.
-
-
-### App
-
-The [RileyLink iOS app](https://github.com/ps2/rileylink_ios) connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
 
 ### License
 
