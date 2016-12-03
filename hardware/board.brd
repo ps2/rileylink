@@ -154,6 +154,11 @@
 <wire x1="12.375" y1="5.75" x2="10.375" y2="5.75" width="0.8636" layer="21"/>
 <rectangle x1="0.375" y1="3.75" x2="10.375" y2="7.75" layer="21"/>
 <rectangle x1="0" y1="0" x2="10" y2="10" layer="42"/>
+<circle x="29.5" y="1.45" radius="0.5" width="1" layer="25"/>
+<circle x="29.8" y="2.9" radius="0.2" width="0.4" layer="25"/>
+<circle x="30.6" y="2.5" radius="0.2" width="0.4" layer="25"/>
+<circle x="30.95" y="1.7" radius="0.2" width="0.4" layer="25"/>
+<circle x="28.95" y="2.8" radius="0.2" width="0.4" layer="25"/>
 </plain>
 <libraries>
 <library name="discrete">
@@ -2715,8 +2720,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="24.754" y1="3.25" x2="25.5" y2="3.25" width="0.24" layer="1"/>
 <via x="25.75" y="2.25" extent="1-16" drill="0.3302"/>
 <via x="33.5" y="7.625" extent="1-16" drill="0.3302"/>
-<wire x1="25.75" y1="2.25" x2="30.75" y2="2.25" width="0.24" layer="16"/>
-<wire x1="30.75" y1="2.25" x2="33.5" y2="7.625" width="0.24" layer="16"/>
+<wire x1="25.75" y1="2.25" x2="31.2" y2="3.5" width="0.24" layer="16"/>
+<wire x1="31.2" y1="3.5" x2="33.5" y2="7.625" width="0.24" layer="16"/>
 <wire x1="33.5" y1="7.625" x2="35.25" y2="7.25" width="0.24" layer="1"/>
 <wire x1="35.25" y1="7.25" x2="36.25" y2="7.5" width="0.24" layer="1"/>
 <wire x1="36.25" y1="7.5" x2="36.25" y2="8.645" width="0.24" layer="1"/>
