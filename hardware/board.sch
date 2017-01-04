@@ -11567,29 +11567,6 @@ by exp-lbrs.ulp</description>
 <circle x="0.63" y="-1.89" radius="0.28" width="0" layer="31"/>
 <circle x="-3.81" y="2.64" radius="0.254" width="0" layer="21"/>
 </package>
-<package name="SON50P260X260X80-11N">
-<wire x1="-1.2954" y1="-1.2954" x2="1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="-1.2954" x2="1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="1.2954" y1="1.2954" x2="0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51"/>
-<wire x1="-0.3048" y1="1.2954" x2="-1.2954" y2="1.2954" width="0" layer="51"/>
-<wire x1="-1.2954" y1="1.2954" x2="-1.2954" y2="-1.2954" width="0" layer="51"/>
-<wire x1="0.3048" y1="1.2954" x2="-0.3048" y2="1.2954" width="0" layer="51" curve="-180"/>
-<smd name="1" x="-1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="2" x="-1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="3" x="-1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="4" x="-1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="5" x="-1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="6" x="1.2192" y="-0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="7" x="1.2192" y="-0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="8" x="1.2192" y="0" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="9" x="1.2192" y="0.508" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="10" x="1.2192" y="0.9906" dx="0.762" dy="0.3048" layer="1"/>
-<smd name="11" x="0" y="0" dx="1.2954" dy="2.1082" layer="1"/>
-<text x="-3.4544" y="1.905" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-3.4544" y="-3.81" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
-<circle x="-1" y="1.54" radius="0.2" width="0" layer="21"/>
-</package>
 </packages>
 <symbols>
 <symbol name="CC1110">
@@ -11646,25 +11623,6 @@ by exp-lbrs.ulp</description>
 <text x="-17.78" y="40.64" size="1.778" layer="95">&gt;NAME</text>
 <text x="12.7" y="-43.18" size="1.778" layer="96">VALUE</text>
 </symbol>
-<symbol name="TPS63031">
-<wire x1="-12.7" y1="22.86" x2="-12.7" y2="-27.94" width="0.4064" layer="94"/>
-<wire x1="-12.7" y1="-27.94" x2="12.7" y2="-27.94" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="-27.94" x2="12.7" y2="22.86" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="22.86" x2="-12.7" y2="22.86" width="0.4064" layer="94"/>
-<pin name="EN" x="-17.78" y="0" length="middle" direction="in"/>
-<pin name="FB" x="-17.78" y="-5.08" length="middle" direction="in"/>
-<pin name="GND" x="-17.78" y="-17.78" length="middle" direction="pas"/>
-<pin name="L1" x="-17.78" y="7.62" length="middle" direction="in"/>
-<pin name="L2" x="-17.78" y="5.08" length="middle" direction="in"/>
-<pin name="PGND" x="-17.78" y="-15.24" length="middle" direction="pas"/>
-<pin name="PS/SYNC" x="-17.78" y="-10.16" length="middle" direction="in"/>
-<pin name="THERMALPAD" x="-17.78" y="-22.86" length="middle" direction="pas"/>
-<pin name="VIN" x="-17.78" y="12.7" length="middle" direction="in"/>
-<pin name="VINA" x="-17.78" y="17.78" length="middle" direction="in"/>
-<pin name="VOUT" x="17.78" y="17.78" length="middle" direction="out" rot="R180"/>
-<text x="-5.4356" y="24.5364" size="2.0828" layer="95" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-2.8448" y="-31.369" size="2.0828" layer="96" ratio="10" rot="SR0">&gt;VALUE</text>
-</symbol>
 </symbols>
 <devicesets>
 <deviceset name="CC1110" prefix="IC">
@@ -11718,38 +11676,6 @@ by exp-lbrs.ulp</description>
 </connects>
 <technologies>
 <technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="TPS63031" prefix="U">
-<description>HIGH EFFICIENCY SINGLE INDUCTOR BUCK-BOOST CONVERTER WITH 1-A SWITCHES</description>
-<gates>
-<gate name="A" symbol="TPS63031" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SON50P260X260X80-11N">
-<connects>
-<connect gate="A" pin="EN" pad="6"/>
-<connect gate="A" pin="FB" pad="10"/>
-<connect gate="A" pin="GND" pad="9"/>
-<connect gate="A" pin="L1" pad="4"/>
-<connect gate="A" pin="L2" pad="2"/>
-<connect gate="A" pin="PGND" pad="3"/>
-<connect gate="A" pin="PS/SYNC" pad="7"/>
-<connect gate="A" pin="THERMALPAD" pad="11"/>
-<connect gate="A" pin="VIN" pad="5"/>
-<connect gate="A" pin="VINA" pad="8"/>
-<connect gate="A" pin="VOUT" pad="1"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="MPN" value="TPS63031" constant="no"/>
-<attribute name="OC_FARNELL" value="1686303" constant="no"/>
-<attribute name="OC_NEWARK" value="19P7478" constant="no"/>
-<attribute name="PACKAGE" value="SON-10" constant="no"/>
-<attribute name="SUPPLIER" value="Texas Instruments" constant="no"/>
-</technology>
 </technologies>
 </device>
 </devices>
@@ -11846,6 +11772,71 @@ by exp-lbrs.ulp</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="texas-custom">
+<description>Texas Instruments components
+Jason Wright (jpwright), last updated 2/11/14</description>
+<packages>
+<package name="SOT23-5">
+<description>&lt;b&gt;Small Outline Transistor&lt;/b&gt;</description>
+<wire x1="1.4224" y1="0.4294" x2="1.4224" y2="-0.4294" width="0.2032" layer="21"/>
+<wire x1="1.4" y1="-0.8" x2="-1.4" y2="-0.8" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.4294" x2="-1.4224" y2="0.4294" width="0.2032" layer="21"/>
+<wire x1="-1.4" y1="0.8" x2="1.4" y2="0.8" width="0.1524" layer="51"/>
+<wire x1="-0.2684" y1="0.8104" x2="0.2684" y2="0.8104" width="0.2032" layer="21"/>
+<wire x1="1.4" y1="0.8" x2="1.4" y2="-0.8" width="0.1524" layer="51"/>
+<wire x1="-1.4" y1="0.8" x2="-1.4" y2="-0.8" width="0.1524" layer="51"/>
+<smd name="1" x="-0.95" y="-1.3001" dx="0.55" dy="1.2" layer="1"/>
+<smd name="2" x="0" y="-1.3001" dx="0.55" dy="1.2" layer="1"/>
+<smd name="3" x="0.95" y="-1.3001" dx="0.55" dy="1.2" layer="1"/>
+<smd name="4" x="0.95" y="1.3001" dx="0.55" dy="1.2" layer="1"/>
+<smd name="5" x="-0.95" y="1.3001" dx="0.55" dy="1.2" layer="1"/>
+<text x="-0.889" y="2.159" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-0.9525" y="-0.1905" size="0.4064" layer="27">&gt;VALUE</text>
+<rectangle x1="-1.2" y1="-1.5" x2="-0.7" y2="-0.85" layer="51"/>
+<rectangle x1="-0.25" y1="-1.5" x2="0.25" y2="-0.85" layer="51"/>
+<rectangle x1="0.7" y1="-1.5" x2="1.2" y2="-0.85" layer="51"/>
+<rectangle x1="0.7" y1="0.85" x2="1.2" y2="1.5" layer="51"/>
+<rectangle x1="-1.2" y1="0.85" x2="-0.7" y2="1.5" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="LM3671">
+<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
+<pin name="VIN" x="-12.7" y="5.08" length="middle"/>
+<pin name="GND" x="-12.7" y="0" length="middle"/>
+<pin name="EN" x="-12.7" y="-5.08" length="middle"/>
+<pin name="FB" x="12.7" y="-5.08" length="middle" rot="R180"/>
+<pin name="SW" x="12.7" y="5.08" length="middle" rot="R180"/>
+<text x="-7.62" y="10.16" size="1.778" layer="94">&gt;NAME</text>
+<text x="-7.62" y="-12.7" size="1.778" layer="94">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="LM3671">
+<description>Texas Instruments LM3671, LM3671Q 2MHz, 600mA Step-Down DC-DC Converter</description>
+<gates>
+<gate name="G$1" symbol="LM3671" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23-5">
+<connects>
+<connect gate="G$1" pin="EN" pad="3"/>
+<connect gate="G$1" pin="FB" pad="4"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="SW" pad="5"/>
+<connect gate="G$1" pin="VIN" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -11875,17 +11866,9 @@ by exp-lbrs.ulp</description>
 <part name="C3" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="REGULATOR" library="board" deviceset="TPS63031" device="">
-<attribute name="MPN" value="TPS63031"/>
-</part>
-<part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="L1" library="rcl" deviceset="L-US" device="L2825P" value="1.5 uH"/>
 <part name="C4" library="rcl" deviceset="C-EU" device="C0805K" value="10 uF"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" deviceset="VDD" device=""/>
-<part name="SUPPLY3" library="supply2" deviceset="VDD" device=""/>
-<part name="P+2" library="supply1" deviceset="V+" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="U.FL" device="" value="U.FL"/>
 <part name="U3" library="sf-bluegiga" deviceset="BLE113" device="-A"/>
@@ -11940,11 +11923,13 @@ by exp-lbrs.ulp</description>
 <part name="FID1" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID2" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID3" library="adafruit" deviceset="FIDUCIAL" device=""/>
-<part name="C14" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
-<part name="GND11" library="supply1" deviceset="GND" device=""/>
-<part name="C15" library="rcl" deviceset="C-EU" device="C0805K" value="10 uF"/>
 <part name="JP2" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
+<part name="VREG" library="texas-custom" deviceset="LM3671" device=""/>
+<part name="GND21" library="supply1" deviceset="GND" device=""/>
+<part name="C16" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
+<part name="P+3" library="supply1" deviceset="V+" device=""/>
+<part name="L2" library="rcl" deviceset="L-US" device="L2825P" value="2.2 uH"/>
 </parts>
 <sheets>
 <sheet>
@@ -11971,17 +11956,9 @@ by exp-lbrs.ulp</description>
 <instance part="C3" gate="G$1" x="132.08" y="134.62"/>
 <instance part="GND5" gate="1" x="132.08" y="127"/>
 <instance part="GND6" gate="1" x="157.48" y="132.08"/>
-<instance part="REGULATOR" gate="A" x="33.02" y="154.94"/>
-<instance part="GND7" gate="1" x="2.54" y="132.08"/>
-<instance part="GND8" gate="1" x="12.7" y="127"/>
-<instance part="L1" gate="G$1" x="2.54" y="160.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="6.5786" y="157.7594" size="2.0828" layer="95" ratio="10" rot="SR180"/>
-</instance>
-<instance part="C4" gate="G$1" x="55.88" y="167.64"/>
-<instance part="GND9" gate="1" x="55.88" y="160.02"/>
-<instance part="SUPPLY2" gate="G$1" x="55.88" y="175.26"/>
-<instance part="SUPPLY3" gate="G$1" x="-15.24" y="157.48"/>
-<instance part="P+2" gate="1" x="-27.94" y="170.18"/>
+<instance part="C4" gate="G$1" x="60.96" y="180.34"/>
+<instance part="GND9" gate="1" x="60.96" y="172.72"/>
+<instance part="SUPPLY2" gate="G$1" x="60.96" y="185.42"/>
 <instance part="SUPPLY5" gate="GND" x="76.2" y="-2.54"/>
 <instance part="J1" gate="G$1" x="152.4" y="35.56" rot="R90"/>
 <instance part="U3" gate="G$1" x="60.96" y="-48.26" rot="MR180"/>
@@ -12036,11 +12013,15 @@ by exp-lbrs.ulp</description>
 <instance part="FID1" gate="G$1" x="111.76" y="-50.8"/>
 <instance part="FID2" gate="G$1" x="132.08" y="-50.8"/>
 <instance part="FID3" gate="G$1" x="147.32" y="-50.8"/>
-<instance part="C14" gate="G$1" x="2.54" y="177.8"/>
-<instance part="GND11" gate="1" x="-7.62" y="182.88" rot="R180"/>
-<instance part="C15" gate="G$1" x="-15.24" y="172.72"/>
 <instance part="JP2" gate="G$1" x="152.4" y="190.5"/>
 <instance part="GND12" gate="1" x="134.62" y="195.58" rot="R180"/>
+<instance part="VREG" gate="G$1" x="27.94" y="177.8"/>
+<instance part="GND21" gate="1" x="-5.08" y="172.72"/>
+<instance part="C16" gate="G$1" x="-5.08" y="180.34"/>
+<instance part="P+3" gate="1" x="-17.78" y="185.42"/>
+<instance part="L2" gate="G$1" x="48.26" y="182.88" smashed="yes" rot="R270">
+<attribute name="NAME" x="52.2986" y="180.6194" size="2.0828" layer="95" ratio="10" rot="SR180"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -12091,23 +12072,6 @@ by exp-lbrs.ulp</description>
 <segment>
 <pinref part="JP1" gate="G$1" pin="2"/>
 <pinref part="GND6" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="REGULATOR" gate="A" pin="PGND"/>
-<wire x1="15.24" y1="139.7" x2="10.16" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="139.7" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="REGULATOR" gate="A" pin="GND"/>
-<wire x1="15.24" y1="137.16" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="139.7" x2="2.54" y2="139.7" width="0.1524" layer="91"/>
-<junction x="10.16" y="139.7"/>
-<wire x1="2.54" y1="139.7" x2="2.54" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="GND7" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="REGULATOR" gate="A" pin="THERMALPAD"/>
-<pinref part="GND8" gate="1" pin="GND"/>
-<wire x1="15.24" y1="132.08" x2="12.7" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="12.7" y1="132.08" x2="12.7" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C4" gate="G$1" pin="2"/>
@@ -12208,33 +12172,31 @@ by exp-lbrs.ulp</description>
 <wire x1="157.48" y1="30.48" x2="157.48" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C14" gate="G$1" pin="1"/>
-<pinref part="GND11" gate="1" pin="GND"/>
-<wire x1="2.54" y1="180.34" x2="-7.62" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="C15" gate="G$1" pin="1"/>
-<wire x1="-15.24" y1="175.26" x2="-15.24" y2="180.34" width="0.1524" layer="91"/>
-<wire x1="-15.24" y1="180.34" x2="-7.62" y2="180.34" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="JP2" gate="G$1" pin="1"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="149.86" y1="193.04" x2="134.62" y2="193.04" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="C16" gate="G$1" pin="2"/>
+<pinref part="GND21" gate="1" pin="GND"/>
+<pinref part="VREG" gate="G$1" pin="GND"/>
+<wire x1="15.24" y1="177.8" x2="5.08" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="177.8" x2="5.08" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="175.26" x2="-5.08" y2="175.26" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VDD" class="0">
 <segment>
-<pinref part="REGULATOR" gate="A" pin="VOUT"/>
 <pinref part="C4" gate="G$1" pin="1"/>
-<wire x1="50.8" y1="172.72" x2="55.88" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="172.72" x2="55.88" y2="170.18" width="0.1524" layer="91"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VDD"/>
-<junction x="55.88" y="172.72"/>
-</segment>
-<segment>
-<pinref part="REGULATOR" gate="A" pin="FB"/>
-<pinref part="SUPPLY3" gate="G$1" pin="VDD"/>
-<wire x1="15.24" y1="149.86" x2="-15.24" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="-15.24" y1="149.86" x2="-15.24" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="L2" gate="G$1" pin="1"/>
+<junction x="55.88" y="182.88"/>
+<pinref part="L2" gate="G$1" pin="1"/>
+<wire x1="55.88" y1="182.88" x2="60.96" y2="182.88" width="0.1524" layer="91"/>
+<junction x="60.96" y="182.88"/>
+<pinref part="VREG" gate="G$1" pin="FB"/>
+<wire x1="40.64" y1="172.72" x2="55.88" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="172.72" x2="55.88" y2="182.88" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="BLE113-DEBUG" gate="G$1" pin="3V3_SENS"/>
@@ -12364,37 +12326,22 @@ by exp-lbrs.ulp</description>
 <wire x1="142.24" y1="190.5" x2="149.86" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="REGULATOR" gate="A" pin="L2"/>
-<pinref part="L1" gate="G$1" pin="1"/>
-<wire x1="10.16" y1="160.02" x2="15.24" y2="160.02" width="0.1524" layer="91"/>
-<junction x="10.16" y="160.02"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="REGULATOR" gate="A" pin="L1"/>
-<wire x1="15.24" y1="162.56" x2="10.16" y2="162.56" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="162.56" x2="10.16" y2="165.1" width="0.1524" layer="91"/>
-<pinref part="L1" gate="G$1" pin="2"/>
-<wire x1="10.16" y1="165.1" x2="-5.08" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="165.1" x2="-5.08" y2="160.02" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="V+" class="0">
-<segment>
-<pinref part="P+2" gate="1" pin="V+"/>
-<pinref part="REGULATOR" gate="A" pin="VIN"/>
-<wire x1="15.24" y1="167.64" x2="-15.24" y2="167.64" width="0.1524" layer="91"/>
-<pinref part="C15" gate="G$1" pin="2"/>
-<junction x="-15.24" y="167.64"/>
-<wire x1="-15.24" y1="167.64" x2="-27.94" y2="167.64" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="PWR" gate="G$1" pin="COM"/>
 <wire x1="86.36" y1="134.62" x2="78.74" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="P+1" gate="1" pin="V+"/>
+</segment>
+<segment>
+<pinref part="VREG" gate="G$1" pin="VIN"/>
+<pinref part="C16" gate="G$1" pin="1"/>
+<wire x1="15.24" y1="182.88" x2="12.7" y2="182.88" width="0.1524" layer="91"/>
+<pinref part="VREG" gate="G$1" pin="EN"/>
+<wire x1="12.7" y1="182.88" x2="-5.08" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="15.24" y1="172.72" x2="12.7" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="172.72" x2="12.7" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="182.88" x2="-17.78" y2="182.88" width="0.1524" layer="91"/>
+<pinref part="P+3" gate="1" pin="V+"/>
 </segment>
 </net>
 <net name="N$20" class="0">
@@ -12688,22 +12635,15 @@ by exp-lbrs.ulp</description>
 <wire x1="83.82" y1="-12.7" x2="-7.62" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$13" class="0">
+<net name="N$16" class="0">
 <segment>
-<pinref part="REGULATOR" gate="A" pin="PS/SYNC"/>
-<wire x1="-35.56" y1="144.78" x2="10.16" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="REGULATOR" gate="A" pin="EN"/>
-<wire x1="10.16" y1="144.78" x2="15.24" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="15.24" y1="154.94" x2="10.16" y2="154.94" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="154.94" x2="10.16" y2="144.78" width="0.1524" layer="91"/>
-<junction x="10.16" y="144.78"/>
-<wire x1="-35.56" y1="144.78" x2="-35.56" y2="193.04" width="0.1524" layer="91"/>
-<pinref part="REGULATOR" gate="A" pin="VINA"/>
-<pinref part="C14" gate="G$1" pin="2"/>
-<wire x1="15.24" y1="172.72" x2="12.7" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="12.7" y1="172.72" x2="2.54" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="-35.56" y1="193.04" x2="12.7" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="12.7" y1="193.04" x2="12.7" y2="172.72" width="0.1524" layer="91"/>
+<pinref part="VREG" gate="G$1" pin="SW"/>
+<pinref part="L2" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<wire x1="12.7" y1="132.08" x2="12.7" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
