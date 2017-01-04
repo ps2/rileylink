@@ -3,7 +3,7 @@ Digi-Key Part Number,Quantity 1,Customer Reference
 490-6196-1-ND,2,"12pF ±1% 50V C0G, NP0 Capacitor 0402"
 311-470LRCT-ND,4,470 ohms 0402
 609-3695-1-ND,2,CC-Debugger Header
-296-23904-1-ND,1,3.3V Buck Boost Regulator 0.9A
+LM3671MF-3.3/NOPBCT-ND,1,3.3V Buck Converter 0.6A SOT23
 445-7482-1-ND,3,4.7µF ±10% 10V X5R Capacitor 0603
 587-1227-1-ND,7,0.10µF ±10% 10V X5R Capacitor 0402
 455-1749-1-ND,1,2 Positions JST Header 2mm
