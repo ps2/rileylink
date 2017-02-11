@@ -37,3 +37,5 @@ eagle.epf
 
 # BLE compilation
 *.hex
+
+.DS_Store
