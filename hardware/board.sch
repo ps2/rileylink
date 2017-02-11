@@ -11923,13 +11923,13 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <part name="FID1" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID2" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID3" library="adafruit" deviceset="FIDUCIAL" device=""/>
-<part name="JP2" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="ALT.PWR" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="VREG" library="texas-custom" deviceset="LM3671" device=""/>
 <part name="GND21" library="supply1" deviceset="GND" device=""/>
-<part name="C16" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
+<part name="C14" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
 <part name="P+3" library="supply1" deviceset="V+" device=""/>
-<part name="L2" library="rcl" deviceset="L-US" device="L2825P" value="2.2 uH"/>
+<part name="L1" library="rcl" deviceset="L-US" device="L2825P" value="2.2 uH"/>
 </parts>
 <sheets>
 <sheet>
@@ -12013,13 +12013,13 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <instance part="FID1" gate="G$1" x="111.76" y="-50.8"/>
 <instance part="FID2" gate="G$1" x="132.08" y="-50.8"/>
 <instance part="FID3" gate="G$1" x="147.32" y="-50.8"/>
-<instance part="JP2" gate="G$1" x="152.4" y="190.5"/>
+<instance part="ALT.PWR" gate="G$1" x="152.4" y="190.5"/>
 <instance part="GND12" gate="1" x="134.62" y="195.58" rot="R180"/>
 <instance part="VREG" gate="G$1" x="27.94" y="177.8"/>
 <instance part="GND21" gate="1" x="-5.08" y="172.72"/>
-<instance part="C16" gate="G$1" x="-5.08" y="180.34"/>
+<instance part="C14" gate="G$1" x="-5.08" y="180.34"/>
 <instance part="P+3" gate="1" x="-17.78" y="185.42"/>
-<instance part="L2" gate="G$1" x="48.26" y="182.88" smashed="yes" rot="R270">
+<instance part="L1" gate="G$1" x="48.26" y="182.88" smashed="yes" rot="R270">
 <attribute name="NAME" x="52.2986" y="180.6194" size="2.0828" layer="95" ratio="10" rot="SR180"/>
 </instance>
 </instances>
@@ -12172,12 +12172,12 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <wire x1="157.48" y1="30.48" x2="157.48" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="1"/>
+<pinref part="ALT.PWR" gate="G$1" pin="1"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="149.86" y1="193.04" x2="134.62" y2="193.04" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C16" gate="G$1" pin="2"/>
+<pinref part="C14" gate="G$1" pin="2"/>
 <pinref part="GND21" gate="1" pin="GND"/>
 <pinref part="VREG" gate="G$1" pin="GND"/>
 <wire x1="15.24" y1="177.8" x2="5.08" y2="177.8" width="0.1524" layer="91"/>
@@ -12189,9 +12189,9 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <segment>
 <pinref part="C4" gate="G$1" pin="1"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VDD"/>
-<pinref part="L2" gate="G$1" pin="1"/>
+<pinref part="L1" gate="G$1" pin="1"/>
 <junction x="55.88" y="182.88"/>
-<pinref part="L2" gate="G$1" pin="1"/>
+<pinref part="L1" gate="G$1" pin="1"/>
 <wire x1="55.88" y1="182.88" x2="60.96" y2="182.88" width="0.1524" layer="91"/>
 <junction x="60.96" y="182.88"/>
 <pinref part="VREG" gate="G$1" pin="FB"/>
@@ -12322,7 +12322,7 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <junction x="175.26" y="182.88"/>
 <wire x1="142.24" y1="182.88" x2="175.26" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="142.24" y1="182.88" x2="142.24" y2="190.5" width="0.1524" layer="91"/>
-<pinref part="JP2" gate="G$1" pin="2"/>
+<pinref part="ALT.PWR" gate="G$1" pin="2"/>
 <wire x1="142.24" y1="190.5" x2="149.86" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -12334,7 +12334,7 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 </segment>
 <segment>
 <pinref part="VREG" gate="G$1" pin="VIN"/>
-<pinref part="C16" gate="G$1" pin="1"/>
+<pinref part="C14" gate="G$1" pin="1"/>
 <wire x1="15.24" y1="182.88" x2="12.7" y2="182.88" width="0.1524" layer="91"/>
 <pinref part="VREG" gate="G$1" pin="EN"/>
 <wire x1="12.7" y1="182.88" x2="-5.08" y2="182.88" width="0.1524" layer="91"/>
@@ -12638,7 +12638,7 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <net name="N$16" class="0">
 <segment>
 <pinref part="VREG" gate="G$1" pin="SW"/>
-<pinref part="L2" gate="G$1" pin="2"/>
+<pinref part="L1" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$11" class="0">
