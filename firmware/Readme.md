@@ -50,7 +50,7 @@ Windows machine (or VM) with:
 * "BLE Update Tool v1.3.6 (Windows XP,7,8 and 10)" (or above) **AND** "Bluetooth Smart Software and SDK v.1.4.2" applications
 from the [ble113 product page](https://www.bluegiga.com/en-US/products/software-bluegiga-bluetooth-smart/)
 
-Note that you will need to sign up for an accounts to download both installers.
+Note that you will need to sign up for accounts with Texas Instruments (TI) and with Bluegiga to download each installer.
 
 ## Troubleshooting
 
