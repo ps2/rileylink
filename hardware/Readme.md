@@ -30,7 +30,7 @@ I created a case using [Tinkercad](https://www.tinkercad.com), a great tool.
 
 ![3D Printed Case](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case.png)
 
-The case is designed to hold the [850mAh Lipo](https://www.sparkfun.com/products/341) available from sparkfun. That battery lasts a day or so when the RileyLink is constant listen mode. It should last longer if the firmware uses a duty cycle that's less than 100%.
+The case is designed to hold an [850mAh Lipo](https://getrileylink.org/product/850lionbattery/). That battery lasts a day or so when the RileyLink is constant listen mode. It should last longer if the firmware uses a duty cycle that's less than 100%.
 
 ### Fitting components inside case
 
