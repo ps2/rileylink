@@ -8,7 +8,7 @@
 
 ### Order the PCB from OSH Park:
 
-[RileyLink v0.7](https://oshpark.com/shared_projects/vmb09BAC)
+[RileyLink v1.0](https://oshpark.com/shared_projects/jWrg6WmU)
 
 ### Components
 
@@ -40,7 +40,7 @@ Note: there’s an issue I have with the case that I haven’t fixed yet; the bo
 
 ### 868MHz (EU) version
 
-You'll need an 868 MHz antenna (part #ANT-868-JJB-RA), and an 868 MHz balun ( part # 0868BM15C0001E). You'll also need to update the frequency that the cc1110 firmware runs at.
+Since the firmware allows changing of the frequency, and most people are using the 915Mhz antenna successfully with 868Mhz pumps, a custom RileyLink is not needed.
 
 ### License
 
