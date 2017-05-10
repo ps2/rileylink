@@ -16,7 +16,7 @@ See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) direct
 ![RileyLink Hardware](https://raw.githubusercontent.com/ps2/rileylink/master/rileylink.jpg)
 
 ### Order a Pre-Assembed RileyLink
-From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are avilable you can place an order here [GetRileyLink](https://getrileylink.org/)
+From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are available you can place an order here [GetRileyLink](https://getrileylink.org/)
 
 ### Firmware
 
