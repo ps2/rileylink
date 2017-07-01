@@ -1,4 +1,4 @@
-640
+644
 0:0	GAP_AD_FLAG_BREDR_NOT_SUPPORTED
 0:0	GAP_AD_FLAG_GENERAL_DISCOVERABLE
 0:0	GAP_AD_FLAG_LIMITED_DISCOVERABLE
@@ -79,6 +79,7 @@
 0:0	xgatt_battery
 0:0	xgatt_custom_name
 0:0	xgatt_data
+0:0	xgatt_led_mode
 0:0	xgatt_name
 0:0	xgatt_response_count
 0:0	xgatt_timer_tick
@@ -108,5 +109,6 @@
 620:4	in_spi
 624:4	timer_tick_count
 628:4	timer_update_count
-632:4	batconn_handle
-636:4	batresult
+632:4	led_mode
+636:4	batconn_handle
+640:4	batresult

@@ -8,7 +8,7 @@
 
 ### Order the PCB from OSH Park:
 
-[RileyLink v0.7](https://oshpark.com/shared_projects/vmb09BAC)
+[RileyLink v1.0](https://oshpark.com/shared_projects/jWrg6WmU)
 
 ### Components
 
@@ -30,7 +30,7 @@ I created a case using [Tinkercad](https://www.tinkercad.com), a great tool.
 
 ![3D Printed Case](https://raw.githubusercontent.com/ps2/rileylink/master/hardware/case.png)
 
-The case is designed to hold the [850mAh Lipo](https://www.sparkfun.com/products/341) available from sparkfun. That battery lasts a day or so when the RileyLink is constant listen mode. It should last longer if the firmware uses a duty cycle that's less than 100%.
+The case is designed to hold an [850mAh Lipo](https://getrileylink.org/product/850lionbattery/). That battery lasts a day or so when the RileyLink is constant listen mode. It should last longer if the firmware uses a duty cycle that's less than 100%.
 
 ### Fitting components inside case
 
@@ -40,7 +40,7 @@ Note: there’s an issue I have with the case that I haven’t fixed yet; the bo
 
 ### 868MHz (EU) version
 
-You'll need an 868 MHz antenna (part #ANT-868-JJB-RA), and an 868 MHz balun ( part # 0868BM15C0001E). You'll also need to update the frequency that the cc1110 firmware runs at.
+Since the firmware allows changing of the frequency, and most people are using the 915Mhz antenna successfully with 868Mhz pumps, a custom RileyLink is not needed.
 
 ### License
 

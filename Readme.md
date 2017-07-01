@@ -2,15 +2,7 @@
 
 [![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A custom designed Bluetooth Smart (BLE) to 916MHz module. It can be used to bridge any BLE capable smartphone to the world of 916Mhz based devices. This project is focused on talking to Medtronic insulin pumps and sensors.  I am currently using it to display pump and sensor data in [Nightscout](http://nightscout.github.io/).
-
-*Note*: If you have a RileyLink built before Oct 6, 2015, you'll want to [upgrade to a 24MHz crystal](https://github.com/ps2/rileylink/wiki/Upgrading-to-a-24MHz-crystal) if you want to send commands to a pump. 
-
-Please understand that this project:
-
- * *Has no affiliation with Medtronic*
- * *Is highly experimental*
- * *Is not intended for therapy*
+A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. 
 
 ### Setup
 
@@ -24,7 +16,7 @@ See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) direct
 ![RileyLink Hardware](https://raw.githubusercontent.com/ps2/rileylink/master/rileylink.jpg)
 
 ### Order a Pre-Assembed RileyLink
-From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are avilable you can place an order here [GetRileLink](https://getrileylink.azurewebsites.net)
+From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are available you can place an order here [GetRileyLink](https://getrileylink.org/)
 
 ### Firmware
 
@@ -39,11 +31,6 @@ Blue for the ble113 indicates there are packets received and ready for a phone t
 On the cc1110, I blue is a timer based on/off, letting you know the firmware code is running. Green is toggled when a packet comes in.
 
 The other red LED indicates charging.
-
-
-### App
-
-The [RileyLink iOS app](https://github.com/ps2/rileylink_ios) connects to a RileyLink device via Bluetooth Low Energy, sends data to a Nightscout instance via the REST API, and shows the Nightscout display in a webview.
 
 ### License
 

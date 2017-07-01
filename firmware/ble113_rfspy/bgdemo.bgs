@@ -28,6 +28,7 @@ dim chunk_size
 dim in_spi
 dim timer_tick_count
 dim timer_update_count
+dim led_mode
 
 #variable to save handle
 dim batconn_handle
@@ -40,6 +41,7 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	name_len=0
 	response_count=0
 	in_spi=0
+  led_mode=0
 
 	call flash_ps_load($8000)(result, name_len, name(0:name_len))
 	if result != 0 then
@@ -64,12 +66,31 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
 	# Turn P0_0 (green led) and P0_1 (blue led) off
 	call hardware_io_port_write(0, $3, 0)
 
+  # Init output buffer
+  memset(spi_out_buf(0), $11, 255)
 
 	call attributes_write(xgatt_name, 0, name_len, name(0:name_len))
 	call attributes_write(xgatt_custom_name, 0, name_len, name(0:name_len))
   
   # Start ~50ms timer
   call hardware_set_soft_timer($666, 1, 0)
+end
+
+procedure set_data_led(value)
+  if led_mode != 0 then
+    if value = 1 then
+      call hardware_io_port_write(0, $2, $2)
+    else
+      call hardware_io_port_write(0, $2, 0)
+    end if
+  end if
+end
+
+procedure set_led_mode(value)
+  if value = 0 then
+    call hardware_io_port_write(0, $2, 0)
+   end if
+   led_mode = value
 end
 
 procedure do_spi()
@@ -105,6 +126,7 @@ procedure do_spi()
     end if
   end while
 
+  memset(spi_out_buf(0), $11, spi_out_buf_len)
   spi_out_buf_len = 0
   spi_in_buf_len = slave_bytes_avail
 
@@ -114,8 +136,7 @@ procedure do_spi()
     waiting_for_client = 1
     response_count = response_count + 1
     call attributes_write(xgatt_response_count,0,1,response_count)
-    # Turn on blue led
-    call hardware_io_port_write(0, $2, $2)
+    call set_data_led(1)
   end if
 
   in_spi = 0
@@ -142,7 +163,10 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
       	call do_spi()
 			end if
 	  end if
-
+  end if
+  
+  if handle = xgatt_led_mode then
+    call set_led_mode(value_data(0:1))
   end if
 
 	if reason = 2 then # User requesting response
@@ -175,12 +199,16 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
 	  end if
     
     if waiting_for_client = 0
-      # Turn off blue led
-      call hardware_io_port_write(0, $2, 0)
+      call set_data_led(0)
     end if
 
 
 	end if
+  
+  if handle = xgatt_led_mode then
+    call hardware_io_port_write(0, $10, $10)
+	  call attributes_user_read_response(connection,0,1,led_mode)
+  end if
 
 end
 
