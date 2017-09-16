@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project>
     <gatt in="gatt.xml" />
-	<device type="ble113" memory="256"/>
+    <device type="ble113" memory="256"/>
     <hardware in="hardware.xml" />    
-    <script in="bgdemo.bgs" />
+    <script in="main.bgs" />
     <usb_main in="cdc.xml" />
     <image out="out.hex" /> 
-	<config in="config.xml" />	
+    <config in="config.xml" />	
 </project>
