@@ -8,6 +8,7 @@ dim spi_out_buf_len
 # 1 = waiting for ble client to read bytes from data attr.
 # We halt spi comms until this happens. Crude flow control.
 dim waiting_for_client
+dim connected
 dim slave_bytes_avail
 dim spi_xfer_size
 dim spi_batch_size
@@ -94,6 +95,10 @@ procedure set_led_mode(value)
 end
 
 procedure do_spi()
+  if in_spi = 1 then
+    return
+  end if
+
   in_spi = 1
   call hardware_io_port_write(0, $10, 0)
 
@@ -159,7 +164,7 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
     # Write to SPI if finished
     if offset + value_len = expected_length then
       spi_out_buf_len = expected_length
-      if waiting_for_client != 1 && in_spi = 0
+      if waiting_for_client != 1
         call do_spi()
       end if
     end if
@@ -200,8 +205,8 @@ event attributes_user_read_request(connection, handle, offset, maxsize)
 
     if waiting_for_client = 0
       call set_data_led(0)
+      call do_spi()
     end if
-
 
   end if
 
@@ -240,7 +245,7 @@ end
 
 # Timer event listener to poll data from spi
 event hardware_soft_timer(handle)
-  if waiting_for_client != 1 && in_spi = 0
+  if waiting_for_client != 1 && connected = 1 then
     call do_spi()
   end if
 
@@ -258,6 +263,7 @@ end
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
   # Device is connected. Turn on green led
   call hardware_io_port_write(0, $1, $1)
+  connected = 1
 
   # Drop any data what was waiting to go to client from
   # previous connection.
@@ -272,6 +278,7 @@ event connection_disconnected(handle,res)
   call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
   # Device disconnected. Turn off green led
   call hardware_io_port_write(0, $1, $0)
+  connected = 0
 
   # Save name
   if name_len > 0
