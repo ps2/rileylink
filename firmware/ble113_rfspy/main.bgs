@@ -42,7 +42,7 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
   name_len=0
   response_count=0
   in_spi=0
-  led_mode=0
+  led_mode=1
 
   call flash_ps_load($8000)(result, name_len, name(0:name_len))
   if result != 0 then
@@ -158,6 +158,7 @@ event attributes_value(connection, reason, handle, offset, value_len, value_data
   if handle = xgatt_data then
     if offset = 0 then
       expected_length = value_data(0:1) + 1
+      waiting_for_client = 0
     end if
     spi_out_buf(offset:value_len) = value_data(0:value_len)
 
