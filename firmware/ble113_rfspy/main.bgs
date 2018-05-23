@@ -42,7 +42,7 @@ event system_boot(major,minor,patch,build,ll_version,protocol,hw)
   name_len=0
   response_count=0
   in_spi=0
-  led_mode=1
+  led_mode=0
 
   call flash_ps_load($8000)(result, name_len, name(0:name_len))
   if result != 0 then
