@@ -48,7 +48,7 @@
 		<characteristic uuid="30d99dc9-7c91-4295-a051-0a104d238cf2">
 			<description>Version</description>
       <properties read="true" const="true"/>
-      <value>ble_rfspy 0.9</value>
+      <value>ble_rfspy 2.0</value>
     </characteristic>
 		<characteristic uuid="c6d84241-f1a7-4f9c-a25f-fce16732f14e" id="xgatt_led_mode">
 			<description>LED Mode</description>
