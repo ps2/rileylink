@@ -9074,26 +9074,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <text x="0.616" y="0.75" size="1.27" layer="51">+</text>
 <text x="-1.384" y="0.75" size="1.27" layer="51">-</text>
 </package>
-<package name="U.FL">
-<wire x1="1.3" y1="0.7" x2="1.3" y2="2" width="0.127" layer="21"/>
-<wire x1="1.3" y1="2" x2="-1.3" y2="2" width="0.127" layer="21"/>
-<wire x1="-1.3" y1="-2" x2="1.3" y2="-2" width="0.127" layer="21"/>
-<wire x1="1.3" y1="-2" x2="1.3" y2="-0.7" width="0.127" layer="21"/>
-<wire x1="-1.3" y1="0.7" x2="-1.3" y2="2" width="0.127" layer="21"/>
-<wire x1="-1.3" y1="-2" x2="-1.3" y2="-0.7" width="0.127" layer="21"/>
-<wire x1="1.4" y1="0.7" x2="1.4" y2="2" width="0.127" layer="21"/>
-<wire x1="1.4" y1="-2" x2="1.4" y2="-0.7" width="0.127" layer="21"/>
-<wire x1="1.5" y1="0.7" x2="1.5" y2="2" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-2" x2="1.5" y2="-0.7" width="0.127" layer="21"/>
-<wire x1="1.5" y1="2" x2="1.3" y2="2" width="0.127" layer="21"/>
-<wire x1="1.5" y1="0.7" x2="1.3" y2="0.7" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-0.7" x2="1.3" y2="-0.7" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-2" x2="1.3" y2="-2" width="0.127" layer="21"/>
-<smd name="P$1" x="0" y="1.375" dx="2.2" dy="0.85" layer="1"/>
-<smd name="P$2" x="0" y="-1.375" dx="2.2" dy="0.85" layer="1"/>
-<smd name="P$3" x="1.525" y="0" dx="1.05" dy="1" layer="1"/>
-<smd name="P$4" x="-1.525" y="0" dx="1.05" dy="1" layer="1"/>
-</package>
 </packages>
 <symbols>
 <symbol name="M02">
@@ -9107,15 +9087,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <text x="-2.54" y="5.842" size="1.778" layer="95">&gt;NAME</text>
 <pin name="1" x="7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="2" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
-</symbol>
-<symbol name="U.FL">
-<wire x1="0" y1="-2.54" x2="0" y2="-7.62" width="0.254" layer="94"/>
-<circle x="0" y="0" radius="1.1359" width="0.254" layer="94"/>
-<circle x="0" y="0" radius="2.54" width="0.254" layer="94"/>
-<pin name="GND@0" x="-2.54" y="-5.08" visible="off" length="short"/>
-<pin name="SIGNAL" x="5.08" y="0" visible="off" length="middle" rot="R180"/>
-<pin name="GND@1" x="-2.54" y="-7.62" visible="off" length="short"/>
-<text x="-3.81" y="4.064" size="1.778" layer="95">&gt;NAME</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -9350,27 +9321,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </connects>
 <technologies>
 <technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="U.FL" prefix="J" uservalue="yes">
-<description>SMD antenna connector- WRL-09144</description>
-<gates>
-<gate name="G$1" symbol="U.FL" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="U.FL">
-<connects>
-<connect gate="G$1" pin="GND@0" pad="P$1"/>
-<connect gate="G$1" pin="GND@1" pad="P$2"/>
-<connect gate="G$1" pin="SIGNAL" pad="P$3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="CONN-09193"/>
-<attribute name="VALUE" value="U.FL"/>
-</technology>
 </technologies>
 </device>
 </devices>
@@ -11682,96 +11632,6 @@ by exp-lbrs.ulp</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="pinhead">
-<description>&lt;b&gt;Pin Header Connectors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="1X02">
-<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
-<wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-0.635" y1="1.27" x2="0" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="0" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-0.635" y1="-1.27" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="0" y1="0.635" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="0.635" y1="-1.27" x2="0" y2="-0.635" width="0.1524" layer="21"/>
-<pad name="1" x="-1.27" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="2" x="1.27" y="0" drill="1.016" shape="long" rot="R90"/>
-<text x="-2.6162" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-2.54" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
-<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
-</package>
-<package name="1X02/90">
-<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
-<wire x1="-2.54" y1="-1.905" x2="0" y2="-1.905" width="0.1524" layer="21"/>
-<wire x1="0" y1="-1.905" x2="0" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="0" y1="0.635" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-1.905" width="0.1524" layer="21"/>
-<wire x1="-1.27" y1="6.985" x2="-1.27" y2="1.27" width="0.762" layer="21"/>
-<wire x1="0" y1="-1.905" x2="2.54" y2="-1.905" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="-1.905" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="0.635" x2="0" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="1.27" y1="6.985" x2="1.27" y2="1.27" width="0.762" layer="21"/>
-<pad name="1" x="-1.27" y="-3.81" drill="1.016" shape="long" rot="R90"/>
-<pad name="2" x="1.27" y="-3.81" drill="1.016" shape="long" rot="R90"/>
-<text x="-3.175" y="-3.81" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
-<text x="4.445" y="-3.81" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-1.651" y1="0.635" x2="-0.889" y2="1.143" layer="21"/>
-<rectangle x1="0.889" y1="0.635" x2="1.651" y2="1.143" layer="21"/>
-<rectangle x1="-1.651" y1="-2.921" x2="-0.889" y2="-1.905" layer="21"/>
-<rectangle x1="0.889" y1="-2.921" x2="1.651" y2="-1.905" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="PINHD2">
-<wire x1="-6.35" y1="-2.54" x2="1.27" y2="-2.54" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-2.54" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="-6.35" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-6.35" y1="5.08" x2="-6.35" y2="-2.54" width="0.4064" layer="94"/>
-<text x="-6.35" y="5.715" size="1.778" layer="95">&gt;NAME</text>
-<text x="-6.35" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="1" x="-2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="PINHD-1X2" prefix="JP" uservalue="yes">
-<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
-<gates>
-<gate name="G$1" symbol="PINHD2" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="1X02">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="/90" package="1X02/90">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="texas-custom">
 <description>Texas Instruments components
 Jason Wright (jpwright), last updated 2/11/14</description>
@@ -11870,7 +11730,6 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" deviceset="VDD" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
-<part name="J1" library="SparkFun-Connectors" deviceset="U.FL" device="" value="U.FL"/>
 <part name="U3" library="sf-bluegiga" deviceset="BLE113" device="-A"/>
 <part name="C5" library="rcl" deviceset="C-EU" device="C0402K" value="12pF ±5%"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0402K" value="12pF ±5%"/>
@@ -11882,9 +11741,7 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="IC1" library="parts" deviceset="0915BM15A0001" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
-<part name="R4" library="rcl" deviceset="R-US_" device="R0402"/>
 <part name="ANT1" library="discrete" deviceset="ANTENNA" device=""/>
-<part name="R9" library="rcl" deviceset="R-US_" device="R0402"/>
 <part name="CC1110-DEBUG" library="parts" deviceset="CC-DEBUG-PWR" device=""/>
 <part name="BLE113-DEBUG" library="parts" deviceset="CC-DEBUG-PWR" device=""/>
 <part name="PWR" library="parts" deviceset="SW_SLIDE" device=""/>
@@ -11919,12 +11776,9 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <part name="C11" library="rcl" deviceset="C-US" device="C0805K" value="10uF"/>
 <part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY18" library="supply2" deviceset="VDD" device=""/>
-<part name="GND20" library="supply1" deviceset="GND" device=""/>
 <part name="FID1" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID2" library="adafruit" deviceset="FIDUCIAL" device=""/>
 <part name="FID3" library="adafruit" deviceset="FIDUCIAL" device=""/>
-<part name="ALT.PWR" library="pinhead" deviceset="PINHD-1X2" device=""/>
-<part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="VREG" library="texas-custom" deviceset="LM3671" device=""/>
 <part name="GND21" library="supply1" deviceset="GND" device=""/>
 <part name="C14" library="rcl" deviceset="C-US" device="C0603K" value="4.7uF"/>
@@ -11960,7 +11814,6 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <instance part="GND9" gate="1" x="60.96" y="172.72"/>
 <instance part="SUPPLY2" gate="G$1" x="60.96" y="185.42"/>
 <instance part="SUPPLY5" gate="GND" x="76.2" y="-2.54"/>
-<instance part="J1" gate="G$1" x="152.4" y="35.56" rot="R90"/>
 <instance part="U3" gate="G$1" x="60.96" y="-48.26" rot="MR180"/>
 <instance part="C5" gate="G$1" x="147.32" y="-17.78"/>
 <instance part="C6" gate="G$1" x="132.08" y="-17.78"/>
@@ -11972,9 +11825,7 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <instance part="GND18" gate="1" x="139.7" y="93.98" rot="R180"/>
 <instance part="IC1" gate="G$1" x="132.08" y="53.34"/>
 <instance part="GND10" gate="1" x="132.08" y="43.18"/>
-<instance part="R4" gate="G$1" x="152.4" y="48.26" rot="R90"/>
 <instance part="ANT1" gate="A" x="152.4" y="83.82"/>
-<instance part="R9" gate="G$1" x="152.4" y="73.66" rot="R90"/>
 <instance part="CC1110-DEBUG" gate="G$1" x="-17.78" y="55.88" rot="R180"/>
 <instance part="BLE113-DEBUG" gate="G$1" x="-15.24" y="-15.24" rot="R180"/>
 <instance part="PWR" gate="G$1" x="93.98" y="134.62"/>
@@ -12009,12 +11860,9 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <instance part="C11" gate="G$1" x="66.04" y="101.6"/>
 <instance part="SUPPLY15" gate="GND" x="66.04" y="93.98"/>
 <instance part="SUPPLY18" gate="G$1" x="22.86" y="-68.58" rot="R180"/>
-<instance part="GND20" gate="1" x="157.48" y="27.94"/>
 <instance part="FID1" gate="G$1" x="111.76" y="-50.8"/>
 <instance part="FID2" gate="G$1" x="132.08" y="-50.8"/>
 <instance part="FID3" gate="G$1" x="147.32" y="-50.8"/>
-<instance part="ALT.PWR" gate="G$1" x="152.4" y="190.5"/>
-<instance part="GND12" gate="1" x="134.62" y="195.58" rot="R180"/>
 <instance part="VREG" gate="G$1" x="27.94" y="177.8"/>
 <instance part="GND21" gate="1" x="-5.08" y="172.72"/>
 <instance part="C14" gate="G$1" x="-5.08" y="180.34"/>
@@ -12164,19 +12012,6 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <pinref part="SUPPLY15" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="J1" gate="G$1" pin="GND@0"/>
-<pinref part="J1" gate="G$1" pin="GND@1"/>
-<wire x1="157.48" y1="30.48" x2="160.02" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="GND20" gate="1" pin="GND"/>
-<junction x="157.48" y="30.48"/>
-<wire x1="157.48" y1="30.48" x2="157.48" y2="33.02" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="ALT.PWR" gate="G$1" pin="1"/>
-<pinref part="GND12" gate="1" pin="GND"/>
-<wire x1="149.86" y1="193.04" x2="134.62" y2="193.04" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="C14" gate="G$1" pin="2"/>
 <pinref part="GND21" gate="1" pin="GND"/>
 <pinref part="VREG" gate="G$1" pin="GND"/>
@@ -12318,12 +12153,8 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <label x="160.02" y="149.86" size="1.778" layer="95"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="114.3" y1="175.26" x2="114.3" y2="182.88" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="182.88" x2="142.24" y2="182.88" width="0.1524" layer="91"/>
 <junction x="175.26" y="182.88"/>
-<wire x1="142.24" y1="182.88" x2="175.26" y2="182.88" width="0.1524" layer="91"/>
-<wire x1="142.24" y1="182.88" x2="142.24" y2="190.5" width="0.1524" layer="91"/>
-<pinref part="ALT.PWR" gate="G$1" pin="2"/>
-<wire x1="142.24" y1="190.5" x2="149.86" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="182.88" x2="175.26" y2="182.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="V+" class="0">
@@ -12374,28 +12205,12 @@ Jason Wright (jpwright), last updated 2/11/14</description>
 <wire x1="139.7" y1="68.58" x2="139.7" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="J1" gate="G$1" pin="SIGNAL"/>
-<pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="152.4" y1="43.18" x2="152.4" y2="40.64" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="R4" gate="G$1" pin="2"/>
-<wire x1="152.4" y1="53.34" x2="152.4" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="UNBAL"/>
 <wire x1="142.24" y1="55.88" x2="152.4" y2="55.88" width="0.1524" layer="91"/>
-<junction x="152.4" y="55.88"/>
-<pinref part="R9" gate="G$1" pin="1"/>
-<wire x1="152.4" y1="55.88" x2="152.4" y2="68.58" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$12" class="0">
-<segment>
+<wire x1="152.4" y1="55.88" x2="152.4" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="ANT1" gate="A" pin="1"/>
-<pinref part="R9" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$14" class="0">
