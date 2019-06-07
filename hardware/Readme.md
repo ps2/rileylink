@@ -18,7 +18,7 @@ The bom.csv file contains a list of parts and quantities along with their Digike
 
 A stencil for the PCB can be obtained at a reasonable price from [OSH Stencils](https://www.oshstencils.com).  Just upload the .brd file and accept the default mappings.
 
-You will have to look at the schematic and the board design in [Eagle](http://www.cadsoftusa.com/) to know where the parts go, and how they are oriented.
+You will have to look at the schematic and the PCB PDFs or open them in [Eagle](http://www.cadsoftusa.com/) to know where the parts go, and how they are oriented.
 
 I use a hot-air rework station to flow the solder paste, but you could use a toaster oven setup as well.
 
