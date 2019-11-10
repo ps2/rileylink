@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<hardware>
-    <sleeposc enable="true" ppm="30" />
-    <txpower power="15" bias="5" />
-    <script enable="true" />
-    <pmux regulator_pin="7" />
-</hardware>
