@@ -1,36 +1,18 @@
 # RileyLink
 
-[![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. 
-
-### Setup
-
- * There is a [FAQ](https://docs.google.com/document/d/1-KlewmRObpUWCTQSq9EPraN8R-6rCksJS_sRSQSexX0/edit#) covering some questions about installing the firmware.
- * [@loudnate](https://github.com/loudnate) recorded a [setup log](https://docs.google.com/document/d/1-bGBXbxVKOs_tDXi68qiOD7bIT6tQlkQydXn5Q-afLc/edit) of his experience.
+A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. The fork focuses on reducing size of the device.
 
 ### Hardware
 
-See the [hardware](https://github.com/ps2/rileylink/tree/master/hardware) directory for design files to build a RileyLink. The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).  This board has small parts and will need to be reflow soldered; using a solder-paste stencil is recommended. 
-
-![RileyLink Hardware](https://raw.githubusercontent.com/ps2/rileylink/master/rileylink.jpg)
-
-### Order a Pre-Assembed RileyLink
-From time-to-time community members do a production run of pre-assembled RileyLink Boards. When they are available you can place an order here [GetRileyLink](https://getrileylink.org/)
+See the [hardware](https://github.com/skupas/rileylink/tree/master/hardware) directory for design files to build a RileyLink. The hardware design is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).  
 
 ### Firmware
 
-The code in the [firmware](https://github.com/ps2/rileylink/tree/master/firmware) directory runs on the RileyLink hardware.  There are two main chips on the RileyLink, and thus two firmware images.
+The code in the [firmware](https://github.com/skupas/rileylink/tree/master/firmware) directory runs on the RileyLink hardware.  There are two main chips on the RileyLink, and thus two firmware images.
 
 ### LED Lights
 
-There are blue and green leds near both chips. The ble113 is on the upper right of the board, and the cc1110 is in the lower middle.  
-
-Blue for the ble113 indicates there are packets received and ready for a phone to pick up. Green means the phone is connected to the ble113.
-
-On the cc1110, I blue is a timer based on/off, letting you know the firmware code is running. Green is toggled when a packet comes in.
-
-The other red LED indicates charging.
+There are 3 leds on the back of the device: two red and one green. The green led blinks every 5 seconds while the module is connected over BLE and the battery in charged above 20%. The red leds indicate battery status: one will start blinking at 5 seconds interval once the battery drops below 20%, the other will turn solid red once you connect the charger. Once the battery is fully charged, both red leds should be off. 
 
 ### License
 
