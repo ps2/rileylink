@@ -1,9 +1,0 @@
-xgatt_name 3
-xgatt_battery 8
-xgatt_rx_packet_count 11
-xgatt_custom_name 15
-xgatt_rx_channel 18
-xgatt_tx_channel 21
-xgatt_rx_packet 24
-xgatt_tx_packet 27
-xgatt_tx_packet_trigger 31
