@@ -1,6 +1,6 @@
 # RileyLink
 
-[![Join the chat at https://gitter.im/ps2/rileylink](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ps2/rileylink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://loop.zulipchat.com)
 
 A custom designed Bluetooth Smart (BLE) to Sub-1 GHz module. It can be used to bridge any BLE capable smartphone to the world of Sub-1 GHz devices. 
 
